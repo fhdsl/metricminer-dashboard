@@ -50,31 +50,25 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.METRICMINER_GITHUB_PAT }}
 
-      # We want a fresh run of the renders each time - so first delete old html files
       - name: Delete old *.html
         run: Rscript -e "rmarkdown::clean_site(preview = FALSE)"
 
-       # Now we want to render all the html files from the Rmd files
       - name: Run render html
         id: site
         run: Rscript -e "rmarkdown::render_site()"
 
-      # This checks on the steps before it and makes sure that they completed.
-      # If the renders didn't complete we don't want to commit the file changes
       - name: Check on render steps
         if: steps.site.outcome != 'success'
         run: |
           echo site status ${{steps.site.outcome}}
           exit 1
 
-# Commit the rendered site files - html files and site_libs files
       - name: Commit rendered site files
         run: |
           git config --system --add safe.directory $GITHUB_WORKSPACE
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git add --force *.html
-          git add --force subdir_html/*.html
           git add --force site_libs/*
           git commit -m 'Render site' || echo "No changes to commit"
           git push origin main || echo "No changes to push"
