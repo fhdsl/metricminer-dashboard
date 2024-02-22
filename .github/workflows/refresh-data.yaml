@@ -55,7 +55,7 @@ jobs:
           METRICMINER_GOOGLE_ACCESS: ${{ secrets.METRICMINER_GOOGLE_ACCESS }}
           METRICMINER_GOOGLE_REFRESH: ${{ secrets.METRICMINER_GOOGLE_REFRESH }}
         run: |
-         Rscript refresh-data/refresh-calendly.R
+         Rscript refresh-scripts/refresh-calendly.R
 
       - name: Commit calendly data
         run: |
@@ -77,7 +77,7 @@ jobs:
 
     steps:
       - name: Refresh CRAN
-        run: Rscript refresh-data/refresh-cran.R --cran_packages ${{needs.yaml-check.outputs.cran_packages}}
+        run: Rscript refresh-scripts/refresh-cran.R --cran_packages ${{needs.yaml-check.outputs.cran_packages}}
 
       - name: Commit CRAN data
         run: |
@@ -101,7 +101,7 @@ jobs:
         env:
           METRICMINER_GOOGLE_ACCESS: ${{ secrets.METRICMINER_GOOGLE_ACCESS }}
           METRICMINER_GOOGLE_REFRESH: ${{ secrets.METRICMINER_GOOGLE_REFRESH }}
-        run: Rscript refresh-data/refresh-ga.R --ga_property_ids ${{needs.yaml-check.outputs.ga_property_ids}}
+        run: Rscript refresh-scripts/refresh-ga.R --ga_property_ids ${{needs.yaml-check.outputs.ga_property_ids}}
 
       - name: Commit GA data
         run: |
@@ -124,7 +124,7 @@ jobs:
       - name: Refresh Github
         env:
           METRICMINER_GITHUB_PAT: ${{ secrets.METRICMINER_GITHUB_PAT }}
-        run: Rscript refresh-data/refresh-github.R --gh_repos ${{needs.yaml-check.outputs.gh_repos}}
+        run: Rscript refresh-scripts/refresh-github.R --gh_repos ${{needs.yaml-check.outputs.gh_repos}}
 
       - name: Commit Github data
         run: |
@@ -148,7 +148,7 @@ jobs:
         env:
           METRICMINER_GOOGLE_ACCESS: ${{ secrets.METRICMINER_GOOGLE_ACCESS }}
           METRICMINER_GOOGLE_REFRESH: ${{ secrets.METRICMINER_GOOGLE_REFRESH }}
-        run: Rscript refresh-data/refresh-googleforms.R ${{needs.yaml-check.outputs.google_forms}}
+        run: Rscript refresh-scripts/refresh-googleforms.R ${{needs.yaml-check.outputs.google_forms}}
 
       - name: Commit Google Forms data
         run: |
@@ -172,7 +172,7 @@ jobs:
         env:
           METRICMINER_GOOGLE_ACCESS: ${{ secrets.METRICMINER_GOOGLE_ACCESS }}
           METRICMINER_GOOGLE_REFRESH: ${{ secrets.METRICMINER_GOOGLE_REFRESH }}
-        run: Rscript refresh-data/refresh-slido.R --drive_id ${{needs.yaml-check.outputs.drive_id}}
+        run: Rscript refresh-scripts/refresh-slido.R --drive_id ${{needs.yaml-check.outputs.drive_id}}
 
       - name: Commit Google Forms data
         run: |
@@ -196,7 +196,7 @@ jobs:
         env:
           METRICMINER_GOOGLE_ACCESS: ${{ secrets.METRICMINER_GOOGLE_ACCESS }}
           METRICMINER_GOOGLE_REFRESH: ${{ secrets.METRICMINER_GOOGLE_REFRESH }}
-        run: Rscript refresh-data/refresh-youtube.R --video_ids ${{needs.yaml-check.outputs.video_ids}}
+        run: Rscript refresh-scripts/refresh-youtube.R --video_ids ${{needs.yaml-check.outputs.video_ids}}
 
       - name: Commit Youtube data
         run: |
