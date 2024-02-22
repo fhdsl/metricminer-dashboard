@@ -30,7 +30,6 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.METRICMINER_GITHUB_PAT }}
 
-        # Use the yaml-env-action action.
       - name: Load environment from YAML
         uses: doughepi/yaml-env-action@v1.0.0
         with:
@@ -39,22 +38,17 @@ jobs:
     outputs:
       rendering_docker_image: "${{ env.RENDERING_DOCKER_IMAGE }}"
 
-  # This workflow contains a single job called "build-all"
   render-main:
     needs: yaml-check
     runs-on: ubuntu-latest
     container:
       image: ${{needs.yaml-check.outputs.rendering_docker_image}}
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: checkout
         uses: actions/checkout@v4
         with:
-          # get the full repo
           fetch-depth: 0
-          # use github PAT
-          token: ${{ secrets.METRICMINER_GITHUB }}
+          token: ${{ secrets.METRICMINER_GITHUB_PAT }}
 
       # We want a fresh run of the renders each time - so first delete old html files
       - name: Delete old *.html
