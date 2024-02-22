@@ -6,8 +6,8 @@ on:
     - cron: '0 0 * * 0'
   push:
     path: _config_automation.yml
-jobs:
 
+jobs:
   yaml-check:
     name: Load user automation choices
     runs-on: ubuntu-latest
@@ -18,7 +18,7 @@ jobs:
       - name: Load environment from YAML
         uses: doughepi/yaml-env-action@v1.0.0
         with:
-            files: _config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
+          files: _config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
 
     outputs:
       toggle_calendly: "${{ env.REFRESH_CALENDLY }}"
@@ -175,7 +175,7 @@ jobs:
         env:
           METRICMINER_GOOGLE_ACCESS: ${{ secrets.METRICMINER_GOOGLE_ACCESS }}
           METRICMINER_GOOGLE_REFRESH: ${{ secrets.METRICMINER_GOOGLE_REFRESH }}
-        run: Rscript refresh-scripts/refresh-googleforms.R ${{needs.yaml-check.outputs.google_forms}}
+        run: Rscript refresh-scripts/refresh-googleforms.R --google_forms ${{needs.yaml-check.outputs.google_forms}}
 
       - name: Commit Google Forms data
         run: |

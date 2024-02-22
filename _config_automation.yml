@@ -42,4 +42,4 @@ video-ids:
 
 # What docker image should be used for rendering?
 # The default is jhudsl/base_ottr:main
-rendering-docker-image: 'cansav09/metricminer:latest'
+rendering-docker-image: 'cansav09/metricminer:main'
