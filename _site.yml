@@ -1,27 +1,18 @@
-name: OTTR Template Website
+name: metricminer dashboard
 output_dir: '.'
 navbar:
-  title: OTTR Web
+  title: metricminer dashboard
   left:
-  - text: Home
-    href: index.html
-    icon: fa-home
-  - text: Setup
-    href: setup.html
-  - text: Hosting
-    href: hosting.html
-  - text: Editing
-    href: editing.html
-  - text: Style
-    href: style.html
-  - text: Git Actions
-    href: git_actions.html
-  - text: Docker
-    href: docker.html
-  - text: Contact
-    href: contact.html
-    icon: fa-envelope
-
+  - text: Calendly
+    href: calendly.html
+  - text: GitHub
+    href: github.html
+  - text: Google Analytics
+    href: googleanalytics.html
+  - text: Slido
+    href: slido.html
+  - text: Youtube
+    href: youtube.html
 
 output:
   html_document:
@@ -29,6 +20,6 @@ output:
     lib_dir: site_libs
     self_contained: no
     highlight: textmate
-    css: styles.css
     includes:
        in_header: resources/header.html
+       in_footer: resources/footer.html

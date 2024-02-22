@@ -1,0 +1,110 @@
+
+name: Refresh All
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 0'
+
+jobs:
+  refresh-all:
+    name: Refresh All
+    runs-on: ubuntu-latest
+    container:
+      image: cansav09/metricminer
+
+  yaml-check:
+    name: Load user automation choices
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+        # Use the yaml-env-action action.
+      - name: Load environment from YAML
+        uses: doughepi/yaml-env-action@v1.0.0
+        with:
+            files: config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
+
+    outputs:
+      toggle_calendly: "${{ env.RENDER_CALENDLY }}"
+      toggle_ga: "${{ env.RENDER_GA }}"
+      toggle_github: "${{ env.RENDER_GITHUB }}"
+      toggle_googleforms: "${{ env.RENDER_GOOGLEFORMS }}"
+      toggle_slido: "${{ env.RENDER_SLIDO }}"
+      toggle_youtube: "${{ env.RENDER_YOUTUBE }}"
+      rendering_docker_image: "${{ env.RENDERING_DOCKER_IMAGE }}"
+
+  render-calendly:
+    name: Render Calendly
+    needs: yaml-check
+    runs-on: ubuntu-latest
+    container:
+      image: ${{needs.yaml-check.outputs.rendering_docker_image}}
+    if: ${{needs.yaml-check.outputs.toggle_calendly == 'yes'}}
+
+    steps:
+      - name: Refresh Google Analytics
+        env:
+          METRICMINER_CALENDLY: ${{ secrets.METRICMINER_CALENDLY }}
+        run: Rscript refresh-data/refresh-calendly.R
+
+  render-ga:
+    name: Render Google Analytics
+    needs: yaml-check
+    runs-on: ubuntu-latest
+    container:
+      image: ${{needs.yaml-check.outputs.rendering_docker_image}}
+    if: ${{needs.yaml-check.outputs.toggle_ga == 'yes'}}
+
+    steps:
+      - name: Refresh Google Analytics
+        env:
+          METRICMINER_GOOGLE_ACCESS: ${{ secrets.METRICMINER_GOOGLE_ACCESS }}
+          METRICMINER_GOOGLE_REFRESH: ${{ secrets.METRICMINER_GOOGLE_REFRESH }}
+        run: Rscript refresh-data/refresh-ga.R
+
+  render-github:
+    name: Render Github
+    needs: yaml-check
+    runs-on: ubuntu-latest
+    container:
+      image: ${{needs.yaml-check.outputs.rendering_docker_image}}
+    if: ${{needs.yaml-check.outputs.toggle_github == 'yes'}}
+
+    steps:
+      - name: Refresh Github
+        env:
+          METRICMINER_GITHUB_PAT: ${{ secrets.METRICMINER_GITHUB_PAT }}
+          METRICMINER_GOOGLE_ACCESS: ${{ secrets.METRICMINER_GOOGLE_ACCESS }}
+          METRICMINER_GOOGLE_REFRESH: ${{ secrets.METRICMINER_GOOGLE_REFRESH }}
+        run: Rscript refresh-data/refresh-github.R
+
+  refresh-googleforms:
+    name: Render Google Forms
+    needs: yaml-check
+    runs-on: ubuntu-latest
+    container:
+      image: ${{needs.yaml-check.outputs.rendering_docker_image}}
+    if: ${{needs.yaml-check.outputs.toggle_googleforms == 'yes'}}
+
+    steps:
+      - name: Refresh Google Forms
+        env:
+          METRICMINER_GOOGLE_ACCESS: ${{ secrets.METRICMINER_GOOGLE_ACCESS }}
+          METRICMINER_GOOGLE_REFRESH: ${{ secrets.METRICMINER_GOOGLE_REFRESH }}
+        run: Rscript refresh-data/refresh-googleforms.R
+
+  refresh-slido:
+    name: Render Slido
+    needs: yaml-check
+    runs-on: ubuntu-latest
+    container:
+      image: ${{needs.yaml-check.outputs.rendering_docker_image}}
+    if: ${{needs.yaml-check.outputs.toggle_slido == 'yes'}}
+
+    steps:
+      - name: Refresh Slido
+        env:
+          METRICMINER_GOOGLE_ACCESS: ${{ secrets.METRICMINER_GOOGLE_ACCESS }}
+          METRICMINER_GOOGLE_REFRESH: ${{ secrets.METRICMINER_GOOGLE_REFRESH }}
+        run: Rscript refresh-data/refresh-slido.R
