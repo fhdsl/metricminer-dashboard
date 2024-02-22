@@ -1,0 +1,8 @@
+---
+title: "GitHub"
+output: html_document
+---
+
+## Setting up GitHub
+
+## Preview

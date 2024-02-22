@@ -18,24 +18,33 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+          fetch-depth: 0
+          token: ${{ secrets.METRICMINER_GITHUB_PAT }}
 
-        # Use the yaml-env-action action.
       - name: Load environment from YAML
         uses: doughepi/yaml-env-action@v1.0.0
         with:
-            files: config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
+            files: _config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
 
     outputs:
-      toggle_calendly: "${{ env.RENDER_CALENDLY }}"
-      toggle_ga: "${{ env.RENDER_GA }}"
-      toggle_github: "${{ env.RENDER_GITHUB }}"
-      toggle_googleforms: "${{ env.RENDER_GOOGLEFORMS }}"
-      toggle_slido: "${{ env.RENDER_SLIDO }}"
-      toggle_youtube: "${{ env.RENDER_YOUTUBE }}"
+      toggle_calendly: "${{ env.REFRESH_CALENDLY }}"
+      toggle_cran: "${{ env.REFRESH_CRAN }}"
+      toggle_ga: "${{ env.REFRESH_GA }}"
+      toggle_github: "${{ env.REFRESH_GITHUB }}"
+      toggle_googleforms: "${{ env.REFRESH_GOOGLEFORMS }}"
+      toggle_slido: "${{ env.REFRESH_SLIDO }}"
+      toggle_youtube: "${{ env.REFRESH_YOUTUBE }}"
       rendering_docker_image: "${{ env.RENDERING_DOCKER_IMAGE }}"
+      ### Inputs ###
+      cran_packages: "${{ env.CRAN_PACKAGES }}"
+      gh_repos: "${{ env.GH_REPOS }}"
+      ga_property_ids: "${{ env.GA_PROPERTY_IDS }}"
+      google_forms: "${{ env.GOOGLE_FORMS }}"
+      drive_id: "${{ env.DRIVE_ID }}"
+      video_ids: "${{ env.VIDEO_IDS }}"
 
-  render-calendly:
-    name: Render Calendly
+  refresh-calendly:
+    name: Refresh Calendly
     needs: yaml-check
     runs-on: ubuntu-latest
     container:
@@ -43,13 +52,46 @@ jobs:
     if: ${{needs.yaml-check.outputs.toggle_calendly == 'yes'}}
 
     steps:
-      - name: Refresh Google Analytics
+      - name: Refresh Calendly
         env:
           METRICMINER_CALENDLY: ${{ secrets.METRICMINER_CALENDLY }}
-        run: Rscript refresh-data/refresh-calendly.R
+          METRICMINER_GOOGLE_ACCESS: ${{ secrets.METRICMINER_GOOGLE_ACCESS }}
+          METRICMINER_GOOGLE_REFRESH: ${{ secrets.METRICMINER_GOOGLE_REFRESH }}
+        run: |
+         Rscript refresh-data/refresh-calendly.R
 
-  render-ga:
-    name: Render Google Analytics
+      - name: Commit calendly data
+        run: |
+          git config --system --add safe.directory $GITHUB_WORKSPACE
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add --force data/calendly/*
+          git commit -m 'Refresh Calendly' || echo "No changes to commit"
+          git push origin main || echo "No changes to push"
+
+  refresh-cran:
+    name: Refresh CRAN
+    needs: yaml-check
+    runs-on: ubuntu-latest
+    container:
+      image: ${{needs.yaml-check.outputs.rendering_docker_image}}
+    if: ${{needs.yaml-check.outputs.toggle_cran == 'yes'}}
+
+    steps:
+      - name: Refresh CRAN
+        run: Rscript refresh-data/refresh-cran.R --cran_packages ${{needs.yaml-check.outputs.cran_packages}}
+
+      - name: Commit CRAN data
+        run: |
+          git config --system --add safe.directory $GITHUB_WORKSPACE
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add --force data/cran/*
+          git commit -m 'Refresh CRAN' || echo "No changes to commit"
+          git push origin main || echo "No changes to push"
+
+  refresh-ga:
+    name: Refresh Google Analytics
     needs: yaml-check
     runs-on: ubuntu-latest
     container:
@@ -61,10 +103,19 @@ jobs:
         env:
           METRICMINER_GOOGLE_ACCESS: ${{ secrets.METRICMINER_GOOGLE_ACCESS }}
           METRICMINER_GOOGLE_REFRESH: ${{ secrets.METRICMINER_GOOGLE_REFRESH }}
-        run: Rscript refresh-data/refresh-ga.R
+        run: Rscript refresh-data/refresh-ga.R --ga_property_ids ${{needs.yaml-check.outputs.ga_property_ids}}
 
-  render-github:
-    name: Render Github
+      - name: Commit GA data
+        run: |
+          git config --system --add safe.directory $GITHUB_WORKSPACE
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add --force data/ga/*
+          git commit -m 'Refresh GA' || echo "No changes to commit"
+          git push origin main || echo "No changes to push"
+
+  refresh-github:
+    name: Refresh Github
     needs: yaml-check
     runs-on: ubuntu-latest
     container:
@@ -75,12 +126,19 @@ jobs:
       - name: Refresh Github
         env:
           METRICMINER_GITHUB_PAT: ${{ secrets.METRICMINER_GITHUB_PAT }}
-          METRICMINER_GOOGLE_ACCESS: ${{ secrets.METRICMINER_GOOGLE_ACCESS }}
-          METRICMINER_GOOGLE_REFRESH: ${{ secrets.METRICMINER_GOOGLE_REFRESH }}
-        run: Rscript refresh-data/refresh-github.R
+        run: Rscript refresh-data/refresh-github.R --gh_repos ${{needs.yaml-check.outputs.gh_repos}}
+
+      - name: Commit Github data
+        run: |
+          git config --system --add safe.directory $GITHUB_WORKSPACE
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add --force data/github/*
+          git commit -m 'Refresh GitHub' || echo "No changes to commit"
+          git push origin main || echo "No changes to push"
 
   refresh-googleforms:
-    name: Render Google Forms
+    name: Refresh Google Forms
     needs: yaml-check
     runs-on: ubuntu-latest
     container:
@@ -92,10 +150,20 @@ jobs:
         env:
           METRICMINER_GOOGLE_ACCESS: ${{ secrets.METRICMINER_GOOGLE_ACCESS }}
           METRICMINER_GOOGLE_REFRESH: ${{ secrets.METRICMINER_GOOGLE_REFRESH }}
-        run: Rscript refresh-data/refresh-googleforms.R
+        run: |
+         Rscript refresh-data/refresh-googleforms.R ${{needs.yaml-check.outputs.google_forms}}
+
+      - name: Commit Google Forms data
+        run: |
+          git config --system --add safe.directory $GITHUB_WORKSPACE
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add --force data/googleforms/*
+          git commit -m 'Refresh Google Forms' || echo "No changes to commit"
+          git push origin main || echo "No changes to push"
 
   refresh-slido:
-    name: Render Slido
+    name: Refresh Slido
     needs: yaml-check
     runs-on: ubuntu-latest
     container:
@@ -107,4 +175,37 @@ jobs:
         env:
           METRICMINER_GOOGLE_ACCESS: ${{ secrets.METRICMINER_GOOGLE_ACCESS }}
           METRICMINER_GOOGLE_REFRESH: ${{ secrets.METRICMINER_GOOGLE_REFRESH }}
-        run: Rscript refresh-data/refresh-slido.R
+        run: Rscript refresh-data/refresh-slido.R --drive_id ${{needs.yaml-check.outputs.drive_id}}
+
+      - name: Commit Google Forms data
+        run: |
+          git config --system --add safe.directory $GITHUB_WORKSPACE
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add --force data/googleforms/*
+          git commit -m 'Refresh Google Forms' || echo "No changes to commit"
+          git push origin main || echo "No changes to push"
+
+  refresh-youtube:
+    name: Refresh Youtube
+    needs: yaml-check
+    runs-on: ubuntu-latest
+    container:
+      image: ${{needs.yaml-check.outputs.rendering_docker_image}}
+    if: ${{needs.yaml-check.outputs.toggle_youtube == 'yes'}}
+
+    steps:
+      - name: Refresh Youtube
+        env:
+          METRICMINER_GOOGLE_ACCESS: ${{ secrets.METRICMINER_GOOGLE_ACCESS }}
+          METRICMINER_GOOGLE_REFRESH: ${{ secrets.METRICMINER_GOOGLE_REFRESH }}
+        run: Rscript refresh-data/refresh-youtube.R --video_ids ${{needs.yaml-check.outputs.video_ids}}
+
+      - name: Commit Youtube data
+        run: |
+          git config --system --add safe.directory $GITHUB_WORKSPACE
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add --force data/youtube/*
+          git commit -m 'Refresh Youtube' || echo "No changes to commit"
+          git push origin main || echo "No changes to push"

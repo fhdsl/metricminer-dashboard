@@ -5,14 +5,22 @@ navbar:
   left:
   - text: Calendly
     href: calendly.html
+    icon: fa-calendar
+  - text: CRAN
+    href: cran.html
+    icon: fa-r
   - text: GitHub
     href: github.html
+    icon: fa-github
   - text: Google Analytics
     href: googleanalytics.html
+    icon: fa-google
   - text: Slido
     href: slido.html
+    icon: a-square-poll-vertical
   - text: Youtube
     href: youtube.html
+    icon: fa-play
 
 output:
   html_document:

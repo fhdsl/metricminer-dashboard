@@ -1,0 +1,17 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.DS_Store
+.secrets/*
+.httr-oauth
+docs
+inst/extdata/cached-secrets/*
+.Rprofile
+.Rapp.history
+testthat-problems.rds
+.Renviron
+inst/doc
+.DS_Store
+local_auth_2.R
+local_auth.R
