@@ -14,9 +14,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-          token: ${{ secrets.METRICMINER_GITHUB_PAT }}
 
       - name: Load environment from YAML
         uses: doughepi/yaml-env-action@v1.0.0
@@ -49,6 +46,12 @@ jobs:
     if: ${{needs.yaml-check.outputs.toggle_calendly == 'yes'}}
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.METRICMINER_GITHUB_PAT }}
+
       - name: Refresh Calendly
         env:
           METRICMINER_CALENDLY: ${{ secrets.METRICMINER_CALENDLY }}
@@ -76,6 +79,12 @@ jobs:
     if: ${{needs.yaml-check.outputs.toggle_cran == 'yes'}}
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.METRICMINER_GITHUB_PAT }}
+
       - name: Refresh CRAN
         run: Rscript refresh-scripts/refresh-cran.R --cran_packages ${{needs.yaml-check.outputs.cran_packages}}
 
@@ -97,6 +106,12 @@ jobs:
     if: ${{needs.yaml-check.outputs.toggle_ga == 'yes'}}
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.METRICMINER_GITHUB_PAT }}
+
       - name: Refresh Google Analytics
         env:
           METRICMINER_GOOGLE_ACCESS: ${{ secrets.METRICMINER_GOOGLE_ACCESS }}
@@ -121,6 +136,12 @@ jobs:
     if: ${{needs.yaml-check.outputs.toggle_github == 'yes'}}
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.METRICMINER_GITHUB_PAT }}
+
       - name: Refresh Github
         env:
           METRICMINER_GITHUB_PAT: ${{ secrets.METRICMINER_GITHUB_PAT }}
@@ -144,6 +165,12 @@ jobs:
     if: ${{needs.yaml-check.outputs.toggle_googleforms == 'yes'}}
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.METRICMINER_GITHUB_PAT }}
+
       - name: Refresh Google Forms
         env:
           METRICMINER_GOOGLE_ACCESS: ${{ secrets.METRICMINER_GOOGLE_ACCESS }}
@@ -168,6 +195,12 @@ jobs:
     if: ${{needs.yaml-check.outputs.toggle_slido == 'yes'}}
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.METRICMINER_GITHUB_PAT }}
+
       - name: Refresh Slido
         env:
           METRICMINER_GOOGLE_ACCESS: ${{ secrets.METRICMINER_GOOGLE_ACCESS }}
@@ -192,6 +225,12 @@ jobs:
     if: ${{needs.yaml-check.outputs.toggle_youtube == 'yes'}}
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.METRICMINER_GITHUB_PAT }}
+
       - name: Refresh Youtube
         env:
           METRICMINER_GOOGLE_ACCESS: ${{ secrets.METRICMINER_GOOGLE_ACCESS }}
