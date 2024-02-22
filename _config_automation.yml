@@ -14,31 +14,28 @@ refresh-calendly: yes
 
 ###### CRAN ######
 refresh-cran: yes
-cran-packages: [ metricminer, ottrpal ]
+cran_packages: [ metricminer, ottrpal ]
 
 ###### GitHub ######
 refresh-github: yes
-gh-repos: [ fhdsl/metricminer, fhdsl/metricminer.org ]
+gh_repos: [ fhdsl/metricminer, fhdsl/metricminer.org ]
 
 ###### Google Analytics ######
 refresh-ga: yes
-ga-property-ids: [ ]
+ga_property_ids: [ 422671031, 422558989 ]
 
 ###### Google Forms ######
 refresh-googleforms: yes
-google-forms:
-  [ 1pbFfgUPYH2w9zEoCDjCa4HFOxzEhGOseufw28Xxmd-o,
-  1JjmsiuVoGSxvl-1M_oWittcftO955tijzeNc-cgJlo8 ]
+google_forms:
+  [ 1pbFfgUPYH2w9zEoCDjCa4HFOxzEhGOseufw28Xxmd-o, 1JjmsiuVoGSxvl-1M_oWittcftO955tijzeNc-cgJlo8 ]
 
 ###### Slido ######
 refresh-slido: yes
-drive-id: 1XWXHHyj32Uw_UyaUJrqp6S--hHnM0-7l
+drive_id: 1XWXHHyj32Uw_UyaUJrqp6S--hHnM0-7l
 
 ###### YouTube ######
 refresh-youtube: yes
-video-ids:
- [ XN_QPRrJZAw,
-   YkYnni-WuaQ ]
+video_ids: [ XN_QPRrJZAw, YkYnni-WuaQ ]
 
 # What docker image should be used for rendering?
 # The default is jhudsl/base_ottr:main
