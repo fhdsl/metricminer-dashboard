@@ -25,7 +25,7 @@ refresh-ga: yes
 ga-property-ids: [ ]
 
 ###### Google Forms ######
-refresh-googleform: yes
+refresh-googleforms: yes
 google-forms:
   [ 1pbFfgUPYH2w9zEoCDjCa4HFOxzEhGOseufw28Xxmd-o,
   1JjmsiuVoGSxvl-1M_oWittcftO955tijzeNc-cgJlo8 ]
