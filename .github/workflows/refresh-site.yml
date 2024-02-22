@@ -12,7 +12,7 @@ on:
   push:
     branches: [ main ]
     paths:
-      - data
+      - data/*
       - '**.Rmd'
       - styles.css
       - _site.yml
