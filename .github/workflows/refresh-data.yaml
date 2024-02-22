@@ -62,6 +62,7 @@ jobs:
           git config --system --add safe.directory $GITHUB_WORKSPACE
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
+          git pull --set-upstream origin main --allow-unrelated-histories --strategy-option=ours
           git add --force data/calendly/*
           git commit -m 'Refresh Calendly' || echo "No changes to commit"
           git push origin main || echo "No changes to push"

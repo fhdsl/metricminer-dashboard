@@ -10,32 +10,32 @@ style-code: yes
 
 
 ###### Calendly ######
-refresh-calendly: no
+refresh-calendly: yes
 
 ###### CRAN ######
-refresh-cran: no
+refresh-cran: yes
 cran-packages: [ metricminer, ottrpal ]
 
 ###### GitHub ######
-refresh-github: no
+refresh-github: yes
 gh-repos: [ fhdsl/metricminer, fhdsl/metricminer.org ]
 
 ###### Google Analytics ######
-refresh-ga: no
+refresh-ga: yes
 ga-property-ids: [ ]
 
 ###### Google Forms ######
-refresh-googleform: no
+refresh-googleform: yes
 google-forms:
   [ 1pbFfgUPYH2w9zEoCDjCa4HFOxzEhGOseufw28Xxmd-o,
   1JjmsiuVoGSxvl-1M_oWittcftO955tijzeNc-cgJlo8 ]
 
 ###### Slido ######
-refresh-slido: no
+refresh-slido: yes
 drive-id: 1XWXHHyj32Uw_UyaUJrqp6S--hHnM0-7l
 
 ###### YouTube ######
-refresh-youtube: no
+refresh-youtube: yes
 video-ids:
  [ XN_QPRrJZAw,
    YkYnni-WuaQ ]
