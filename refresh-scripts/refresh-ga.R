@@ -25,8 +25,13 @@ option_list <- list(
 opt_parser <- optparse::OptionParser(option_list = option_list)
 opt <- optparse::parse_args(opt_parser)
 
-ga_metrics <- get_all_ga_metrics(property_ids = opt$ga_property_ids)
 
-saveRDS(ga_metrics, file.path(output_dir, "ga_metrics.RDS"))
+metrics <- get_ga_stats(opt$ga_property_ids, stats_type = "metrics")
+dimensions <- get_ga_stats(opt$ga_property_ids, stats_type = "dimensions")
+link_clicks <- get_ga_stats(opt$ga_property_ids, stats_type = "link_clicks")
+
+saveRDS(metrics, file.path(output_dir, "ga_metrics.RDS"))
+saveRDS(dimensions, file.path(output_dir, "ga_dimensions.RDS"))
+saveRDS(link_clicks, file.path(output_dir, "ga_link_clicks.RDS"))
 
 sessionInfo()
