@@ -6,7 +6,7 @@ on:
     - cron: '0 0 * * 0'
   push:
     branches: [ main ]
-    path: _config_automation.yml
+    paths: '_config_automation.yml'
 
 jobs:
   yaml-check:
