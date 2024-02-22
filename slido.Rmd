@@ -1,0 +1,9 @@
+---
+title: "Slido"
+output: html_document
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+---
+
+## Setting up Slido
+
+## Preview
