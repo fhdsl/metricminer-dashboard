@@ -3,6 +3,9 @@ output_dir: '.'
 navbar:
   title: metricminer dashboard
   left:
+  - text: Home
+    href: index.html
+    icon: fa-home    
   - text: Calendly
     href: calendly.html
     icon: fa-calendar
