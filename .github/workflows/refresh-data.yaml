@@ -6,11 +6,6 @@ on:
     - cron: '0 0 * * 0'
 
 jobs:
-  refresh-all:
-    name: Refresh All
-    runs-on: ubuntu-latest
-    container:
-      image: cansav09/metricminer
 
   yaml-check:
     name: Load user automation choices
