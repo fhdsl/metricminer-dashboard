@@ -1,0 +1,27 @@
+---
+title: "**metricminer**"
+output:
+  html_document
+---
+
+## Getting Started!
+
+This is a templated demo website that you can use to display your own metrics!
+
+<img src = "resources/images/metricminer-gnome.png" width = 200>
+
+[Video made with Loqui](https://loqui.fredhutch.org/)
+
+This work is funded by NCI UE5CA254170 as a part of the [ITCR Training Network](https://www.itcrtraining.org/)
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-951TGMSPH7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-951TGMSPH7');
+</script>
+
+[See privacy policy](https://www.metricminer.org/privacypolicy.html)
