@@ -1,10 +1,11 @@
 
-name: Refresh All
+name: Refresh Data
 on:
   workflow_dispatch:
   schedule:
     - cron: '0 0 * * 0'
-
+  push:
+    path: _config_automation.yml
 jobs:
 
   yaml-check:
