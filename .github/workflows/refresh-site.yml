@@ -5,8 +5,6 @@
 
 name: Refresh Site
 
-# Controls when the action will run. Triggers the workflow on push
-# events only for the master branch
 on:
   workflow_dispatch:
   push:
@@ -27,9 +25,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         with:
-          token: ${{ secrets.METRICMINER_GITHUB }}
+          fetch-depth: 0
+          token: ${{ secrets.METRICMINER_GITHUB_PAT }}
 
         # Use the yaml-env-action action.
       - name: Load environment from YAML
