@@ -16,9 +16,9 @@ yaml <- yaml::read_yaml(file.path(root_dir, "_config_automation.yml"))
 
 # Authorize Google
 auth_from_secret("google",
-                 refresh_token = Sys.getenv("METRICMINER_GOOGLE_REFRESH"),
-                 access_token = Sys.getenv("METRICMINER_GOOGLE_ACCESS"),
-                 cache = TRUE
+  refresh_token = Sys.getenv("METRICMINER_GOOGLE_REFRESH"),
+  access_token = Sys.getenv("METRICMINER_GOOGLE_ACCESS"),
+  cache = TRUE
 )
 
 youtube_metrics <- lapply(yaml$video_ids, get_youtube_video_stats)

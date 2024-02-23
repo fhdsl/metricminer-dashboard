@@ -7,18 +7,43 @@ library(magrittr)
 
 # Find .git root directory
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+source(file.path(root_dir, "refresh-scripts", "folder-setup.R"))
 
-output_dir <- file.path(root_dir, "data", "github")
-dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
+folder_path <- file.path("metricminer_data", "github")
 
-# Read in config file
-yaml <- yaml::read_yaml(file.path(root_dir, "_config_automation.yml"))
+# Declare and read in config file
+yaml_file_path <- file.path(root_dir, "_config_automation.yml")
+yaml <- yaml::read_yaml(yaml_file_path)
 
-# Authorize
+# Authorize Google
+auth_from_secret("google",
+                 refresh_token = Sys.getenv("METRICMINER_GOOGLE_REFRESH"),
+                 access_token = Sys.getenv("METRICMINER_GOOGLE_ACCESS"),
+                 cache = TRUE
+)
+# Authorize GitHub
 auth_from_secret("github", token = Sys.getenv("METRICMINER_GITHUB_PAT"))
 
+# Read the data
 gh_metrics <- get_multiple_repos_metrics(repo_names = yaml$gh_repos)
 
-saveRDS(gh_metrics, file.path(output_dir, "gh_metrics.RDS"))
+setup_folders(
+  folder_path = folder_path,
+  google_entry = "gh_googlesheet",
+  config_file = yaml_file_path, 
+  data_name = "github"
+)
+
+if (yaml$data_dest == "google") {
+    googlesheets4::write_sheet(gh_metrics,
+                               ss = yaml$gh_googlesheet
+    )
+}
+
+if (yaml$data_dest == "github") {
+  readr::write_tsv(gh_metrics,
+      file.path(folder_path, "github.tsv")
+    )
+}
 
 sessionInfo()

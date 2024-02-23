@@ -18,7 +18,8 @@ yaml <- yaml::read_yaml(file.path(root_dir, "_config_automation.yml"))
 cran_stats <- cranlogs::cran_downloads(
   packages = yaml$cran_packages,
   from = "2009-05-06",
-  to = "last-day")
+  to = "last-day"
+)
 
 saveRDS(cran_stats, file.path(output_dir, "cran_metrics.RDS"))
 

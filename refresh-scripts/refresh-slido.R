@@ -16,13 +16,13 @@ yaml <- yaml::read_yaml(file.path(root_dir, "_config_automation.yml"))
 
 # Authorize Google
 auth_from_secret("google",
-                 refresh_token = Sys.getenv("METRICMINER_GOOGLE_REFRESH"),
-                 access_token = Sys.getenv("METRICMINER_GOOGLE_ACCESS"),
-                 cache = TRUE
+  refresh_token = Sys.getenv("METRICMINER_GOOGLE_REFRESH"),
+  access_token = Sys.getenv("METRICMINER_GOOGLE_ACCESS"),
+  cache = TRUE
 )
 
 slido_data <- get_slido_files(yaml$drive_id)
 
-saveRDS(slido_data , file.path(output_dir, "slido_metrics.RDS"))
+saveRDS(slido_data, file.path(output_dir, "slido_metrics.RDS"))
 
 sessionInfo()
