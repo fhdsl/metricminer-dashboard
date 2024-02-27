@@ -9,17 +9,17 @@ spell-check: yes
 style-code: yes
 
 ############ Data Destination ##############
-### Options are "github" or "googledrive"
+### Options are "github" or "google"
 data_dest: google
 
 ###### Calendly ######
 refresh-calendly: yes
-calendly_googlesheet : 1VxBFot-2yi2D5Cp8IPTE9o9ASeEO8fkaMmdF5II3I7Y
+calendly_googlesheet: 1VxBFot-2yi2D5Cp8IPTE9o9ASeEO8fkaMmdF5II3I7Y
 
 ###### CRAN ######
 refresh-cran: yes
 cran_packages: [ metricminer, ottrpal ]
-cran_googlesheet : 1cYkBjPCckP2UDisgEHd8wRMnXQOyz3IJCdoxvCip-EU
+cran_googlesheet: 1cYkBjPCckP2UDisgEHd8wRMnXQOyz3IJCdoxvCip-EU
 
 ###### GitHub ######
 refresh-github: yes
@@ -33,8 +33,9 @@ ga_googlesheet : 1pZN7Hbi8wUn5GrtZk_x0GL7zMZrxi9cAtkJiJNrf2-E
 
 ###### Google Forms ######
 refresh-googleforms: yes
-google_forms:
-  [ 1pbFfgUPYH2w9zEoCDjCa4HFOxzEhGOseufw28Xxmd-o, 1JjmsiuVoGSxvl-1M_oWittcftO955tijzeNc-cgJlo8 ]
+google_forms: [
+  1pbFfgUPYH2w9zEoCDjCa4HFOxzEhGOseufw28Xxmd-o,
+  1JjmsiuVoGSxvl-1M_oWittcftO955tijzeNc-cgJlo8 ]
 gf_googlesheet: 1v4mhQwq2LqVUV2wSgUGDE9gNOSKB40Cd9X7UkJPXI0o
 
 ###### Slido ######
@@ -47,8 +48,7 @@ refresh-youtube: yes
 video_ids: [ XN_QPRrJZAw, YkYnni-WuaQ ]
 youtube_googlesheet : 1HT7rQe8wNg_XlzgbWTomPF2pPa_5M3M393u_QY_R-Tw
 
-
 ################## DOCKER #######################
 # What docker image should be used for rendering?
-# The default is jhudsl/base_ottr:main
+# The default is cansav09/metricminer:main
 rendering-docker-image: 'cansav09/metricminer:main'
