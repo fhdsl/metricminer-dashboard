@@ -24,7 +24,7 @@ cran_googlesheet : 1cYkBjPCckP2UDisgEHd8wRMnXQOyz3IJCdoxvCip-EU
 ###### GitHub ######
 refresh-github: yes
 gh_repos: [ fhdsl/metricminer, fhdsl/metricminer.org ]
-gh_googlesheet:
+gh_googlesheet: 1tSdzV65_Ouj38cBexxfeGsk_Zhu0qJD8Sam-u0O8UIo
 
 ###### Google Analytics ######
 refresh-ga: yes
@@ -35,7 +35,7 @@ ga_googlesheet : 1pZN7Hbi8wUn5GrtZk_x0GL7zMZrxi9cAtkJiJNrf2-E
 refresh-googleforms: yes
 google_forms:
   [ 1pbFfgUPYH2w9zEoCDjCa4HFOxzEhGOseufw28Xxmd-o, 1JjmsiuVoGSxvl-1M_oWittcftO955tijzeNc-cgJlo8 ]
-gf_googlesheet:
+gf_googlesheet: 1v4mhQwq2LqVUV2wSgUGDE9gNOSKB40Cd9X7UkJPXI0o
 
 ###### Slido ######
 refresh-slido: yes
