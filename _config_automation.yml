@@ -8,7 +8,7 @@ spell-check: yes
 # Style any R code
 style-code: yes
 
-############ Data Destination ##############
+############ Metric Collection Destination ##############
 ### Options are "github" or "google"
 data_dest: google
 
