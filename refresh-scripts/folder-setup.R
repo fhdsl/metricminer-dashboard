@@ -49,15 +49,21 @@ setup_folders <- function(folder_path,
       yaml <- stringr::str_replace(
         yaml,
         paste0("^", google_entry, ":$"),
-        paste(google_entry, ":", googledrive::as_id(sheet_id))
+        paste0(google_entry, ": ", googledrive::as_id(sheet_id))
       )
 
       writeLines(yaml, config_file)
 
       # Reread it back in
       yaml <- yaml::read_yaml(config_file)
+    } else { 
+      gsheet_test <- try(suppressMessages(googlesheets4::read_sheet(yaml[[google_entry]], range = "A1:F20", sheet = 1)), silent = TRUE)
+      
+      if (class(gsheet_test)[1] == "try-error") {
+        stop(paste0("Can't find the provided gsheet check your the '", google_entry,"' in your _config_automation.yml file"))
+      }
     }
   }
 
-  return(yaml[[google_entry]])
+  return(paste0("Data will be stored in: https://docs.google.com/spreadsheets/d/", yaml[[google_entry]]))
 }

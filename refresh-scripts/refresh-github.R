@@ -34,6 +34,8 @@ setup_folders(
   data_name = "github"
 )
 
+yaml <- yaml::read_yaml(yaml_file_path)
+
 if (yaml$data_dest == "google") {
     googlesheets4::write_sheet(gh_metrics,
                                ss = yaml$gh_googlesheet

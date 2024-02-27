@@ -14,38 +14,38 @@ data_dest: google
 
 ###### Calendly ######
 refresh-calendly: yes
-calendly_googlesheet:
+calendly_googlesheet : 1VxBFot-2yi2D5Cp8IPTE9o9ASeEO8fkaMmdF5II3I7Y
 
 ###### CRAN ######
 refresh-cran: yes
 cran_packages: [ metricminer, ottrpal ]
-cran_googlesheet:
+cran_googlesheet : 1cYkBjPCckP2UDisgEHd8wRMnXQOyz3IJCdoxvCip-EU
 
 ###### GitHub ######
 refresh-github: yes
 gh_repos: [ fhdsl/metricminer, fhdsl/metricminer.org ]
-gh_googlesheet : 1-Elzs0KultBIaO480MDDqnI6WY4wHMrZbcNa5CxCD78
+gh_googlesheet:
 
 ###### Google Analytics ######
 refresh-ga: yes
 ga_property_ids: [ 422671031, 422558989 ]
-ga_googlesheet : 15YBU0TBw4R0Qbupb9THRG9-5kHfJUEZOoKFNrrJwVf8
+ga_googlesheet : 1pZN7Hbi8wUn5GrtZk_x0GL7zMZrxi9cAtkJiJNrf2-E
 
 ###### Google Forms ######
 refresh-googleforms: yes
 google_forms:
   [ 1pbFfgUPYH2w9zEoCDjCa4HFOxzEhGOseufw28Xxmd-o, 1JjmsiuVoGSxvl-1M_oWittcftO955tijzeNc-cgJlo8 ]
-gf_googlesheet: 
+gf_googlesheet:
 
 ###### Slido ######
 refresh-slido: yes
 drive_id: 1XWXHHyj32Uw_UyaUJrqp6S--hHnM0-7l
-slido_googlesheet:
+slido_googlesheet: 1TIuhb4rJ3eCq_1oP-d43MHy0c-8cffRKSiyka4iMlek
 
 ###### YouTube ######
 refresh-youtube: yes
 video_ids: [ XN_QPRrJZAw, YkYnni-WuaQ ]
-youtube_googlesheet:
+youtube_googlesheet : 1HT7rQe8wNg_XlzgbWTomPF2pPa_5M3M393u_QY_R-Tw
 
 
 ################## DOCKER #######################

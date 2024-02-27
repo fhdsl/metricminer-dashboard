@@ -34,6 +34,8 @@ setup_folders(
 
 form_names <- names(google_forms)
 
+yaml <- yaml::read_yaml(yaml_file_path)
+
 if (yaml$data_dest == "google") {
   lapply(form_names, function(form_name) {
     googlesheets4::write_sheet(google_forms[[form_name]]$answers,
