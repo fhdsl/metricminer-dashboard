@@ -10,43 +10,44 @@ style-code: yes
 
 ############ Metric Collection Destination ##############
 ### Options are "github" or "google"
-data_dest: google
+data_dest: github
+folder_path:
 
 ###### Calendly ######
 refresh-calendly: yes
-calendly_googlesheet: 1VxBFot-2yi2D5Cp8IPTE9o9ASeEO8fkaMmdF5II3I7Y
+calendly_googlesheet:
 
 ###### CRAN ######
 refresh-cran: yes
 cran_packages: [ metricminer, ottrpal ]
-cran_googlesheet: 1cYkBjPCckP2UDisgEHd8wRMnXQOyz3IJCdoxvCip-EU
+cran_googlesheet:
 
 ###### GitHub ######
 refresh-github: yes
-gh_repos: [ fhdsl/metricminer, fhdsl/metricminer.org ]
-gh_googlesheet: 1tSdzV65_Ouj38cBexxfeGsk_Zhu0qJD8Sam-u0O8UIo
+github_repos: [ fhdsl/metricminer, fhdsl/metricminer.org ]
+github_googlesheet:
 
 ###### Google Analytics ######
 refresh-ga: yes
 ga_property_ids: [ 422671031, 422558989 ]
-ga_googlesheet : 1pZN7Hbi8wUn5GrtZk_x0GL7zMZrxi9cAtkJiJNrf2-E
+ga_googlesheet:
 
 ###### Google Forms ######
 refresh-googleforms: yes
 google_forms: [
   1pbFfgUPYH2w9zEoCDjCa4HFOxzEhGOseufw28Xxmd-o,
   1JjmsiuVoGSxvl-1M_oWittcftO955tijzeNc-cgJlo8 ]
-gf_googlesheet: 1v4mhQwq2LqVUV2wSgUGDE9gNOSKB40Cd9X7UkJPXI0o
+googleforms_googlesheet:
 
 ###### Slido ######
 refresh-slido: yes
 drive_id: 1XWXHHyj32Uw_UyaUJrqp6S--hHnM0-7l
-slido_googlesheet: 1TIuhb4rJ3eCq_1oP-d43MHy0c-8cffRKSiyka4iMlek
+slido_googlesheet:
 
 ###### YouTube ######
 refresh-youtube: yes
 video_ids: [ XN_QPRrJZAw, YkYnni-WuaQ ]
-youtube_googlesheet : 1HT7rQe8wNg_XlzgbWTomPF2pPa_5M3M393u_QY_R-Tw
+youtube_googlesheet:
 
 ################## DOCKER #######################
 # What docker image should be used for rendering?

@@ -7,3 +7,23 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 ## Setting up Google Forms
 
 ## Preview
+
+## Preview
+
+```{r, echo = FALSE, hide = TRUE}
+root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+yaml <- yaml::read_yaml(file.path(root_dir, "_config_automation.yml"))
+
+## For google forms 
+googleform_1 <- readr::read_tsv(file.path("metricminer_data", "googleforms", "a_cool_survey.tsv"))
+googleform_2 <- readr::read_tsv(file.path("metricminer_data", "googleforms", "another_even_cooler_survey.tsv"))
+                                
+## For google 
+
+```
+
+```{r}
+googleform_1
+
+googleform_2
+```

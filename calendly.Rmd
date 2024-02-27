@@ -8,3 +8,18 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 
 
 ## Preview
+
+```{r, echo = FALSE, hide = TRUE}
+root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+yaml <- yaml::read_yaml(file.path(root_dir, "_config_automation.yml"))
+
+## For github
+calendly <- readr::read_tsv(file.path("metricminer_data", "calendly", "calendly.tsv"))
+
+## For google 
+# calendly <- googlesheets4::read_sheet(yaml$calendly_googlesheet)
+```
+
+```{r}
+knitr::kable(calendly)
+```
