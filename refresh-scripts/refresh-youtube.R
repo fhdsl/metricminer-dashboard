@@ -22,11 +22,6 @@ auth_from_secret("google",
                  cache = TRUE
 )
 
-youtube_metrics <- lapply(yaml$video_ids, get_youtube_video_stats) 
-names(youtube_metrics) <- yaml$video_ids
-
-youtube_metrics <- dplyr::bind_rows(youtube_metrics, .id = "video")
-
 setup_folders(
   folder_path = folder_path,
   google_entry = "youtube_googlesheet",
@@ -35,6 +30,12 @@ setup_folders(
 )
 
 yaml <- yaml::read_yaml(yaml_file_path)
+
+### Get Youtube data
+youtube_metrics <- lapply(yaml$video_ids, get_youtube_video_stats) 
+names(youtube_metrics) <- yaml$video_ids
+
+youtube_metrics <- dplyr::bind_rows(youtube_metrics, .id = "video")
 
 if (yaml$data_dest == "google") {
   googlesheets4::write_sheet(youtube_metrics,

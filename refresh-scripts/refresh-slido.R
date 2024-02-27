@@ -31,6 +31,8 @@ setup_folders(
 
 yaml <- yaml::read_yaml(yaml_file_path)
 
+
+### Get Slido data
 drive_id <- "https://drive.google.com/drive/u/0/folders/1XWXHHyj32Uw_UyaUJrqp6S--hHnM0-7l"
 slido_data <- get_slido_files(drive_id)
 slido_names <- names(slido_data)

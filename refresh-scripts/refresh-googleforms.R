@@ -22,9 +22,6 @@ auth_from_secret("google",
   cache = TRUE
 )
 
-# Collect the data!
-google_forms <- get_multiple_forms(form_ids = yaml$google_forms)
-
 setup_folders(
   folder_path = folder_path,
   google_entry = "gf_googlesheet",
@@ -32,12 +29,16 @@ setup_folders(
   data_name = "googleforms"
 )
 
+
+#### Get the Google Forms data
+google_forms <- get_multiple_forms(form_ids = yaml$google_forms)
 form_names <- names(google_forms)
 
 yaml <- yaml::read_yaml(yaml_file_path)
 
 if (yaml$data_dest == "google") {
   lapply(form_names, function(form_name) {
+    # Currently this is writing the responses but you could set change it to save the metadata 
     googlesheets4::write_sheet(google_forms[[form_name]]$answers,
       ss = yaml$gf_googlesheet,
       sheet = form_name

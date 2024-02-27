@@ -24,13 +24,6 @@ auth_from_secret("google",
 # Authorize Calendly
 auth_from_secret("calendly", token = Sys.getenv("METRICMINER_CALENDLY"))
 
-user <- get_calendly_user()
-
-events <- list_calendly_events(user = user$resource$uri) %>% 
-  dplyr::select_if(~is.vector(.)) %>% 
-  dplyr::select(-event_guests, -event_memberships)
-  
-
 setup_folders(
   folder_path = folder_path,
   google_entry = "calendly_googlesheet",
@@ -39,6 +32,14 @@ setup_folders(
 )
 
 yaml <- yaml::read_yaml(yaml_file_path)
+
+### Get calendly data
+user <- get_calendly_user()
+
+events <- list_calendly_events(user = user$resource$uri) %>% 
+  dplyr::select_if(~is.vector(.)) %>% 
+  dplyr::select(-event_guests, -event_memberships)
+  
 
 if (yaml$data_dest == "google") {
   googlesheets4::write_sheet(events,

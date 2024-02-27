@@ -32,11 +32,16 @@ setup_folders(
 
 yaml <- yaml::read_yaml(yaml_file_path)
 
+
+### Get the CRAN data
 cran_stats <- cranlogs::cran_downloads(
   packages = yaml$cran_packages,
   from = "2009-05-06",
   to = "last-day"
-)
+) %>% 
+  # Remove days where there were no downloads
+  dplyr::filter(count > 0)
+
 
 if (yaml$data_dest == "google") {
   googlesheets4::write_sheet(cran_stats,
