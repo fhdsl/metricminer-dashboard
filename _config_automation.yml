@@ -8,35 +8,47 @@ spell-check: yes
 # Style any R code
 style-code: yes
 
+############ Metric Collection Destination ##############
+### Options are "github" or "google"
+data_dest: google
 
 ###### Calendly ######
 refresh-calendly: yes
+calendly_googlesheet: 1VxBFot-2yi2D5Cp8IPTE9o9ASeEO8fkaMmdF5II3I7Y
 
 ###### CRAN ######
 refresh-cran: yes
 cran_packages: [ metricminer, ottrpal ]
+cran_googlesheet: 1cYkBjPCckP2UDisgEHd8wRMnXQOyz3IJCdoxvCip-EU
 
 ###### GitHub ######
 refresh-github: yes
 gh_repos: [ fhdsl/metricminer, fhdsl/metricminer.org ]
+gh_googlesheet: 1tSdzV65_Ouj38cBexxfeGsk_Zhu0qJD8Sam-u0O8UIo
 
 ###### Google Analytics ######
 refresh-ga: yes
 ga_property_ids: [ 422671031, 422558989 ]
+ga_googlesheet : 1pZN7Hbi8wUn5GrtZk_x0GL7zMZrxi9cAtkJiJNrf2-E
 
 ###### Google Forms ######
 refresh-googleforms: yes
-google_forms:
-  [ 1pbFfgUPYH2w9zEoCDjCa4HFOxzEhGOseufw28Xxmd-o, 1JjmsiuVoGSxvl-1M_oWittcftO955tijzeNc-cgJlo8 ]
+google_forms: [
+  1pbFfgUPYH2w9zEoCDjCa4HFOxzEhGOseufw28Xxmd-o,
+  1JjmsiuVoGSxvl-1M_oWittcftO955tijzeNc-cgJlo8 ]
+gf_googlesheet: 1v4mhQwq2LqVUV2wSgUGDE9gNOSKB40Cd9X7UkJPXI0o
 
 ###### Slido ######
 refresh-slido: yes
 drive_id: 1XWXHHyj32Uw_UyaUJrqp6S--hHnM0-7l
+slido_googlesheet: 1TIuhb4rJ3eCq_1oP-d43MHy0c-8cffRKSiyka4iMlek
 
 ###### YouTube ######
 refresh-youtube: yes
 video_ids: [ XN_QPRrJZAw, YkYnni-WuaQ ]
+youtube_googlesheet : 1HT7rQe8wNg_XlzgbWTomPF2pPa_5M3M393u_QY_R-Tw
 
+################## DOCKER #######################
 # What docker image should be used for rendering?
-# The default is jhudsl/base_ottr:main
+# The default is cansav09/metricminer:main
 rendering-docker-image: 'cansav09/metricminer:main'

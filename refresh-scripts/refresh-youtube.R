@@ -1,18 +1,19 @@
 # C. Savonen
 
-# Download that Youtube data
+# Download that Youtube Data
 
 library(metricminer)
 library(magrittr)
 
 # Find .git root directory
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+source(file.path(root_dir, "refresh-scripts", "folder-setup.R"))
 
-output_dir <- file.path(root_dir, "data", "youtube")
-dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
+folder_path <- file.path("metricminer_data", "youtube")
 
-# Read in config file
-yaml <- yaml::read_yaml(file.path(root_dir, "_config_automation.yml"))
+# Declare and read in config file
+yaml_file_path <- file.path(root_dir, "_config_automation.yml")
+yaml <- yaml::read_yaml(yaml_file_path)
 
 # Authorize Google
 auth_from_secret("google",
@@ -21,8 +22,32 @@ auth_from_secret("google",
                  cache = TRUE
 )
 
-youtube_metrics <- lapply(yaml$video_ids, get_youtube_video_stats)
+setup_folders(
+  folder_path = folder_path,
+  google_entry = "youtube_googlesheet",
+  config_file = yaml_file_path, 
+  data_name = "youtube"
+)
 
-saveRDS(youtube_metrics, file.path(output_dir, "youtube_metrics.RDS"))
+yaml <- yaml::read_yaml(yaml_file_path)
+
+### Get Youtube data
+youtube_metrics <- lapply(yaml$video_ids, get_youtube_video_stats) 
+names(youtube_metrics) <- yaml$video_ids
+
+youtube_metrics <- dplyr::bind_rows(youtube_metrics, .id = "video")
+
+if (yaml$data_dest == "google") {
+  googlesheets4::write_sheet(youtube_metrics,
+                             ss = yaml$youtube_googlesheet, 
+                             sheet = "youtube"
+  )
+}
+
+if (yaml$data_dest == "github") {
+  readr::write_tsv(youtube_metrics,
+                   file.path(folder_path, "youtube.tsv")
+  )
+}
 
 sessionInfo()

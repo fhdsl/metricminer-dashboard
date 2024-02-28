@@ -21,7 +21,7 @@ jobs:
       - name: Load environment from YAML
         uses: doughepi/yaml-env-action@v1.0.0
         with:
-            files: config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
+            files: _config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
 
       # Delete the branch if this has been run before
       - name: Delete branch locally and remotely
@@ -37,7 +37,7 @@ jobs:
           git checkout -b $branch_name || echo branch exists
           git push --set-upstream origin $branch_name
         shell: bash
-        
+
     outputs:
       public_repository: "${{ steps.public_repository.outputs.public }}"
       toggle_spell_check: "${{ env.SPELL_CHECK }}"

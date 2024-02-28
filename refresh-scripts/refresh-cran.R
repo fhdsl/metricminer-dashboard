@@ -8,18 +8,52 @@ library(cranlogs)
 
 # Find .git root directory
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+source(file.path(root_dir, "refresh-scripts", "folder-setup.R"))
 
-output_dir <- file.path(root_dir, "data", "cran")
-dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
+folder_path <- file.path("metricminer_data", "cran")
 
-# Read in config file
-yaml <- yaml::read_yaml(file.path(root_dir, "_config_automation.yml"))
+# Declare and read in config file
+yaml_file_path <- file.path(root_dir, "_config_automation.yml")
+yaml <- yaml::read_yaml(yaml_file_path)
 
+# Authorize Google
+auth_from_secret("google",
+                 refresh_token = Sys.getenv("METRICMINER_GOOGLE_REFRESH"),
+                 access_token = Sys.getenv("METRICMINER_GOOGLE_ACCESS"),
+                 cache = TRUE
+)
+
+setup_folders(
+  folder_path = folder_path,
+  google_entry = "cran_googlesheet",
+  config_file = yaml_file_path, 
+  data_name = "cran"
+)
+
+yaml <- yaml::read_yaml(yaml_file_path)
+
+
+### Get the CRAN data
 cran_stats <- cranlogs::cran_downloads(
   packages = yaml$cran_packages,
   from = "2009-05-06",
-  to = "last-day")
+  to = "last-day"
+) %>% 
+  # Remove days where there were no downloads
+  dplyr::filter(count > 0)
 
-saveRDS(cran_stats, file.path(output_dir, "cran_metrics.RDS"))
+
+if (yaml$data_dest == "google") {
+  googlesheets4::write_sheet(cran_stats,
+                             ss = yaml$cran_googlesheet,
+                             sheet = "cran"
+  )
+}
+
+if (yaml$data_dest == "github") {
+  readr::write_tsv(cran_stats,
+                   file.path(folder_path, "github.tsv")
+  )
+}
 
 sessionInfo()
