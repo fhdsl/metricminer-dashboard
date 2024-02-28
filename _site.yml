@@ -1,11 +1,11 @@
 name: metricminer dashboard
-output_dir: '.'
+output_dir: 'docs'
 navbar:
   title: metricminer dashboard
   left:
   - text: Home
     href: index.html
-    icon: fa-home    
+    icon: fa-home
   - text: Calendly
     href: calendly.html
     icon: fa-calendar
