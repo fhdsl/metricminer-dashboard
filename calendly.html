@@ -308,7 +308,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Calendly</h1>
-<h4 class="date">22 February, 2024</h4>
+<h4 class="date">28 February, 2024</h4>
 
 </div>
 
@@ -318,6 +318,55 @@ $(document).ready(function () {
 </div>
 <div id="preview" class="section level2">
 <h2>Preview</h2>
+<pre><code>## Rows: 1 Columns: 8
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;\t&quot;
+## chr  (4): event_type, name, status, uri
+## dttm (4): created_at, end_time, start_time, updated_at
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>knitr::kable(calendly)</code></pre>
+<table>
+<colgroup>
+<col width="7%" />
+<col width="7%" />
+<col width="28%" />
+<col width="6%" />
+<col width="7%" />
+<col width="2%" />
+<col width="7%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">created_at</th>
+<th align="left">end_time</th>
+<th align="left">event_type</th>
+<th align="left">name</th>
+<th align="left">start_time</th>
+<th align="left">status</th>
+<th align="left">updated_at</th>
+<th align="left">uri</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">2024-01-10 14:29:21</td>
+<td align="left">2024-01-17 14:30:00</td>
+<td align="left"><a
+href="https://api.calendly.com/event_types/d39d7211-9c78-4121-8271-208cfaa34989"
+class="uri">https://api.calendly.com/event_types/d39d7211-9c78-4121-8271-208cfaa34989</a></td>
+<td align="left">30 Minute Meeting</td>
+<td align="left">2024-01-17 14:00:00</td>
+<td align="left">active</td>
+<td align="left">2024-01-10 14:29:22</td>
+<td align="left"><a
+href="https://api.calendly.com/scheduled_events/ac7a3d65-37ee-4277-a057-c308bdc7a067"
+class="uri">https://api.calendly.com/scheduled_events/ac7a3d65-37ee-4277-a057-c308bdc7a067</a></td>
+</tr>
+</tbody>
+</table>
 </div>
 
 
