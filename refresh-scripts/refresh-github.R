@@ -25,11 +25,11 @@ auth_from_secret("google",
 auth_from_secret("github", token = Sys.getenv("METRICMINER_GITHUB_PAT"))
 
 # Read the data
-gh_metrics <- get_multiple_repos_metrics(repo_names = yaml$gh_repos)
+gh_metrics <- get_multiple_repos_metrics(repo_names = yaml$github_repos)
 
 setup_folders(
   folder_path = folder_path,
-  google_entry = "gh_googlesheet",
+  google_entry = "github_googlesheet",
   config_file = yaml_file_path, 
   data_name = "github"
 )

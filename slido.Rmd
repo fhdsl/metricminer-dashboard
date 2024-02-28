@@ -7,3 +7,18 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 ## Setting up Slido
 
 ## Preview
+
+## Preview
+
+```{r, echo = FALSE, hide = TRUE}
+root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+yaml <- yaml::read_yaml(file.path(root_dir, "_config_automation.yml"))
+
+## For Slido
+joined_participants <- readr::read_tsv(file.path("metricminer_data", "slido", "JoinedParticipants.tsv"))
+leaderboard <- readr::read_tsv(file.path("metricminer_data", "slido", "Leaderboard.tsv"))
+polls <- readr::read_tsv(file.path("metricminer_data", "slido", "Polls-overall.tsv"))
+questions <- readr::read_tsv(file.path("metricminer_data", "slido", "Questions.tsv"))
+
+## For google 
+```

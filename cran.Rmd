@@ -8,3 +8,43 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 
 
 ## Preview
+
+```{r}
+library(tidyverse)
+```
+
+```{r, echo = FALSE, hide = TRUE}
+root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+yaml <- yaml::read_yaml(file.path(root_dir, "_config_automation.yml"))
+
+## For github
+cran <- readr::read_tsv(file.path("metricminer_data", "cran", "cran.tsv"))
+
+## For google 
+# cran <- googlesheets4::read_sheet(yaml$cran_googlesheet)
+```
+```{r}
+cran %>% dplyr::summarize(download_total = sum(count))
+```
+
+
+```{r}
+cran %>% dplyr::group_by(package) %>%
+   dplyr::summarize(download_total = sum(count))
+
+cran_stats <- cran %>% 
+  separate(date, into=c("year", "month name", "day"), sep = "-") %>% 
+  unite("Month", c("year", "month name"), sep='-', remove=TRUE) %>%  
+  group_by(Month, package) %>% 
+  summarise(monthly_downloads = sum(count)) %>% #summarize monthly downloads by package
+  filter(monthly_downloads > 0) #drop the 0's 
+
+ggplot(cran_stats, aes(Month, monthly_downloads, group=package, color = package)) + 
+  geom_line() + 
+  geom_point() +
+  theme(panel.background = element_blank(), panel.grid = element_blank()) +
+  theme(axis.text.x = element_text(angle = 90)) +
+  labs(x = NULL,
+       y = "Monthly Downloads",
+       color = "R Packages")
+```

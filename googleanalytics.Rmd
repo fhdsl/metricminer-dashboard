@@ -7,3 +7,33 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 ## Setting up Google Analytics
 
 ## Preview
+
+```{r, echo = FALSE, hide = TRUE}
+root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+yaml <- yaml::read_yaml(file.path(root_dir, "_config_automation.yml"))
+
+## For google analytics
+ga_metrics <- readr::read_tsv(file.path("metricminer_data", "ga", "ga_metrics.tsv"))
+ga_dimensions <- readr::read_tsv(file.path("metricminer_data", "ga", "ga_dimensions.tsv"))
+ga_link_clicks <- readr::read_tsv(file.path("metricminer_data", "ga", "ga_link_clicks.tsv"))
+
+
+## For google 
+# ga_metrics <- googlesheets4::read_sheet(yaml$ga_googlesheet, sheet = "metrics")
+# ga_dimensions <- googlesheets4::read_sheet(yaml$ga_googlesheet, sheet = "dimensions")
+# ga_link_clicks <- googlesheets4::read_sheet(yaml$ga_googlesheet, sheet = "link_clicks")
+```
+
+```{r}
+knitr::kable(ga_metrics)
+```
+
+
+```{r}
+knitr::kable(ga_dimensions)
+```
+
+
+```{r}
+knitr::kable(ga_link_clicks)
+```

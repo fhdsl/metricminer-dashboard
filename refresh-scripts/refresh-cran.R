@@ -52,7 +52,7 @@ if (yaml$data_dest == "google") {
 
 if (yaml$data_dest == "github") {
   readr::write_tsv(cran_stats,
-                   file.path(folder_path, "github.tsv")
+                   file.path(folder_path, "cran.tsv")
   )
 }
 
