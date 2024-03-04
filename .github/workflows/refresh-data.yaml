@@ -68,7 +68,7 @@ jobs:
           git config --local user.name "GitHub Actions"
           git fetch
           git pull --set-upstream origin main --allow-unrelated-histories --strategy-option=ours
-          git add --force data/calendly/*
+          git add --force metricminer_data/calendly/*
           git commit -m 'Refresh Calendly' || echo "No changes to commit"
           git push origin main || echo "No changes to push"
 
@@ -99,7 +99,7 @@ jobs:
           git config --local user.name "GitHub Actions"
           git fetch
           git pull --set-upstream origin main --allow-unrelated-histories --strategy-option=ours
-          git add --force data/cran/*
+          git add --force metricminer_data/cran/*
           git commit -m 'Refresh CRAN' || echo "No changes to commit"
           git push origin main || echo "No changes to push"
 
@@ -133,7 +133,7 @@ jobs:
           git config --local user.name "GitHub Actions"
           git fetch
           git pull --set-upstream origin main --allow-unrelated-histories --strategy-option=ours
-          git add --force data/ga/*
+          git add --force metricminer_data/ga/*
           git commit -m 'Refresh GA' || echo "No changes to commit"
           git push origin main || echo "No changes to push"
 
@@ -164,7 +164,7 @@ jobs:
           git config --local user.name "GitHub Actions"
           git fetch
           git pull --set-upstream origin main --allow-unrelated-histories --strategy-option=ours
-          git add --force data/github/*
+          git add --force metricminer_data/github/*
           git commit -m 'Refresh GitHub' || echo "No changes to commit"
           git push origin main || echo "No changes to push"
 
@@ -196,7 +196,7 @@ jobs:
           git config --local user.name "GitHub Actions"
           git fetch
           git pull --set-upstream origin main --allow-unrelated-histories --strategy-option=ours
-          git add --force data/googleforms/*
+          git add --force metricminer_data/googleforms/*
           git commit -m 'Refresh Google Forms' || echo "No changes to commit"
           git push origin main || echo "No changes to push"
 
@@ -228,7 +228,7 @@ jobs:
           git config --local user.name "GitHub Actions"
           git fetch
           git pull --set-upstream origin main --allow-unrelated-histories --strategy-option=ours
-          git add --force data/googleforms/*
+          git add --force metricminer_data/googleforms/*
           git commit -m 'Refresh Google Forms' || echo "No changes to commit"
           git push origin main || echo "No changes to push"
 
@@ -260,6 +260,6 @@ jobs:
           git config --local user.name "GitHub Actions"
           git fetch
           git pull --set-upstream origin main --allow-unrelated-histories --strategy-option=ours
-          git add --force data/youtube/*
+          git add --force metricminer_data/youtube/*
           git commit -m 'Refresh Youtube' || echo "No changes to commit"
           git push origin main || echo "No changes to push"
