@@ -24,6 +24,7 @@ jobs:
     outputs:
       toggle_calendly: "${{ env.REFRESH_CALENDLY }}"
       toggle_cran: "${{ env.REFRESH_CRAN }}"
+      toggle_citations: "${{ env.REFRESH_CITATIONS }}"
       toggle_ga: "${{ env.REFRESH_GA }}"
       toggle_github: "${{ env.REFRESH_GITHUB }}"
       toggle_googleforms: "${{ env.REFRESH_GOOGLEFORMS }}"
@@ -90,7 +91,7 @@ jobs:
       - name: Refresh CRAN
         run: |
           echo ${{needs.yaml-check.outputs.cran_packages}}
-          Rscript refresh-scripts/refresh-cran.R --cran_packages ${{needs.yaml-check.outputs.cran_packages}}
+          Rscript refresh-scripts/refresh-cran.R
 
       - name: Commit CRAN data
         run: |
@@ -101,6 +102,36 @@ jobs:
           git pull --set-upstream origin main --allow-unrelated-histories --strategy-option=ours
           git add --force metricminer_data/cran/*
           git commit -m 'Refresh CRAN' || echo "No changes to commit"
+          git push origin main || echo "No changes to push"
+
+  refresh-citations:
+    name: Refresh Citations
+    needs: yaml-check
+    runs-on: ubuntu-latest
+    container:
+      image: ${{needs.yaml-check.outputs.rendering_docker_image}}
+    if: ${{needs.yaml-check.outputs.toggle_citations == 'yes'}}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Refresh citations
+        run: |
+          echo ${{needs.yaml-check.outputs.citation_papers}}
+          Rscript refresh-scripts/refresh-citations.R
+
+      - name: Commit citation data
+        run: |
+          git config --system --add safe.directory $GITHUB_WORKSPACE
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git fetch
+          git pull --set-upstream origin main --allow-unrelated-histories --strategy-option=ours
+          git add --force metricminer_data/citations/*
+          git commit -m 'Refresh citations' || echo "No changes to commit"
           git push origin main || echo "No changes to push"
 
   refresh-ga:
@@ -124,7 +155,7 @@ jobs:
           METRICMINER_GOOGLE_REFRESH: ${{ secrets.METRICMINER_GOOGLE_REFRESH }}
         run: |
           echo ${{needs.yaml-check.outputs.ga_property_ids}}
-          Rscript refresh-scripts/refresh-ga.R --ga_property_ids ${{needs.yaml-check.outputs.ga_property_ids}}
+          Rscript refresh-scripts/refresh-ga.R
 
       - name: Commit GA data
         run: |
@@ -155,7 +186,7 @@ jobs:
       - name: Refresh Github
         env:
           METRICMINER_GITHUB_PAT: ${{ secrets.METRICMINER_GITHUB_PAT }}
-        run: Rscript refresh-scripts/refresh-github.R --gh_repos ${{needs.yaml-check.outputs.gh_repos}}
+        run: Rscript refresh-scripts/refresh-github.R
 
       - name: Commit Github data
         run: |
@@ -219,7 +250,7 @@ jobs:
         env:
           METRICMINER_GOOGLE_ACCESS: ${{ secrets.METRICMINER_GOOGLE_ACCESS }}
           METRICMINER_GOOGLE_REFRESH: ${{ secrets.METRICMINER_GOOGLE_REFRESH }}
-        run: Rscript refresh-scripts/refresh-slido.R --drive_id ${{needs.yaml-check.outputs.drive_id}}
+        run: Rscript refresh-scripts/refresh-slido.R
 
       - name: Commit Google Forms data
         run: |
@@ -251,7 +282,7 @@ jobs:
         env:
           METRICMINER_GOOGLE_ACCESS: ${{ secrets.METRICMINER_GOOGLE_ACCESS }}
           METRICMINER_GOOGLE_REFRESH: ${{ secrets.METRICMINER_GOOGLE_REFRESH }}
-        run: Rscript refresh-scripts/refresh-youtube.R --video_ids ${{needs.yaml-check.outputs.video_ids}}
+        run: Rscript refresh-scripts/refresh-youtube.R
 
       - name: Commit Youtube data
         run: |

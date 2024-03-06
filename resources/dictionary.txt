@@ -1,10 +1,13 @@
+Auth
 Analytics
 Calendly
+config
 css
 Dockerfile
 Dockerhub
 favicon
 GH
+github
 Github
 GitHub
 Google
@@ -15,10 +18,12 @@ HTTPS
 ITCR
 lightblue
 lightgreen
+lfs
 Loqui
 metricminer
 NCI
 OTTR
+repo
 Rmd
 subdir
 Slido

@@ -1,0 +1,5 @@
+About.Rmd
+docs/*
+style-sets/*
+manuscript/*
+CODE_OF_CONDUCT.md
