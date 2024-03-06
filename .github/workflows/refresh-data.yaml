@@ -118,7 +118,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Refresh CRAN
+      - name: Refresh citations
         run: |
           echo ${{needs.yaml-check.outputs.citation_papers}}
           Rscript refresh-scripts/refresh-citations.R
@@ -131,7 +131,7 @@ jobs:
           git fetch
           git pull --set-upstream origin main --allow-unrelated-histories --strategy-option=ours
           git add --force metricminer_data/citations/*
-          git commit -m 'Refresh CRAN' || echo "No changes to commit"
+          git commit -m 'Refresh citations' || echo "No changes to commit"
           git push origin main || echo "No changes to push"
 
   refresh-ga:
@@ -282,7 +282,7 @@ jobs:
         env:
           METRICMINER_GOOGLE_ACCESS: ${{ secrets.METRICMINER_GOOGLE_ACCESS }}
           METRICMINER_GOOGLE_REFRESH: ${{ secrets.METRICMINER_GOOGLE_REFRESH }}
-        run: Rscript refresh-scripts/refresh-youtube.R 
+        run: Rscript refresh-scripts/refresh-youtube.R
 
       - name: Commit Youtube data
         run: |
