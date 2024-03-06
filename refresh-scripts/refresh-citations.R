@@ -9,7 +9,7 @@ library(magrittr)
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 source(file.path(root_dir, "refresh-scripts", "folder-setup.R"))
 
-folder_path <- file.path("metricminer_data", "citation")
+folder_path <- file.path("metricminer_data", "citations")
 
 # Declare and read in config file
 yaml_file_path <- file.path(root_dir, "_config_automation.yml")
