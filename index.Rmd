@@ -4,14 +4,30 @@ output:
   html_document
 ---
 
+<img src = "resources/images/metricminer-gnome.png" width = 200>
+
 ## Getting Started!
 
 This is a templated demo website that you can use to display your own metrics!
 
-<img src = "resources/images/metricminer-gnome.png" width = 200>
+### Setting up your dashboard repository
 
-[Video made with Loqui](https://loqui.fredhutch.org/)
+1. To get started, go to the [metricminer-dashboard template GitHub repo](https://github.com/fhdsl/metricminer-dashboard)
+2. Click the green "Use this template" button in the upper right corner. If you do not see it, make sure you are logged in to GitHub (and have an account).
+3. Name your new metricminer dashboard repository on this screen. Then click "Create new repository".
+4. Create your GitHub secret by going to https://github.com/settings/tokens/new
+5. Make sure your GitHub secret has the `repo` scopes box checked. Name it something that will remind you it has to do with your metricminer dashboard and then scroll to the bottom and click "Generate Token". Keep this page open for now.
+6. Return to your metricminer dashboard repository and go to Settings > Secrets and variables > Actions.
+7. Click on `New repository secret`. Name your new secret *exactly* METRICMINER_GITHUB_PAT.
+8. Copy and paste your Personal access token in the `Secret` box and then click the green "Add secret" button.
 
+
+### Setting up your config so metrics will be retrieved
+
+1. Return to the `Code` on your metricminer dashboard github repository. And find the `_config_automation.yml` github file.
+2. Open up that file and
+
+---
 This work is funded by NCI UE5CA254170 as a part of the [ITCR Training Network](https://www.itcrtraining.org/)
 
 <!-- Google tag (gtag.js) -->
