@@ -308,7 +308,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">CRAN</h1>
-<h4 class="date">28 February, 2024</h4>
+<h4 class="date">06 March, 2024</h4>
 
 </div>
 
@@ -319,19 +319,18 @@ $(document).ready(function () {
 <div id="preview" class="section level2">
 <h2>Preview</h2>
 <pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 4.3.2</code></pre>
-<pre><code>## ── Attaching core tidyverse packages ──────────────────────────────────────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.4     ✔ readr     2.1.4
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
 ## ✔ purrr     1.0.2     
-## ── Conflicts ────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 <pre><code>## Rows: 745 Columns: 3
-## ── Column specification ────────────────────────────────────────────────────────────────────────────────────────
+## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;\t&quot;
 ## chr  (1): package
 ## dbl  (1): count
@@ -357,7 +356,8 @@ $(document).ready(function () {
   group_by(Month, package) %&gt;% 
   summarise(monthly_downloads = sum(count)) %&gt;% #summarize monthly downloads by package
   filter(monthly_downloads &gt; 0) #drop the 0&#39;s </code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;Month&#39;. You can override using the `.groups` argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;Month&#39;. You can override using the
+## `.groups` argument.</code></pre>
 <pre class="r"><code>ggplot(cran_stats, aes(Month, monthly_downloads, group=package, color = package)) + 
   geom_line() + 
   geom_point() +

@@ -312,12 +312,102 @@ $(document).ready(function () {
 </div>
 
 
-<div id="getting-started" class="section level2">
-<h2>Getting Started!</h2>
-<p>This is a templated demo website that you can use to display your own
-metrics!</p>
 <p><img src = "resources/images/metricminer-gnome.png" width = 200></p>
-<p><a href="https://loqui.fredhutch.org/">Video made with Loqui</a></p>
+<div id="setting-up-your-dashboard-repository" class="section level2">
+<h2>Setting up your dashboard repository</h2>
+<ol style="list-style-type: decimal">
+<li>To get started, go to the <a
+href="https://github.com/fhdsl/metricminer-dashboard">metricminer-dashboard
+template GitHub repo</a></li>
+<li>Click the green “Use this template” button in the upper right
+corner. If you do not see it, make sure you are logged in to GitHub (and
+have an account).</li>
+<li>Name your new metricminer dashboard repository on this screen. Then
+click “Create new repository”.</li>
+<li>Create your GitHub secret by going to <a
+href="https://github.com/settings/tokens/new"
+class="uri">https://github.com/settings/tokens/new</a></li>
+<li>Make sure your GitHub secret has the <code>repo</code> scopes box
+checked. Name it something that will remind you it has to do with your
+metricminer dashboard and then scroll to the bottom and click “Generate
+Token”. Keep this page open for now.</li>
+<li>Return to your metricminer dashboard repository and go to Settings
+&gt; Secrets and variables &gt; Actions.</li>
+<li>Click on <code>New repository secret</code>. Name your new secret
+<em>exactly</em> <code>METRICMINER_GITHUB_PAT</code></li>
+<li>Copy and paste your Personal access token in the <code>Secret</code>
+box and then click the green “Add secret” button.</li>
+</ol>
+</div>
+<div id="setting-up-your-config-file" class="section level2">
+<h2>Setting up your config file</h2>
+<p>Return to the <code>Code</code> on your metricminer dashboard github
+repository. And find the <code>_config_automation.yml</code> github
+file. Open up that file and we will start setting up which metrics you’d
+like to be retrieved.</p>
+<div id="overall-settings" class="section level3">
+<h3>Overall settings</h3>
+<p>metricminer dashboard is an OTTR website with additional metric
+collecting functionality powered by metricminer. <a
+href="https://www.ottrproject.org/editing_website.html">You can read
+more details about how to update your metricminer/OTTR website here</a>.
+If you are not familiar with pull requests, we recommend you go read
+those OTTR docs first.</p>
+<p>At the top of the config file you will see a listing of the checks
+that are run upon filing a pull request. If at any time you don’t want
+these checks to be run you can set them to <code>no</code> and GitHub
+Actions will not run them.</p>
+<pre><code># Check that urls in the content are not broken
+url-checker: yes
+# Render preview of content with changes (Rmd&#39;s and md&#39;s are checked)
+render-preview: yes
+# Spell check Rmds and quizzes
+spell-check: yes
+# Style any R code
+style-code: yes</code></pre>
+</div>
+<div id="where-your-data-is-saved" class="section level3">
+<h3>Where your data is saved</h3>
+<p>By default there are two destinations you can save your data for
+metricminer (although if you change the code yourself you can feel free
+to save the data wherever you like). Built in to metricminer-dashboard
+however we have github and google as your options for a data
+destination.</p>
+<p>By default your data is saved to github. But this will only be
+appropriate for small amounts of data (you could use something called
+git-lfs but we find it can be a bit of a hassle).</p>
+<pre><code>### Options are &quot;github&quot; or &quot;google&quot;
+data_dest: github
+folder_path:</code></pre>
+<p>If in your config file you choose “google” as your data destination
+you will need to do two things: 1. Set up your Google Authentication
+secrets in this repository 2. Give a folder path to your Google drive
+where you’d like your data to be saved.</p>
+</div>
+<div id="setting-up-google-authentication" class="section level3">
+<h3>Setting up Google Authentication</h3>
+<p>Your metricminer dashboard will need permissions to save to your
+Google drive. To do this, you’ll need to open up R on your local
+computer and run the following code:</p>
+<pre><code>install.packages(&quot;metricminer&quot;)
+token &lt;- authorize(&quot;google&quot;)</code></pre>
+<p>Then you can use this object to extract two secrets by printing them
+out like this and you will need to store both to your metricminer
+dashboard GitHub secrets (which we will describe how to here).</p>
+<p>First, return to your metricminer dashboard repository and go to
+<code>Settings</code> &gt; <code>Secrets and variables</code> &gt;
+<code>Actions</code>. - Click on <code>New repository secret</code>.
+Name your new secret <em>exactly</em>
+<code>METRICMINER_GOOGLE_ACCESS</code> - Copy what is printed out in R
+when you run:</p>
+<pre><code>token$credentials$access_token</code></pre>
+<p>and paste it into the <code>Secret</code> box and then click the
+green “Add secret” button.</p>
+<p>Repeat the same steps for the Refresh token except call this
+<code>METRICMINER_GOOGLE_REFRESH</code></p>
+<pre><code>token$credentials$refresh_token</code></pre>
+<p><strong>THIS IS STILL UNDER CONSTRUCTION</strong></p>
+<hr />
 <p>This work is funded by NCI UE5CA254170 as a part of the <a
 href="https://www.itcrtraining.org/">ITCR Training Network</a></p>
 <!-- Google tag (gtag.js) -->
@@ -331,6 +421,7 @@ href="https://www.itcrtraining.org/">ITCR Training Network</a></p>
 </script>
 <p><a href="https://www.metricminer.org/privacypolicy.html">See privacy
 policy</a></p>
+</div>
 </div>
 
 
