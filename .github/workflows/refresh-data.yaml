@@ -24,6 +24,7 @@ jobs:
     outputs:
       toggle_calendly: "${{ env.REFRESH_CALENDLY }}"
       toggle_cran: "${{ env.REFRESH_CRAN }}"
+      toggle_citation: "${{ env.REFRESH_CITATIONS }}"
       toggle_ga: "${{ env.REFRESH_GA }}"
       toggle_github: "${{ env.REFRESH_GITHUB }}"
       toggle_googleforms: "${{ env.REFRESH_GOOGLEFORMS }}"
@@ -100,6 +101,36 @@ jobs:
           git fetch
           git pull --set-upstream origin main --allow-unrelated-histories --strategy-option=ours
           git add --force metricminer_data/cran/*
+          git commit -m 'Refresh CRAN' || echo "No changes to commit"
+          git push origin main || echo "No changes to push"
+
+  refresh-citations:
+    name: Refresh Citations
+    needs: yaml-check
+    runs-on: ubuntu-latest
+    container:
+      image: ${{needs.yaml-check.outputs.rendering_docker_image}}
+    if: ${{needs.yaml-check.outputs.toggle_citations == 'yes'}}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Refresh CRAN
+        run: |
+          echo ${{needs.yaml-check.outputs.citation_papers}}
+          Rscript refresh-scripts/refresh-citations.R
+
+      - name: Commit citation data
+        run: |
+          git config --system --add safe.directory $GITHUB_WORKSPACE
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git fetch
+          git pull --set-upstream origin main --allow-unrelated-histories --strategy-option=ours
+          git add --force metricminer_data/citations/*
           git commit -m 'Refresh CRAN' || echo "No changes to commit"
           git push origin main || echo "No changes to push"
 

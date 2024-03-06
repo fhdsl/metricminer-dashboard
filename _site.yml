@@ -9,6 +9,9 @@ navbar:
   - text: Calendly
     href: calendly.html
     icon: fa-calendar
+  - text: Citations
+    href: citations.html
+    icon: fa-scroll
   - text: CRAN
     href: cran.html
     icon: fa-r
@@ -18,9 +21,9 @@ navbar:
   - text: Google Analytics
     href: googleanalytics.html
     icon: fa-google
-  - text: Slido
-    href: slido.html
-    icon: a-square-poll-vertical
+  #- text: Slido
+  #  href: slido.html
+  #  icon: a-square-poll-vertical
   - text: Youtube
     href: youtube.html
     icon: fa-play
