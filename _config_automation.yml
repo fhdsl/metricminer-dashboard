@@ -20,11 +20,10 @@ calendly_googlesheet:
 ###### Citations ######
 refresh-citations: yes
 citation_papers: [
-  https://scholar.google.com/scholar?cites=6140457238337460780,
-  https://scholar.google.com/scholar?cites=15945159957067506879
-]
+  "https://scholar.google.com/scholar?cites=6140457238337460780",
+  "https://scholar.google.com/scholar?cites=15945159957067506879" ]
 citation_googlesheet:
-  
+
 ###### CRAN ######
 refresh-cran: yes
 cran_packages: [ metricminer, ottrpal ]
