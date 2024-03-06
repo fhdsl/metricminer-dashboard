@@ -35,23 +35,22 @@ yaml <- yaml::read_yaml(yaml_file_path)
 
 all_papers <- lapply(yaml$citation_papers, function(paper) {
   df <- get_citation_count(paper)
-  #data.frame(df$original_paper, nrow(df))
   return(df)
 })
 
-dplyr::bind_rows(all_papers)
+all_papers <- dplyr::bind_rows(all_papers)
 
 
 
 if (yaml$data_dest == "google") {
-  googlesheets4::write_sheet(events,
+  googlesheets4::write_sheet(all_papers,
                              ss = yaml$citation_googlesheet,
                              sheet = "citation"
   )
 }
 
 if (yaml$data_dest == "github") {
-  readr::write_tsv(events,
+  readr::write_tsv(all_papers,
                    file.path(folder_path, "citation.tsv")
   )
 }
