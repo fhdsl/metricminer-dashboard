@@ -312,12 +312,47 @@ $(document).ready(function () {
 </div>
 
 
+<p><img src = "resources/images/metricminer-gnome.png" width = 200></p>
 <div id="getting-started" class="section level2">
 <h2>Getting Started!</h2>
 <p>This is a templated demo website that you can use to display your own
 metrics!</p>
-<p><img src = "resources/images/metricminer-gnome.png" width = 200></p>
-<p><a href="https://loqui.fredhutch.org/">Video made with Loqui</a></p>
+<div id="setting-up-your-dashboard-repository" class="section level3">
+<h3>Setting up your dashboard repository</h3>
+<ol style="list-style-type: decimal">
+<li>To get started, go to the <a
+href="https://github.com/fhdsl/metricminer-dashboard">metricminer-dashboard
+template GitHub repo</a></li>
+<li>Click the green “Use this template” button in the upper right
+corner. If you do not see it, make sure you are logged in to GitHub (and
+have an account).</li>
+<li>Name your new metricminer dashboard repository on this screen. Then
+click “Create new repository”.</li>
+<li>Create your GitHub secret by going to <a
+href="https://github.com/settings/tokens/new"
+class="uri">https://github.com/settings/tokens/new</a></li>
+<li>Make sure your GitHub secret has the <code>repo</code> scopes box
+checked. Name it something that will remind you it has to do with your
+metricminer dashboard and then scroll to the bottom and click “Generate
+Token”. Keep this page open for now.</li>
+<li>Return to your metricminer dashboard repository and go to Settings
+&gt; Secrets and variables &gt; Actions.</li>
+<li>Click on <code>New repository secret</code>. Name your new secret
+<em>exactly</em> METRICMINER_GITHUB_PAT.</li>
+<li>Copy and paste your Personal access token in the <code>Secret</code>
+box and then click the green “Add secret” button.</li>
+</ol>
+</div>
+<div id="setting-up-your-config-so-metrics-will-be-retrieved"
+class="section level3">
+<h3>Setting up your config so metrics will be retrieved</h3>
+<ol style="list-style-type: decimal">
+<li>Return to the <code>Code</code> on your metricminer dashboard github
+repository. And find the <code>_config_automation.yml</code> github
+file.</li>
+<li>Open up that file and</li>
+</ol>
+<hr />
 <p>This work is funded by NCI UE5CA254170 as a part of the <a
 href="https://www.itcrtraining.org/">ITCR Training Network</a></p>
 <!-- Google tag (gtag.js) -->
@@ -331,6 +366,7 @@ href="https://www.itcrtraining.org/">ITCR Training Network</a></p>
 </script>
 <p><a href="https://www.metricminer.org/privacypolicy.html">See privacy
 policy</a></p>
+</div>
 </div>
 
 
