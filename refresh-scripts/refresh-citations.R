@@ -45,13 +45,13 @@ all_papers <- dplyr::bind_rows(all_papers)
 if (yaml$data_dest == "google") {
   googlesheets4::write_sheet(all_papers,
                              ss = yaml$citation_googlesheet,
-                             sheet = "citation"
+                             sheet = "citations"
   )
 }
 
 if (yaml$data_dest == "github") {
   readr::write_tsv(all_papers,
-                   file.path(folder_path, "citation.tsv")
+                   file.path(folder_path, "citations.tsv")
   )
 }
 sessionInfo()
