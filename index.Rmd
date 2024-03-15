@@ -18,6 +18,25 @@ output:
 8. Copy and paste your Personal access token in the `Secret` box and then click the green "Add secret" button.
 
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+  - [Setting up your dashboard repository](#setting-up-your-dashboard-repository)
+  - [Setting up your config file](#setting-up-your-config-file)
+    - [Overall settings](#overall-settings)
+    - [Where your data are saved](#where-your-data-are-saved)
+    - [Setting up Google Authentication](#setting-up-google-authentication)
+    - [Setting up Calendly](#setting-up-calendly)
+    - [Setting up CRAN](#setting-up-cran)
+    - [Setting up GitHub](#setting-up-github)
+    - [Setting up Google Analytics](#setting-up-google-analytics)
+    - [Setting up Google Forms](#setting-up-google-forms)
+    - [Setting up Slido](#setting-up-slido)
+    - [Setting up YouTube](#setting-up-youtube)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Setting up your config file
 
 Return to the `Code` on your metricminer dashboard github repository. And find the `_config_automation.yml` github file. Open up that file and we will start setting up which metrics you'd like to be retrieved.
@@ -39,7 +58,8 @@ spell-check: yes
 style-code: yes
 ```
 
-### Where your data is saved
+### Where your data are saved
+
 By default there are two destinations you can save your data for metricminer (although if you change the code yourself you can feel free to save the data wherever you like).
 Built in to metricminer-dashboard however we have github and google as  your options for a data destination.
 
@@ -55,7 +75,10 @@ If in your config file you choose "google" as your data destination you will nee
 
 ### Setting up Google Authentication
 
-Your metricminer dashboard will need permissions to save to your Google drive. To do this, you'll need to open up R on your local computer and run the following code:
+Your metricminer dashboard will need permissions to Google if you are saving data there, or wanting to use any data from a Google product including: Google Analytics, Google Forms, Googledrive, or Youtube. 
+
+To setup Google Authentication for your metricminer dashboard, you'll need to open up R on your local computer and run the following code:
+If you aren't a regular R user you can always use [posit.cloud](https://posit.cloud/) to avoid the installation process. 
 
 ```
 install.packages("metricminer")
@@ -75,8 +98,6 @@ Repeat the same steps for the Refresh token except call this `METRICMINER_GOOGLE
 ```
 token$credentials$refresh_token
 ```
-
-**THIS IS STILL UNDER CONSTRUCTION**
 
 ---
 This work is funded by NCI UE5CA254170 as a part of the [ITCR Training Network](https://www.itcrtraining.org/)
