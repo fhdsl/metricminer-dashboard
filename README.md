@@ -98,7 +98,7 @@ calendly_googlesheet:
 CRAN does not require any authorization. But in the `_config_automation.yml` you will need to specify a few things. 
 
 - [ ] Make sure that `refresh-cran` is set to "yes".
-- [ ] Type the names of the packages that you'd like to collect data from on CRAN (type them exactly as they are spelled, case sensitive).
+- [ ] Type the names of the packages that you'd like to collect data from on CRAN (type them exactly as they are spelled, case sensitive). Delete the example package names we've put there.
 - [ ] Optionally, if you are saving data to google, specify a googlesheet ID you'd like the CRAN data to be saved to. This will only be relevant if you've set `data_dest` to `google`. 
 
 ```
@@ -113,7 +113,7 @@ cran_googlesheet:
 At this point you should already have your GitHub authorization set up for your metricminer dashboard by having [followed the instructions above.](#setting-up-your-dashboard-repository).
 
 - [ ] Make sure that `refresh-github` is set to "yes".
-- [ ] Specify the names of the repositories you'd like to collect data from in `github_repos`. Make sure it includes the `owner/repository` e.g. `fhdsl/metricminer` not just `metricminer`. Commas need to separate the repositories. 
+- [ ] Specify the names of the repositories you'd like to collect data from in `github_repos`. Make sure it includes the `owner/repository` e.g. `fhdsl/metricminer` not just `metricminer`. Commas need to separate the repositories. Delete the example repositories we put there. 
 - [ ] Optionally, if you are saving data to Google, specify a googlesheet ID you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
       
 ```
@@ -129,13 +129,17 @@ github_googlesheet:
 
 #### Get the property ids for what you want to collect 
 
-Go to https://analytics.google.com/ -- You may have to login. These instructions are assuming 
-
-Then click on the website at the top of the navbar. It will bring you to a dropdown that shows all your websites. 
-
+1. Go to https://analytics.google.com/ -- You may have to login. These instructions are assuming you have already set up Google Analytics and have been collecting data. 
+2. Then click on the website at the top of the navbar. It will bring you to a dropdown that shows all your websites.
 <img src = "resources/images/google-analytics-dropdown.png" width = "50%">
 
-https://analytics.google.com/analytics/web/?authuser=1#/p422558989/reports/home
+4 .Click on one of the websites where you'd like to retrieve data from. The URL will look something like this: 
+```
+https://analytics.google.com/analytics/web/?authuser=1#/p<PROPERTY_ID_HERE>/reports/home
+```
+5. Copy the property id and put it in the `ga_property_ids:` part of the `_config_automation.yml`. 
+
+Repeat these same steps for all the properties you'd like to collect data for, separating the IDs by commas. Delete the example IDs we have put there as placeholders. 
 
 ```
 ###### Google Analytics ######
@@ -144,7 +148,19 @@ ga_property_ids: [ 422671031, 422558989 ]
 ga_googlesheet:
 ```
 
+- [ ] Make sure that `refresh-ga` is set to "yes".
+- [ ] Optionally, if you are saving data to Google, specify a googlesheet ID you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
+
 ### Setting up Google Forms 
+
+[Follow the steps from the above section to authenticate Google](#setting-up-google-authentication) -- make sure that the account you have authenticated for has access to the Google Forms you wish to collect. 
+
+Go to a form you'd like to collect data from. The URL should look something like this: 
+```
+https://docs.google.com/forms/u/1/d/<GOOGLE_FORM_ID_HERE>/edit?usp=drive_web
+```
+Extract the Google Form ID from the URL and put it in the `google_forms` section of the `_config_automation.yml` file. 
+Do this for each form you'd like to collect data from and separate the form IDs with commas. Delete the example IDs we have put there as placeholders. 
 
 ```
 ###### Google Forms ######
@@ -155,8 +171,18 @@ google_forms: [
 googleforms_googlesheet:
 ```
 
+- [ ] Make sure that `refresh-googleforms` is set to "yes".
+- [ ] Optionally, if you are saving data to Google, specify a googlesheet ID you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
+
 ### Setting up Slido
 
+This is assuming you have already exported Slido data to a google drive folder. Navigate to the Google Drive folder that has the Slidos you'd like to collect. Get the URL for this folder. It should look like this: 
+
+```
+https://drive.google.com/drive/u/1/folders/<SOME_FOLDER_ID_HERE>
+```
+
+Put the folder id from this URL in your `drive_id:` category in the `_config_automation.yml` file. 
 ```
 ###### Slido ######
 refresh-slido: yes
@@ -164,20 +190,23 @@ drive_id: 1XWXHHyj32Uw_UyaUJrqp6S--hHnM0-7l
 slido_googlesheet:
 ```
 
+- [ ] Make sure that `refresh-slido` is set to "yes".
+- [ ] Optionally, if you are saving data to Google, specify a googlesheet ID you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
+
 ### Setting up YouTube
+
+[Follow the steps from the above section to authenticate Google](#setting-up-google-authentication) -- make sure that the account you have authenticated for has access to the YouTube you wish to collect. 
+
+Go to a video you'd like to collect data from. The URL should look something like this: 
+```
+https://www.youtube.com/watch?v=<YOUTUBE_VIDEO_ID_HERE>
+```
+Extract the Youtube Video ID from the URL and put it in the `video_ids` section of the `_config_automation.yml` file. Delete the example IDs we have put there as placeholders. 
+Do this for each video you'd like to collect data from and separate the IDs with commas. 
 
 ```
 ###### YouTube ######
 refresh-youtube: yes
 video_ids: [ XN_QPRrJZAw, YkYnni-WuaQ ]
 youtube_googlesheet:
-```
-
-## Docker set up
-
-```
-################## DOCKER #######################
-# What docker image should be used for rendering?
-# The default is cansav09/metricminer:main
-rendering-docker-image: 'cansav09/metricminer:main'
 ```
