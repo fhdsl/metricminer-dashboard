@@ -4,10 +4,6 @@ output: html_document
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 ---
 
-## Setting up Google Forms
-
-## Preview
-
 ## Preview
 
 ```{r, echo = FALSE, hide = TRUE}
@@ -18,8 +14,6 @@ yaml <- yaml::read_yaml(file.path(root_dir, "_config_automation.yml"))
 googleform_1 <- readr::read_tsv(file.path("metricminer_data", "googleforms", "a_cool_survey.tsv"))
 googleform_2 <- readr::read_tsv(file.path("metricminer_data", "googleforms", "another_even_cooler_survey.tsv"))
                                 
-## For google 
-
 ```
 
 ```{r}
@@ -27,3 +21,26 @@ googleform_1
 
 googleform_2
 ```
+
+## Setting up Google Forms
+
+[Follow the steps from the above section to authenticate Google](#setting-up-google-authentication) -- make sure that the account you have authenticated for has access to the Google Forms you wish to collect.
+
+Go to a form you'd like to collect data from. The URL should look something like this:
+```
+https://docs.google.com/forms/u/1/d/<GOOGLE_FORM_ID_HERE>/edit?usp=drive_web
+```
+Extract the Google Form ID from the URL and put it in the `google_forms` section of the `_config_automation.yml` file.
+Do this for each form you'd like to collect data from and separate the form IDs with commas. Delete the example IDs we have put there as placeholders.
+
+```
+###### Google Forms ######
+refresh-googleforms: yes
+google_forms: [
+  1pbFfgUPYH2w9zEoCDjCa4HFOxzEhGOseufw28Xxmd-o,
+  1JjmsiuVoGSxvl-1M_oWittcftO955tijzeNc-cgJlo8 ]
+googleforms_googlesheet:
+```
+
+- [ ] In the `config_automation.yml` file, make sure that `refresh-googleforms` is set to "yes".
+- [ ] Optionally, if you are saving data to Google, specify a googlesheet ID in `googleforms_googlesheet` you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
