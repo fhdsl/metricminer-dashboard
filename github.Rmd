@@ -14,6 +14,7 @@ yaml <- yaml::read_yaml(file.path(root_dir, "_config_automation.yml"))
 
 ## For github
 github <- readr::read_tsv(file.path("metricminer_data", "github", "github.tsv"))
+github <- readr::read_tsv(file.path("metricminer_data", "github", "github_timecourse.tsv"))
 
 ## For google 
 # github <- googlesheets4::read_sheet(yaml$github_googlesheet)
