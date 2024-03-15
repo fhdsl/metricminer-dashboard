@@ -37,3 +37,32 @@ knitr::kable(ga_dimensions)
 ```{r}
 knitr::kable(ga_link_clicks)
 ```
+
+### Setting up Google Analytics
+
+[Follow the steps from the above section to authenticate Google](#setting-up-google-authentication) -- make sure that the account you have authenticated for has access to the Google Analytics properties you wish to collect.
+
+We'll need to collect the Google Analytics property IDs for the websites you want to retrieve data from.
+
+1. Go to https://analytics.google.com/ -- You may have to login. These instructions are assuming you have already set up Google Analytics and have been collecting data.
+2. Then click on the website at the top of the navbar. It will bring you to a dropdown that shows all your websites.
+
+<img src = "resources/images/google-analytics-dropdown.png" width = "50%">
+
+4 .Click on one of the websites where you'd like to retrieve data from. The URL will look something like this:
+```
+https://analytics.google.com/analytics/web/?authuser=1#/p<PROPERTY_ID_HERE>/reports/home
+```
+5. Copy the property id and put it in the `ga_property_ids:` part of the `_config_automation.yml`.
+
+Repeat these same steps for all the properties you'd like to collect data for, separating the IDs by commas. Delete the example IDs we have put there as placeholders.
+
+```
+###### Google Analytics ######
+refresh-ga: yes
+ga_property_ids: [ 422671031, 422558989 ]
+ga_googlesheet:
+```
+
+- [ ] In the `config_automation.yml` file, make sure that `refresh-ga` is set to "yes".
+- [ ] Optionally, if you are saving data to Google, specify a googlesheet ID in `ga_googlesheet` you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
