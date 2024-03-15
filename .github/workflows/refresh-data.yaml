@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.METRICMINER_GITHUB_PAT }}
 
       - name: Load environment from YAML
         uses: doughepi/yaml-env-action@v1.0.0
@@ -116,6 +118,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
+          token: ${{ secrets.METRICMINER_GITHUB_PAT }}
           fetch-depth: 0
 
       - name: Refresh citations
