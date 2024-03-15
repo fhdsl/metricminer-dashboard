@@ -19,6 +19,16 @@ citations <- readr::read_tsv(file.path("metricminer_data", "citations", "citatio
 # citations <- googlesheets4::read_sheet(yaml$citations_googlesheet)
 ```
 
+Here we show how to get the total counts per original paper:
+
+```{r,message=FALSE}
+library(dplyr)
+# here we remove duplicates if there are any of the same titles of citing papers for each original paper and then get a count of the number of rows for each original paper (aka how many times it is cited)
+citations %>% 
+  distinct(original_paper, cite_titles, .keep_all = TRUE) %>% 
+  count(original_paper)
+```
+
 ## Data information 
 
 Column information:
@@ -29,16 +39,6 @@ Column information:
 
 ```{r, message = FALSE}
 knitr::kable(citations)
-```
-
-Here we show how to get the total counts per original paper:
-
-```{r,message=FALSE}
-library(dplyr)
-# here we remove duplicates if there are any of the same titles of citing papers for each original paper and then get a count of the number of rows for each original paper (aka how many times it is cited)
-citations %>% 
-  distinct(original_paper, cite_titles, .keep_all = TRUE) %>% 
-  count(original_paper)
 ```
 
 ## Setting up Citations
