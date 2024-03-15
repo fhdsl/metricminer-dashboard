@@ -313,9 +313,6 @@ $(document).ready(function () {
 </div>
 
 
-<div id="setting-up-citations" class="section level2">
-<h2>Setting up Citations</h2>
-</div>
 <div id="preview" class="section level2">
 <h2>Preview</h2>
 <p>Column information:</p>
@@ -409,6 +406,33 @@ citations %&gt;%
 ##   &lt;chr&gt;                                                                    &lt;int&gt;
 ## 1 Open-source Tools for Training Resources–OTTR                                5
 ## 2 What&#39;s the best chatbot for me? Researchers put LLMs through their pace…     2</code></pre>
+</div>
+<div id="setting-up-citations" class="section level2">
+<h2>Setting up Citations</h2>
+<ol style="list-style-type: decimal">
+<li>Go to: <a href="https://scholar.google.com/scholar"
+class="uri">https://scholar.google.com/scholar</a></li>
+<li>Search for the paper you are looking for the citation count.</li>
+<li>Then click the <code>Cited by ___</code> button below the title of
+the paper</li>
+<li>Copy and paste this in the <code>_config_automation.yml</code> file
+in the <code>citation_papers</code> section.</li>
+</ol>
+<pre><code>###### Citations ######
+refresh-citations: yes
+citation_papers: [
+  &quot;https://scholar.google.com/scholar?cites=6140457238337460780&quot;,
+  &quot;https://scholar.google.com/scholar?cites=15945159957067506879&quot; ]
+citation_googlesheet:</code></pre>
+<ul class="task-list">
+<li><input type="checkbox" />In the <code>config_automation.yml</code>
+file, make sure that <code>refresh-citations</code> is set to
+“yes”.</li>
+<li><input type="checkbox" />Optionally, if you are saving data to
+google, specify a googlesheet ID in <code>citation_googlesheet</code> if
+you’d like the citation data to be saved to. This will only be relevant
+if you’ve set <code>data_dest</code> to <code>google</code>.</li>
+</ul>
 </div>
 
 

@@ -313,9 +313,6 @@ $(document).ready(function () {
 </div>
 
 
-<div id="setting-up-cran" class="section level2">
-<h2>Setting up CRAN</h2>
-</div>
 <div id="preview" class="section level2">
 <h2>Preview</h2>
 <pre class="r"><code>library(tidyverse)</code></pre>
@@ -366,6 +363,28 @@ $(document).ready(function () {
        y = &quot;Monthly Downloads&quot;,
        color = &quot;R Packages&quot;)</code></pre>
 <p><img src="cran_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="setting-up-cran" class="section level2">
+<h2>Setting up CRAN</h2>
+<p>In the <code>_config_automation.yml</code> you will need to specify a
+few things.</p>
+<pre><code>###### CRAN ######
+refresh-cran: yes
+cran_packages: [ metricminer, ottrpal ]
+cran_googlesheet:</code></pre>
+<ul class="task-list">
+<li><input type="checkbox" />In the <code>config_automation.yml</code>
+file, make sure that <code>refresh-cran</code> is set to “yes”.</li>
+<li><input type="checkbox" />In the <code>cran_packages</code> of your
+<code>config_automation.yml</code>, type the names of the packages that
+you’d like to collect data from on CRAN. Type them exactly as they are
+spelled, case sensitive, separated by commas. Delete the example package
+names we’ve put there.</li>
+<li><input type="checkbox" />Optionally, if you are saving data to
+google, specify a googlesheet ID in <code>cran_googlesheet</code> you’d
+like the CRAN data to be saved to. This will only be relevant if you’ve
+set <code>data_dest</code> to <code>google</code>.</li>
+</ul>
 </div>
 
 

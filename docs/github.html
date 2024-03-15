@@ -313,9 +313,6 @@ $(document).ready(function () {
 </div>
 
 
-<div id="setting-up-github" class="section level2">
-<h2>Setting up GitHub</h2>
-</div>
 <div id="preview" class="section level2">
 <h2>Preview</h2>
 <pre><code>## Rows: 2 Columns: 6
@@ -455,6 +452,34 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
+<div id="setting-up-github" class="section level3">
+<h3>Setting up GitHub</h3>
+<p>At this point you should already have your GitHub authorization set
+up for your metricminer dashboard by having <a
+href="#setting-up-your-dashboard-repository">followed the instructions
+above.</a>.</p>
+<p>In the <code>_config_automation.yml</code> you will need to specify
+items in the GitHub section.</p>
+<pre><code>###### GitHub ######
+refresh-github: yes
+github_repos: [ fhdsl/metricminer, fhdsl/metricminer.org ]
+github_googlesheet:</code></pre>
+<ul class="task-list">
+<li><input type="checkbox" />In the <code>_config_automation.yml</code>
+file, make sure that <code>refresh-github</code> is set to “yes”.</li>
+<li><input type="checkbox" />In <code>github_repos</code> of your
+<code>_config_automation.yml</code>, specify the names of the
+repositories you’d like to collect data from in
+<code>github_repos</code>. Make sure it includes the
+<code>owner/repository</code> e.g. <code>fhdsl/metricminer</code> not
+just <code>metricminer</code>. Commas need to separate the repositories.
+Delete the example repositories we put there.</li>
+<li><input type="checkbox" />Optionally, if you are saving data to
+Google, specify a googlesheet ID in <code>github_googlesheet</code>
+you’d like the GitHub data to be saved to. This will only be relevant if
+you’ve set <code>data_dest</code> to <code>google</code>.</li>
+</ul>
+</div>
 </div>
 
 

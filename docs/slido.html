@@ -313,13 +313,7 @@ $(document).ready(function () {
 </div>
 
 
-<div id="setting-up-slido" class="section level2">
-<h2>Setting up Slido</h2>
-</div>
 <div id="preview" class="section level2">
-<h2>Preview</h2>
-</div>
-<div id="preview-1" class="section level2">
 <h2>Preview</h2>
 <pre><code>## Rows: 14 Columns: 5
 ## ── Column specification ────────────────────────────────────────────────────────
@@ -354,6 +348,30 @@ $(document).ready(function () {
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div id="setting-up-slido" class="section level3">
+<h3>Setting up Slido</h3>
+<p>This is assuming you have already exported Slido data to a google
+drive folder. See <a
+href="https://community.slido.com/analytics-and-exports-44/export-your-questions-poll-results-quiz-leaderboard-and-ideas-532">Slido
+instructions here</a> for how to do that. Navigate to the Google Drive
+folder that has the Slidos you’d like to collect. Get the URL for this
+folder. It should look like this:</p>
+<pre><code>https://drive.google.com/drive/u/1/folders/&lt;SOME_FOLDER_ID_HERE&gt;</code></pre>
+<p>Put the folder id from this URL in your <code>drive_id:</code>
+category in the <code>_config_automation.yml</code> file.</p>
+<pre><code>###### Slido ######
+refresh-slido: yes
+drive_id: 1XWXHHyj32Uw_UyaUJrqp6S--hHnM0-7l
+slido_googlesheet:</code></pre>
+<ul class="task-list">
+<li><input type="checkbox" />In the <code>config_automation.yml</code>
+file, make sure that <code>refresh-slido</code> is set to “yes”.</li>
+<li><input type="checkbox" />Optionally, if you are saving data to
+Google, specify a googlesheet ID in <code>slido_googlesheet</code> that
+you’d like the GitHub data to be saved to. This will only be relevant if
+you’ve set <code>data_dest</code> to <code>google</code>.</li>
+</ul>
+</div>
 </div>
 
 

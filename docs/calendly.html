@@ -313,9 +313,6 @@ $(document).ready(function () {
 </div>
 
 
-<div id="setting-up-calendly" class="section level2">
-<h2>Setting up Calendly</h2>
-</div>
 <div id="preview" class="section level2">
 <h2>Preview</h2>
 <pre><code>## Rows: 1 Columns: 10
@@ -374,6 +371,39 @@ class="uri">https://api.calendly.com/scheduled_events/ac7a3d65-37ee-4277-a057-c3
 </tr>
 </tbody>
 </table>
+</div>
+<div id="setting-up-calendly" class="section level2">
+<h2>Setting Up Calendly</h2>
+<ol style="list-style-type: decimal">
+<li>To set up calendly authorization <a
+href="https://calendly.com/integrations/api_webhooks">go here</a> and
+click “Generate Token”.</li>
+<li>Underneath “Choose a name for this token” pick a name that will
+remind you of this project.</li>
+<li>Click “Create Token” and it will send you an authorization code to
+your email.</li>
+<li>Click “Copy Token” and keep this handy.</li>
+<li>Return to your metricminer dashboard repository and go to
+<code>Settings</code> &gt; <code>Secrets and variables</code> &gt;
+<code>Actions</code>.</li>
+<li>Click on <code>New repository secret</code>. Name your new secret
+<em>exactly</em> <code>METRICMINER_CALENDLY</code></li>
+<li>Paste your token into the <code>Secret</code> box and then click the
+green “Add secret” button.</li>
+</ol>
+<p>After you’ve set up authorization you’ll need to check the following
+items in the <code>_config_automation.yml</code> file.</p>
+<ul class="task-list">
+<li><input type="checkbox" />In the <code>config_automation.yml</code>
+file, make sure that <code>refresh-calendly</code> is set to “yes”.</li>
+<li><input type="checkbox" />Optionally, if you are saving data to
+google, specify a googlesheet ID you’d like the CRAN data to be saved
+to. This will only be relevant if you’ve set <code>data_dest</code> to
+<code>google</code>.</li>
+</ul>
+<pre><code>###### Calendly ######
+refresh-calendly: yes
+calendly_googlesheet:</code></pre>
 </div>
 
 

@@ -496,6 +496,46 @@ class="uri">https://www.metricminer.org/</a></td>
 </tr>
 </tbody>
 </table>
+<div id="setting-up-google-analytics-1" class="section level3">
+<h3>Setting up Google Analytics</h3>
+<p><a href="#setting-up-google-authentication">Follow the steps from the
+above section to authenticate Google</a> – make sure that the account
+you have authenticated for has access to the Google Analytics properties
+you wish to collect.</p>
+<p>We’ll need to collect the Google Analytics property IDs for the
+websites you want to retrieve data from.</p>
+<ol style="list-style-type: decimal">
+<li>Go to <a href="https://analytics.google.com/"
+class="uri">https://analytics.google.com/</a> – You may have to login.
+These instructions are assuming you have already set up Google Analytics
+and have been collecting data.</li>
+<li>Then click on the website at the top of the navbar. It will bring
+you to a dropdown that shows all your websites.</li>
+</ol>
+<p><img src = "resources/images/google-analytics-dropdown.png" width = "50%"></p>
+<p>4 .Click on one of the websites where you’d like to retrieve data
+from. The URL will look something like this:</p>
+<pre><code>https://analytics.google.com/analytics/web/?authuser=1#/p&lt;PROPERTY_ID_HERE&gt;/reports/home</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Copy the property id and put it in the <code>ga_property_ids:</code>
+part of the <code>_config_automation.yml</code>.</li>
+</ol>
+<p>Repeat these same steps for all the properties you’d like to collect
+data for, separating the IDs by commas. Delete the example IDs we have
+put there as placeholders.</p>
+<pre><code>###### Google Analytics ######
+refresh-ga: yes
+ga_property_ids: [ 422671031, 422558989 ]
+ga_googlesheet:</code></pre>
+<ul class="task-list">
+<li><input type="checkbox" />In the <code>config_automation.yml</code>
+file, make sure that <code>refresh-ga</code> is set to “yes”.</li>
+<li><input type="checkbox" />Optionally, if you are saving data to
+Google, specify a googlesheet ID in <code>ga_googlesheet</code> you’d
+like the GitHub data to be saved to. This will only be relevant if
+you’ve set <code>data_dest</code> to <code>google</code>.</li>
+</ul>
+</div>
 </div>
 
 

@@ -313,9 +313,6 @@ $(document).ready(function () {
 </div>
 
 
-<div id="setting-up-youtube" class="section level2">
-<h2>Setting up Youtube</h2>
-</div>
 <div id="preview" class="section level2">
 <h2>Preview</h2>
 <pre><code>## Rows: 2 Columns: 6
@@ -365,6 +362,34 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
+<div id="setting-up-youtube" class="section level3">
+<h3>Setting up YouTube</h3>
+<p><a href="#setting-up-google-authentication">Follow the steps from the
+above section to authenticate Google</a> – make sure that the account
+you have authenticated for has access to the YouTube you wish to
+collect.</p>
+<p>Go to a video you’d like to collect data from. The URL should look
+something like this:</p>
+<pre><code>https://www.youtube.com/watch?v=&lt;YOUTUBE_VIDEO_ID_HERE&gt;</code></pre>
+<p>Extract the Youtube Video ID from the URL and put it in the
+<code>video_ids</code> section of the
+<code>_config_automation.yml</code> file. Delete the example IDs we have
+put there as placeholders. Do this for each video you’d like to collect
+data from and separate the IDs with commas.</p>
+<pre><code>###### YouTube ######
+refresh-youtube: yes
+video_ids: [ XN_QPRrJZAw, YkYnni-WuaQ ]
+youtube_googlesheet:</code></pre>
+<ul class="task-list">
+<li><input type="checkbox" />In the <code>config_automation.yml</code>
+file, make sure that <code>refresh-slido</code> is set to “yes”.</li>
+<li><input type="checkbox" />Optionally, if you are saving data to
+Google, specify a googlesheet ID in <code>youtube_googlesheet</code>
+that you’d like the GitHub data to be saved to. This will only be
+relevant if you’ve set <code>data_dest</code> to
+<code>google</code>.</li>
+</ul>
+</div>
 </div>
 
 
