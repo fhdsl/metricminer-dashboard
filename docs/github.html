@@ -326,43 +326,132 @@ $(document).ready(function () {
 ## lgl (1): num_forks
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+## Rows: 12 Columns: 6
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;\t&quot;
+## chr  (1): repo
+## dbl  (4): count_clones, uniques_clones, count_views, uniques_views
+## date (1): timestamp
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre class="r"><code>knitr::kable(github)</code></pre>
-<table style="width:100%;">
+<table>
 <colgroup>
-<col width="22%" />
-<col width="10%" />
+<col width="25%" />
+<col width="12%" />
+<col width="14%" />
 <col width="17%" />
-<col width="20%" />
-<col width="10%" />
-<col width="18%" />
+<col width="13%" />
+<col width="16%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left">repo_name</th>
-<th align="left">num_forks</th>
-<th align="right">num_contributors</th>
-<th align="right">total_contributions</th>
-<th align="right">num_stars</th>
-<th align="right">health_percentage</th>
+<th align="left">repo</th>
+<th align="left">timestamp</th>
+<th align="right">count_clones</th>
+<th align="right">uniques_clones</th>
+<th align="right">count_views</th>
+<th align="right">uniques_views</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">fhdsl/metricminer</td>
-<td align="left">NA</td>
-<td align="right">4</td>
-<td align="right">432</td>
+<td align="left">2024-03-01</td>
+<td align="right">10</td>
 <td align="right">1</td>
-<td align="right">37</td>
+<td align="right">16</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">fhdsl/metricminer</td>
+<td align="left">2024-03-04</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">6</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">fhdsl/metricminer</td>
+<td align="left">2024-03-05</td>
+<td align="right">35</td>
+<td align="right">5</td>
+<td align="right">26</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">fhdsl/metricminer</td>
+<td align="left">2024-03-06</td>
+<td align="right">56</td>
+<td align="right">13</td>
+<td align="right">21</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">fhdsl/metricminer</td>
+<td align="left">2024-03-08</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">fhdsl/metricminer</td>
+<td align="left">2024-03-11</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">fhdsl/metricminer</td>
+<td align="left">2024-03-07</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">3</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">fhdsl/metricminer</td>
+<td align="left">2024-03-09</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">fhdsl/metricminer</td>
+<td align="left">2024-03-13</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">fhdsl/metricminer</td>
+<td align="left">2024-03-14</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">11</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">fhdsl/metricminer.org</td>
+<td align="left">2024-03-04</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 </tr>
 <tr class="even">
 <td align="left">fhdsl/metricminer.org</td>
 <td align="left">NA</td>
-<td align="right">2</td>
-<td align="right">28</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 <td align="right">0</td>
-<td align="right">37</td>
+<td align="right">0</td>
 </tr>
 </tbody>
 </table>
