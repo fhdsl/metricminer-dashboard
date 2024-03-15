@@ -261,6 +261,13 @@ $(document).ready(function () {
   </a>
 </li>
 <li>
+  <a href="citations.html">
+    <span class="fa fa-scroll"></span>
+     
+    Citations
+  </a>
+</li>
+<li>
   <a href="cran.html">
     <span class="fa fa-r"></span>
      
@@ -279,13 +286,6 @@ $(document).ready(function () {
     <span class="fa fa-google"></span>
      
     Google Analytics
-  </a>
-</li>
-<li>
-  <a href="slido.html">
-    <span class="a a-square-poll-vertical"></span>
-     
-    Slido
   </a>
 </li>
 <li>
@@ -308,7 +308,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Calendly</h1>
-<h4 class="date">06 March, 2024</h4>
+<h4 class="date">15 March, 2024</h4>
 
 </div>
 
@@ -318,10 +318,11 @@ $(document).ready(function () {
 </div>
 <div id="preview" class="section level2">
 <h2>Preview</h2>
-<pre><code>## Rows: 1 Columns: 8
+<pre><code>## Rows: 1 Columns: 10
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;\t&quot;
 ## chr  (4): event_type, name, status, uri
+## lgl  (2): meeting_notes_html, meeting_notes_plain
 ## dttm (4): created_at, end_time, start_time, updated_at
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
@@ -329,20 +330,24 @@ $(document).ready(function () {
 <pre class="r"><code>knitr::kable(calendly)</code></pre>
 <table>
 <colgroup>
-<col width="7%" />
-<col width="7%" />
-<col width="28%" />
 <col width="6%" />
-<col width="7%" />
+<col width="6%" />
+<col width="24%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
 <col width="2%" />
-<col width="7%" />
-<col width="30%" />
+<col width="6%" />
+<col width="26%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="left">created_at</th>
 <th align="left">end_time</th>
 <th align="left">event_type</th>
+<th align="left">meeting_notes_html</th>
+<th align="left">meeting_notes_plain</th>
 <th align="left">name</th>
 <th align="left">start_time</th>
 <th align="left">status</th>
@@ -357,6 +362,8 @@ $(document).ready(function () {
 <td align="left"><a
 href="https://api.calendly.com/event_types/d39d7211-9c78-4121-8271-208cfaa34989"
 class="uri">https://api.calendly.com/event_types/d39d7211-9c78-4121-8271-208cfaa34989</a></td>
+<td align="left">NA</td>
+<td align="left">NA</td>
 <td align="left">30 Minute Meeting</td>
 <td align="left">2024-01-17 14:00:00</td>
 <td align="left">active</td>

@@ -1,2 +1,2 @@
-created_at	end_time	event_type	name	start_time	status	updated_at	uri
-2024-01-10T14:29:21.506145Z	2024-01-17T14:30:00.000000Z	https://api.calendly.com/event_types/d39d7211-9c78-4121-8271-208cfaa34989	30 Minute Meeting	2024-01-17T14:00:00.000000Z	active	2024-01-10T14:29:22.796821Z	https://api.calendly.com/scheduled_events/ac7a3d65-37ee-4277-a057-c308bdc7a067
+created_at	end_time	event_type	meeting_notes_html	meeting_notes_plain	name	start_time	status	updated_at	uri
+2024-01-10T14:29:21.506145Z	2024-01-17T14:30:00.000000Z	https://api.calendly.com/event_types/d39d7211-9c78-4121-8271-208cfaa34989	NA	NA	30 Minute Meeting	2024-01-17T14:00:00.000000Z	active	2024-01-10T14:29:22.796821Z	https://api.calendly.com/scheduled_events/ac7a3d65-37ee-4277-a057-c308bdc7a067
