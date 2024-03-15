@@ -202,7 +202,7 @@ googleforms_googlesheet:
 
 ### Setting up Slido
 
-This is assuming you have already exported Slido data to a google drive folder. Navigate to the Google Drive folder that has the Slidos you'd like to collect. Get the URL for this folder. It should look like this:
+This is assuming you have already exported Slido data to a google drive folder. See [Slido instructions here](https://community.slido.com/analytics-and-exports-44/export-your-questions-poll-results-quiz-leaderboard-and-ideas-532) for how to do that. Navigate to the Google Drive folder that has the Slidos you'd like to collect. Get the URL for this folder. It should look like this:
 
 ```
 https://drive.google.com/drive/u/1/folders/<SOME_FOLDER_ID_HERE>
