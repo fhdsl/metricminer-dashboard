@@ -4,9 +4,6 @@ output: html_document
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 ---
 
-## Setting up CRAN
-
-
 ## Preview
 
 ```{r}
@@ -48,3 +45,18 @@ ggplot(cran_stats, aes(Month, monthly_downloads, group=package, color = package)
        y = "Monthly Downloads",
        color = "R Packages")
 ```
+
+## Setting up CRAN
+
+In the `_config_automation.yml` you will need to specify a few things.
+
+```
+###### CRAN ######
+refresh-cran: yes
+cran_packages: [ metricminer, ottrpal ]
+cran_googlesheet:
+```
+
+- [ ] In the `config_automation.yml` file, make sure that `refresh-cran` is set to "yes".
+- [ ] In the `cran_packages` of your `config_automation.yml`, type the names of the packages that you'd like to collect data from on CRAN. Type them exactly as they are spelled, case sensitive, separated by commas. Delete the example package names we've put there.
+- [ ] Optionally, if you are saving data to google, specify a googlesheet ID in `cran_googlesheet` you'd like the CRAN data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
