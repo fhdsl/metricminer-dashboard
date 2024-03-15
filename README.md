@@ -110,7 +110,7 @@ token$credentials$refresh_token
 
 After you've set up authorization you'll need to check the following items in the `_config_automation.yml` file.
 
-- [ ] Make sure that `refresh-calendly` is set to "yes".
+- [ ] In the `config_automation.yml` file, make sure that `refresh-calendly` is set to "yes".
 - [ ] Optionally, if you are saving data to google, specify a googlesheet ID you'd like the CRAN data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
 ```
 ###### Calendly ######
@@ -129,8 +129,8 @@ cran_packages: [ metricminer, ottrpal ]
 cran_googlesheet:
 ```
 
-- [ ] Make sure that `refresh-cran` is set to "yes".
-- [ ] Type the names of the packages that you'd like to collect data from on CRAN. Type them exactly as they are spelled, case sensitive, separated by commas. Delete the example package names we've put there.
+- [ ] In the `config_automation.yml` file, make sure that `refresh-cran` is set to "yes".
+- [ ] In the `cran_packages` of your `config_automation.yml`, type the names of the packages that you'd like to collect data from on CRAN. Type them exactly as they are spelled, case sensitive, separated by commas. Delete the example package names we've put there.
 - [ ] Optionally, if you are saving data to google, specify a googlesheet ID in `cran_googlesheet` you'd like the CRAN data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
 
 
@@ -146,8 +146,8 @@ github_repos: [ fhdsl/metricminer, fhdsl/metricminer.org ]
 github_googlesheet:
 ```
 
-- [ ] Make sure that `refresh-github` is set to "yes".
-- [ ] Specify the names of the repositories you'd like to collect data from in `github_repos`. Make sure it includes the `owner/repository` e.g. `fhdsl/metricminer` not just `metricminer`. Commas need to separate the repositories. Delete the example repositories we put there.
+- [ ] In the `_config_automation.yml` file, make sure that `refresh-github` is set to "yes".
+- [ ] In `github_repos` of your `_config_automation.yml`, specify the names of the repositories you'd like to collect data from in `github_repos`. Make sure it includes the `owner/repository` e.g. `fhdsl/metricminer` not just `metricminer`. Commas need to separate the repositories. Delete the example repositories we put there.
 - [ ] Optionally, if you are saving data to Google, specify a googlesheet ID in `github_googlesheet` you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
 
 
@@ -177,7 +177,7 @@ ga_property_ids: [ 422671031, 422558989 ]
 ga_googlesheet:
 ```
 
-- [ ] Make sure that `refresh-ga` is set to "yes".
+- [ ] In the `config_automation.yml` file, make sure that `refresh-ga` is set to "yes".
 - [ ] Optionally, if you are saving data to Google, specify a googlesheet ID in `ga_googlesheet` you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
 
 ### Setting up Google Forms
@@ -200,7 +200,7 @@ google_forms: [
 googleforms_googlesheet:
 ```
 
-- [ ] Make sure that `refresh-googleforms` is set to "yes".
+- [ ] In the `config_automation.yml` file, make sure that `refresh-googleforms` is set to "yes".
 - [ ] Optionally, if you are saving data to Google, specify a googlesheet ID in `googleforms_googlesheet` you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
 
 ### Setting up Slido
@@ -219,7 +219,7 @@ drive_id: 1XWXHHyj32Uw_UyaUJrqp6S--hHnM0-7l
 slido_googlesheet:
 ```
 
-- [ ] Make sure that `refresh-slido` is set to "yes".
+- [ ] In the `config_automation.yml` file, make sure that `refresh-slido` is set to "yes".
 - [ ] Optionally, if you are saving data to Google, specify a googlesheet ID in `slido_googlesheet` that you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
 
 ### Setting up YouTube
@@ -240,5 +240,5 @@ video_ids: [ XN_QPRrJZAw, YkYnni-WuaQ ]
 youtube_googlesheet:
 ```
 
-- [ ] Make sure that `refresh-slido` is set to "yes".
+- [ ] In the `config_automation.yml` file, make sure that `refresh-slido` is set to "yes".
 - [ ] Optionally, if you are saving data to Google, specify a googlesheet ID in `youtube_googlesheet` that you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
