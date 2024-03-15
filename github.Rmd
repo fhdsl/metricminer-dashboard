@@ -6,7 +6,7 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 
 ## Preview
 
-```{r, echo = FALSE, hide = TRUE, message=FALSE}
+```{r, echo = FALSE, hide = TRUE, message=FALSE, warning = FALSE}
 library(ggplot2)
 library(magrittr)
 
@@ -24,7 +24,7 @@ github_timecourse <- readr::read_tsv(file.path("metricminer_data", "github", "gi
 
 Contributions to a repository example:
 
-```{r echo = FALSE, hide = TRUE, message=FALSE}
+```{r echo = FALSE, hide = TRUE, message=FALSE, warning = FALSE}
 github_overall %>% 
   ggplot(aes(x = repo_name, y = total_contributions)) + 
   geom_bar(stat = "identity", fill = "lavender") + 

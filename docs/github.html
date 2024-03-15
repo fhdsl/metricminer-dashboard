@@ -13,7 +13,7 @@
 
 <title>GitHub</title>
 
-<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.26/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -315,25 +315,79 @@ $(document).ready(function () {
 
 <div id="preview" class="section level2">
 <h2>Preview</h2>
-<pre><code>## Rows: 2 Columns: 6
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: &quot;\t&quot;
-## chr (1): repo_name
-## dbl (4): num_contributors, total_contributions, num_stars, health_percentage
-## lgl (1): num_forks
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-## Rows: 12 Columns: 6
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: &quot;\t&quot;
-## chr  (1): repo
-## dbl  (4): count_clones, uniques_clones, count_views, uniques_views
-## date (1): timestamp
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>knitr::kable(github)</code></pre>
+<p>Contributions to a repository example:</p>
+<p><img src="github_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Views of a GitHub Repository over time</p>
+<pre><code>## Warning: Removed 2 rows containing missing values or values outside the scale range
+## (`geom_line()`).</code></pre>
+<p><img src="github_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="data-information" class="section level2">
+<h2>Data information</h2>
+<p>Data information for <code>github overall data</code>:</p>
+<ul>
+<li><code>num_forks</code> shows the number of times this repo has been
+forked. NA means it has never been forked.</li>
+<li><code>num_contributors</code> how many people have contributed to
+this repo</li>
+<li><code>num_stars</code> how many people have starred this repo?</li>
+<li><code>health_percentage</code> what percentage of <a
+href="https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/about-community-profiles-for-public-repositories">“good
+software health” items as described by GitHub</a> does this repo
+have?</li>
+</ul>
+<pre class="r"><code>knitr::kable(github_overall)</code></pre>
+<table style="width:100%;">
+<colgroup>
+<col width="22%" />
+<col width="10%" />
+<col width="17%" />
+<col width="20%" />
+<col width="10%" />
+<col width="18%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">repo_name</th>
+<th align="left">num_forks</th>
+<th align="right">num_contributors</th>
+<th align="right">total_contributions</th>
+<th align="right">num_stars</th>
+<th align="right">health_percentage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">fhdsl/metricminer</td>
+<td align="left">NA</td>
+<td align="right">4</td>
+<td align="right">432</td>
+<td align="right">1</td>
+<td align="right">37</td>
+</tr>
+<tr class="even">
+<td align="left">fhdsl/metricminer.org</td>
+<td align="left">NA</td>
+<td align="right">2</td>
+<td align="right">28</td>
+<td align="right">0</td>
+<td align="right">37</td>
+</tr>
+</tbody>
+</table>
+<p>Data information for <code>github timecourse</code>:</p>
+<ul>
+<li><code>timestampe</code> shows the date the counts correspond to</li>
+<li><code>count_clones</code> tells the number of clones made on this
+day</li>
+<li><code>unique_clones</code> tells how many people did these clones
+come from?</li>
+<li><code>count_views</code> how many views did the repo get on this
+day?</li>
+<li><code>unique_views</code> how many people were those views
+from?</li>
+</ul>
+<pre class="r"><code>knitr::kable(github_timecourse)</code></pre>
 <table>
 <colgroup>
 <col width="25%" />

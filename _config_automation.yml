@@ -33,7 +33,6 @@ cran_googlesheet:
 refresh-github: yes
 github_repos: [
   fhdsl/metricminer,
-  fhdsl/metricminer.org,
   fhdsl/metricminer-dashboard,
   jhudsl/OTTR_Template,
   jhudsl/OTTR_Template_Website
