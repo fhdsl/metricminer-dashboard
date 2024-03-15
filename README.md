@@ -73,14 +73,33 @@ Repeat the same steps for the Refresh token except call this `METRICMINER_GOOGLE
 token$credentials$refresh_token
 ```
 
-**THIS IS STILL UNDER CONSTRUCTION**
+### Setting up Calendly
 
-### Setting up Calendly Auth
+1. To set up calendly authorization [go here](https://calendly.com/integrations/api_webhooks) and click "Generate Token". 
+2. Underneath "Choose a name for this token" pick a name that will remind you of this project.
+3. Click "Create Token" and it will send you an authorization code to your email.
+4. Click "Copy Token" and keep this handy.
+5. Return to your metricminer dashboard repository and go to `Settings` > `Secrets and variables` > `Actions`.
+6. Click on `New repository secret`. Name your new secret *exactly* `METRICMINER_CALENDLY`
+7. Paste your token into the `Secret` box and then click the green "Add secret" button.
+
+After you've set up authorization you'll need to check the following items in the `_config_automation.yml` file. 
+
+- [ ] Make sure that `refresh-calendly` is set to "yes".
+- [ ] Optionally, if you are saving data to google, specify a googlesheet ID you'd like the CRAN data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
 ```
 ###### Calendly ######
 refresh-calendly: yes
 calendly_googlesheet:
 ```
+
+### Setting up CRAN
+
+CRAN does not require any authorization. But in the `_config_automation.yml` you will need to specify a few things. 
+
+- [ ] Make sure that `refresh-cran` is set to "yes".
+- [ ] Type the names of the packages that you'd like to collect data from on CRAN (type them exactly as they are spelled, case sensitive).
+- [ ] Optionally, if you are saving data to google, specify a googlesheet ID you'd like the CRAN data to be saved to. This will only be relevant if you've set `data_dest` to `google`. 
 
 ```
 ###### CRAN ######
@@ -89,18 +108,31 @@ cran_packages: [ metricminer, ottrpal ]
 cran_googlesheet:
 ```
 
+### Setting up GitHub 
+
+At this point you should already have your GitHub authorization set up for your metricminer dashboard by having [followed the instructions above.](#setting-up-your-dashboard-repository).
+
+- [ ] Make sure that `refresh-github` is set to "yes".
+- [ ] Specify the names of the repositories you'd like to collect data from in `github_repos`. Make sure it includes the `owner/repository` e.g. `fhdsl/metricminer` not just `metricminer`. Commas need to separate the repositories. 
+- [ ] Optionally, if you are saving data to Google, specify a googlesheet ID you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
+      
 ```
 ###### GitHub ######
 refresh-github: yes
 github_repos: [ fhdsl/metricminer, fhdsl/metricminer.org ]
 github_googlesheet:
 ```
+
+### Setting up Google Analytics
+
 ```
 ###### Google Analytics ######
 refresh-ga: yes
 ga_property_ids: [ 422671031, 422558989 ]
 ga_googlesheet:
 ```
+
+### Setting up Google Forms 
 
 ```
 ###### Google Forms ######
@@ -111,12 +143,16 @@ google_forms: [
 googleforms_googlesheet:
 ```
 
+### Setting up Slido
+
 ```
 ###### Slido ######
 refresh-slido: yes
 drive_id: 1XWXHHyj32Uw_UyaUJrqp6S--hHnM0-7l
 slido_googlesheet:
 ```
+
+### Setting up YouTube
 
 ```
 ###### YouTube ######
