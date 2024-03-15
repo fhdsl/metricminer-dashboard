@@ -4,8 +4,6 @@ output: html_document
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 ---
 
-## Setting up GitHub
-
 ## Preview
 
 ```{r, echo = FALSE, hide = TRUE}
@@ -22,3 +20,19 @@ github <- readr::read_tsv(file.path("metricminer_data", "github", "github_timeco
 ```{r}
 knitr::kable(github)
 ```
+
+### Setting up GitHub
+
+At this point you should already have your GitHub authorization set up for your metricminer dashboard by having [followed the instructions above.](#setting-up-your-dashboard-repository).
+
+In the `_config_automation.yml` you will need to specify items in the GitHub section.
+```
+###### GitHub ######
+refresh-github: yes
+github_repos: [ fhdsl/metricminer, fhdsl/metricminer.org ]
+github_googlesheet:
+```
+
+- [ ] In the `_config_automation.yml` file, make sure that `refresh-github` is set to "yes".
+- [ ] In `github_repos` of your `_config_automation.yml`, specify the names of the repositories you'd like to collect data from in `github_repos`. Make sure it includes the `owner/repository` e.g. `fhdsl/metricminer` not just `metricminer`. Commas need to separate the repositories. Delete the example repositories we put there.
+- [ ] Optionally, if you are saving data to Google, specify a googlesheet ID in `github_googlesheet` you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
