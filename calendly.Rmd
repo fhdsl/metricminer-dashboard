@@ -4,9 +4,6 @@ output: html_document
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 ---
 
-## Setting up Calendly
-
-
 ## Preview
 
 ```{r, echo = FALSE, hide = TRUE}
@@ -22,4 +19,24 @@ calendly <- readr::read_tsv(file.path("metricminer_data", "calendly", "calendly.
 
 ```{r}
 knitr::kable(calendly)
+```
+
+## Setting Up Calendly
+
+1. To set up calendly authorization [go here](https://calendly.com/integrations/api_webhooks) and click "Generate Token".
+2. Underneath "Choose a name for this token" pick a name that will remind you of this project.
+3. Click "Create Token" and it will send you an authorization code to your email.
+4. Click "Copy Token" and keep this handy.
+5. Return to your metricminer dashboard repository and go to `Settings` > `Secrets and variables` > `Actions`.
+6. Click on `New repository secret`. Name your new secret *exactly* `METRICMINER_CALENDLY`
+7. Paste your token into the `Secret` box and then click the green "Add secret" button.
+
+After you've set up authorization you'll need to check the following items in the `_config_automation.yml` file.
+
+- [ ] In the `config_automation.yml` file, make sure that `refresh-calendly` is set to "yes".
+- [ ] Optionally, if you are saving data to google, specify a googlesheet ID you'd like the CRAN data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
+```
+###### Calendly ######
+refresh-calendly: yes
+calendly_googlesheet:
 ```
