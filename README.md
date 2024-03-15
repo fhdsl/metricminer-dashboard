@@ -125,6 +125,18 @@ github_googlesheet:
 
 ### Setting up Google Analytics
 
+[Follow the steps from the above section to authenticate Google](#setting-up-google-authentication) -- make sure that the account you have authenticated for has access to the Google Analytics properties you wish to collect. 
+
+#### Get the property ids for what you want to collect 
+
+Go to https://analytics.google.com/ -- You may have to login. These instructions are assuming 
+
+Then click on the website at the top of the navbar. It will bring you to a dropdown that shows all your websites. 
+
+<img src = "google-analytics-dropdown.png" width = "50%">
+
+https://analytics.google.com/analytics/web/?authuser=1#/p422558989/reports/home
+
 ```
 ###### Google Analytics ######
 refresh-ga: yes
