@@ -5,7 +5,7 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 ---
 
 ## Setting up Calendly
-add spelling errors on purposes to test ahuifhawiuehfiuawehf
+add spelling errors on purposes to test awiuehfiuawehf
 basiubfaiw
 baeifh
 
