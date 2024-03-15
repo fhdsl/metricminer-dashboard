@@ -86,3 +86,12 @@ github_googlesheet:
 - [ ] In the `_config_automation.yml` file, make sure that `refresh-github` is set to "yes".
 - [ ] In `github_repos` of your `_config_automation.yml`, specify the names of the repositories you'd like to collect data from in `github_repos`. Make sure it includes the `owner/repository` e.g. `fhdsl/metricminer` not just `metricminer`. Commas need to separate the repositories. Delete the example repositories we put there.
 - [ ] Optionally, if you are saving data to Google, specify a googlesheet ID in `github_googlesheet` you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
+
+## Customizing GitHub Data 
+
+In order to customize the data you are downloading from GitHub you can modify the 
+`refresh-scripts/refresh-github.R` script in your repository. 
+
+You can take a look at the [`metricminer` R package documentation](https://hutchdatascience.org/metricminer/articles/getting-started.html) for more details about the functions and what is possible. 
+
+If you have a metric need that is not currently fulfilled by `metricminer` or `metricminer-dashboard` we encourage you to [file a GitHub issue with us and let us know about your new feature idea (or bug report)](https://github.com/fhdsl/metricminer/issues/new/choose). 

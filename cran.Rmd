@@ -62,3 +62,12 @@ cran_googlesheet:
 - [ ] In the `config_automation.yml` file, make sure that `refresh-cran` is set to "yes".
 - [ ] In the `cran_packages` of your `config_automation.yml`, type the names of the packages that you'd like to collect data from on CRAN. Type them exactly as they are spelled, case sensitive, separated by commas. Delete the example package names we've put there.
 - [ ] Optionally, if you are saving data to google, specify a googlesheet ID in `cran_googlesheet` you'd like the CRAN data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
+
+## Customizing CRAN Data 
+
+In order to customize the data you are downloading from CRAN you can modify the 
+`refresh-scripts/refresh-cran.R` script in your repository. 
+
+You can take a look at the [`metricminer` R package documentation](https://hutchdatascience.org/metricminer/articles/getting-started.html) for more details about the functions and what is possible. 
+
+If you have a metric need that is not currently fulfilled by `metricminer` or `metricminer-dashboard` we encourage you to [file a GitHub issue with us and let us know about your new feature idea (or bug report)](https://github.com/fhdsl/metricminer/issues/new/choose). 

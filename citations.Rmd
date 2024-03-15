@@ -1,10 +1,10 @@
 ---
 title: "Citations"
-output: 
+output:
   html_document:
-  toc: true
-  toc_float: true
-  toc_collapsed: true
+    toc: true
+    toc_float: true
+    toc_collapsed: true
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 ---
 
@@ -28,18 +28,18 @@ Here we show how to get the total counts per original paper:
 ```{r,message=FALSE}
 library(dplyr)
 # here we remove duplicates if there are any of the same titles of citing papers for each original paper and then get a count of the number of rows for each original paper (aka how many times it is cited)
-citations %>% 
-  distinct(original_paper, cite_titles, .keep_all = TRUE) %>% 
+citations %>%
+  distinct(original_paper, cite_titles, .keep_all = TRUE) %>%
   count(original_paper)
 ```
 
-## Data information 
+## Data information
 
 Column information:
 
 - `original_paper` shows papers that we have captured citation information about
 - `cite_titles` shows papers that cite the original paper
-- `links`column shows the link for the paper that cites the original paper (the `cite_titles` papers). 
+- `links`column shows the link for the paper that cites the original paper (the `cite_titles` papers).
 
 ```{r, message = FALSE}
 knitr::kable(citations)
@@ -50,8 +50,8 @@ knitr::kable(citations)
 1. Go to: https://scholar.google.com/scholar
 2. Search for the paper you are looking for the citation count.
 3. Then click the `Cited by ___` button below the title of the paper
-4. Copy and paste this in the `_config_automation.yml` file in the `citation_papers` section. 
-         
+4. Copy and paste this in the `_config_automation.yml` file in the `citation_papers` section.
+
 ```
 ###### Citations ######
 refresh-citations: yes
@@ -62,3 +62,13 @@ citation_googlesheet:
 ```
 - [ ] In the `config_automation.yml` file, make sure that `refresh-citations` is set to "yes".
 - [ ] Optionally, if you are saving data to google, specify a googlesheet ID in `citation_googlesheet` if you'd like the citation data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
+
+
+## Customizing Citation Data 
+
+In order to customize the data you are downloading from Google Scholar you can modify the 
+`refresh-scripts/refresh-citations.R` script in your repository. 
+
+You can take a look at the [`metricminer` R package documentation](https://hutchdatascience.org/metricminer/articles/getting-started.html) for more details about the functions and what is possible. 
+
+If you have a metric need that is not currently fulfilled by `metricminer` or `metricminer-dashboard` we encourage you to [file a GitHub issue with us and let us know about your new feature idea (or bug report)](https://github.com/fhdsl/metricminer/issues/new/choose). 
