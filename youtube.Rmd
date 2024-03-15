@@ -1,12 +1,16 @@
 ---
 title: "YouTube"
-output: html_document
+output: 
+  html_document:
+  toc: true
+  toc_float: true
+  toc_collapsed: true
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 ---
 
 ## Preview
 
-```{r, echo = FALSE, hide = TRUE}
+```{r, echo = FALSE, hide = TRUE, message = FALSE}
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 yaml <- yaml::read_yaml(file.path(root_dir, "_config_automation.yml"))
 
@@ -15,6 +19,14 @@ youtube <- readr::read_tsv(file.path("metricminer_data", "youtube", "youtube.tsv
 
 ## For youtube
 ```
+
+## Data information 
+
+- `viewCount` how many times has the video been viewed?
+- `likeCount` how many times has the video been liked?
+- `dislikeCount` - how many times has the video been disliked?
+- `favoriteCount` - how many times has the video been favorited?
+- `commentCount` - how many comments on the video?
 
 ```{r}
 knitr::kable(youtube)

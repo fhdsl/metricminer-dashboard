@@ -1,6 +1,10 @@
 ---
 title: "CRAN"
-output: html_document
+output: 
+  html_document:
+  toc: true
+  toc_float: true
+  toc_collapsed: true
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 ---
 
@@ -18,15 +22,15 @@ cran <- readr::read_tsv(file.path("metricminer_data", "cran", "cran.tsv"))
 ## For google
 # cran <- googlesheets4::read_sheet(yaml$cran_googlesheet)
 ```
+
+Total CRAN downloads for all packages: 
+
 ```{r}
 cran %>% dplyr::summarize(download_total = sum(count))
 ```
-
+CRAN package downloads over time, summarized by month. 
 
 ```{r, message = FALSE}
-cran %>% dplyr::group_by(package) %>%
-   dplyr::summarize(download_total = sum(count))
-
 cran_stats <- cran %>%
   separate(date, into=c("year", "month name", "day"), sep = "-") %>%
   unite("Month", c("year", "month name"), sep='-', remove=TRUE) %>%  

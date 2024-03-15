@@ -1,7 +1,12 @@
 ---
 title: "GitHub"
-output: html_document
+output: 
+  html_document:
+  toc: true
+  toc_float: true
+  toc_collapsed: true
 date: "`r format(Sys.time(), '%d %B, %Y')`"
+
 ---
 
 ## Preview
@@ -56,11 +61,11 @@ knitr::kable(github_overall)
 
 Data information for `github timecourse`:
 
-- `timestampe` shows the date the counts correspond to
-- `count_clones` tells the number of clones made on this day 
-- `unique_clones` tells how many people did these clones come from?
-- `count_views` how many views did the repo get on this day?
-- `unique_views` how many people were those views from?
+- `timestamp` shows the date the counts correspond to
+- `count_clones` tells the number of clones made on this day. NAs generally indicate no one cloned the repository that day. 
+- `unique_clones` tells how many people did these clones come from? NAs generally indicate no one cloned the repository that day.
+- `count_views` how many views did the repo get on this day? NAs generally indicate no one viewed the repository that date
+- `unique_views` how many people were those views from? NAs generally indicate no one viewed the repository that date
 
 ```{r, message=FALSE}
 knitr::kable(github_timecourse)
