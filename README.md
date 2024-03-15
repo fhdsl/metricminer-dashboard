@@ -120,7 +120,7 @@ calendly_googlesheet:
 CRAN does not require any authorization. But in the `_config_automation.yml` you will need to specify a few things.
 
 - [ ] Make sure that `refresh-cran` is set to "yes".
-- [ ] Type the names of the packages that you'd like to collect data from on CRAN (type them exactly as they are spelled, case sensitive). Delete the example package names we've put there.
+- [ ] Type the names of the packages that you'd like to collect data from on CRAN. Type them exactly as they are spelled, case sensitive, separated by commas. Delete the example package names we've put there.
 - [ ] Optionally, if you are saving data to google, specify a googlesheet ID you'd like the CRAN data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
 
 ```
