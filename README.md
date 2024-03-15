@@ -74,7 +74,10 @@ If in your config file you choose "google" as your data destination you will nee
 
 ### Setting up Google Authentication
 
-Your metricminer dashboard will need permissions to save to your Google drive. To do this, you'll need to open up R on your local computer and run the following code:
+Your metricminer dashboard will need permissions to Google if you are saving data there, or wanting to use any data from a Google product including: Google Analytics, Google Forms, Googledrive, or Youtube. 
+
+To setup Google Authentication for your metricminer dashboard, you'll need to open up R on your local computer and run the following code:
+If you aren't a regular R user you can always use [posit.cloud](https://posit.cloud/) to avoid the installation process. 
 
 ```
 install.packages("metricminer")
