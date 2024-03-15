@@ -118,6 +118,24 @@ refresh-calendly: yes
 calendly_googlesheet:
 ```
 
+### Setting up Citations
+
+1. Go to: https://scholar.google.com/scholar
+2. Search for the paper you are looking for the citation count.
+3. Then click the `Cited by ___` button below the title of the paper
+4. Copy and paste this in the `_config_automation.yml` file in the `citation_papers` section. 
+         
+```
+###### Citations ######
+refresh-citations: yes
+citation_papers: [
+  "https://scholar.google.com/scholar?cites=6140457238337460780",
+  "https://scholar.google.com/scholar?cites=15945159957067506879" ]
+citation_googlesheet:
+```
+- [ ] In the `config_automation.yml` file, make sure that `refresh-citations` is set to "yes".
+- [ ] Optionally, if you are saving data to google, specify a googlesheet ID in `citation_googlesheet` if you'd like the citation data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
+
 ### Setting up CRAN
 
 CRAN does not require any authorization. But in the `_config_automation.yml` you will need to specify a few things.
