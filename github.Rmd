@@ -7,6 +7,9 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 ## Preview
 
 ```{r, echo = FALSE, hide = TRUE, message=FALSE}
+library(ggplot2)
+library(magrittr)
+
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 yaml <- yaml::read_yaml(file.path(root_dir, "_config_automation.yml"))
 
@@ -19,6 +22,24 @@ github_timecourse <- readr::read_tsv(file.path("metricminer_data", "github", "gi
 # github_timecourse <- googlesheets4::read_sheet(yaml$github_googlesheet, sheet = "timecourse")
 ```
 
+Contributions to a repository example:
+
+```{r echo = FALSE, hide = TRUE, message=FALSE}
+github_overall %>% 
+  ggplot(aes(x = repo_name, y = total_contributions)) + 
+  geom_bar(stat = "identity", fill = "lavender") + 
+  theme_classic()
+```
+
+Views of a GitHub Repository over time 
+
+```{r echo = FALSE, hide = TRUE, message=FALSE}
+github_timecourse %>% 
+  ggplot(aes(x = timestamp, y = count_views, fill = repo, color = repo)) + 
+  geom_line(stat = "identity") + 
+  theme_classic() + 
+  ylab("date")
+```
 
 ## Data information 
 
