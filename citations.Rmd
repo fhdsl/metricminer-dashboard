@@ -19,6 +19,8 @@ citations <- readr::read_tsv(file.path("metricminer_data", "citations", "citatio
 # citations <- googlesheets4::read_sheet(yaml$citations_googlesheet)
 ```
 
+## Data information 
+
 Column information:
 
 - `original_paper` shows papers that we have captured citation information about

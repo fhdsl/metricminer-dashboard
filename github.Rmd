@@ -6,19 +6,43 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 
 ## Preview
 
-```{r, echo = FALSE, hide = TRUE}
+```{r, echo = FALSE, hide = TRUE, message=FALSE}
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 yaml <- yaml::read_yaml(file.path(root_dir, "_config_automation.yml"))
 
 ## For github
-github <- readr::read_tsv(file.path("metricminer_data", "github", "github.tsv"))
-github <- readr::read_tsv(file.path("metricminer_data", "github", "github_timecourse.tsv"))
+github_overall <- readr::read_tsv(file.path("metricminer_data", "github", "github.tsv"))
+github_timecourse <- readr::read_tsv(file.path("metricminer_data", "github", "github_timecourse.tsv"))
 
-## For google 
-# github <- googlesheets4::read_sheet(yaml$github_googlesheet)
+## For google
+# github_overall <- googlesheets4::read_sheet(yaml$github_googlesheet, sheet = "overall_stats")
+# github_timecourse <- googlesheets4::read_sheet(yaml$github_googlesheet, sheet = "timecourse")
 ```
-```{r}
-knitr::kable(github)
+
+
+## Data information 
+
+Data information for `github overall data`:
+
+- `num_forks` shows the number of times this repo has been forked. NA means it has never been forked. 
+- `num_contributors` how many people have contributed to this repo
+- `num_stars` how many people have starred this repo?
+- `health_percentage` what percentage of ["good software health" items as described by GitHub](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/about-community-profiles-for-public-repositories) does this repo have? 
+
+```{r, message=FALSE}
+knitr::kable(github_overall)
+```
+
+Data information for `github timecourse`:
+
+- `timestampe` shows the date the counts correspond to
+- `count_clones` tells the number of clones made on this day 
+- `unique_clones` tells how many people did these clones come from?
+- `count_views` how many views did the repo get on this day?
+- `unique_views` how many people were those views from?
+
+```{r, message=FALSE}
+knitr::kable(github_timecourse)
 ```
 
 ### Setting up GitHub
