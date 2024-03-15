@@ -4,22 +4,41 @@ output: html_document
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 ---
 
-## Setting up Calendly
+## Setting up Citations
 
 
 ## Preview
 
-```{r, echo = FALSE, hide = TRUE}
+```{r, echo = FALSE, hide = TRUE, message = FALSE}
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 yaml <- yaml::read_yaml(file.path(root_dir, "_config_automation.yml"))
 
-## For github
-calendly <- readr::read_tsv(file.path("metricminer_data", "citations", "citations.tsv"))
+citations <- readr::read_tsv(file.path("metricminer_data", "citations", "citations.tsv"))
 
+```
+
+```{r, include = FALSE}
 ## For google
 # citations <- googlesheets4::read_sheet(yaml$citations_googlesheet)
 ```
 
-```{r}
+Column information:
+
+- `original_paper` shows papers that we have captured citation information about
+- `cite_titles` shows papers that cite the original paper
+- `links`column shows the link for the paper that cites the original paper (the `cite_titles` papers). 
+
+```{r, message = FALSE}
 knitr::kable(citations)
 ```
+
+Here we show how to get the total counts per original paper:
+
+```{r,message=FALSE}
+library(dplyr)
+# here we remove duplicates if there are any of the same titles of citing papers for each original paper and then get a count of the number of rows for each original paper (aka how many times it is cited)
+citations %>% 
+  distinct(original_paper, cite_titles, .keep_all = TRUE) %>% 
+  count(original_paper)
+```
+
