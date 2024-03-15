@@ -133,7 +133,7 @@ Go to https://analytics.google.com/ -- You may have to login. These instructions
 
 Then click on the website at the top of the navbar. It will bring you to a dropdown that shows all your websites. 
 
-<img src = "google-analytics-dropdown.png" width = "50%">
+<img src = "resources/images/google-analytics-dropdown.png" width = "50%">
 
 https://analytics.google.com/analytics/web/?authuser=1#/p422558989/reports/home
 
