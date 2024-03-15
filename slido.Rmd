@@ -2,9 +2,9 @@
 title: "Slido"
 output: 
   html_document:
-  toc: true
-  toc_float: true
-  toc_collapsed: true
+    toc: true
+    toc_float: true
+    toc_collapsed: true
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 ---
 
@@ -21,7 +21,7 @@ polls <- readr::read_tsv(file.path("metricminer_data", "slido", "Polls-overall.t
 questions <- readr::read_tsv(file.path("metricminer_data", "slido", "Questions.tsv"))
 ```
 
-### Setting up Slido
+## Setting up Slido
 
 This is assuming you have already exported Slido data to a google drive folder. See [Slido instructions here](https://community.slido.com/analytics-and-exports-44/export-your-questions-poll-results-quiz-leaderboard-and-ideas-532) for how to do that. Navigate to the Google Drive folder that has the Slidos you'd like to collect. Get the URL for this folder. It should look like this:
 

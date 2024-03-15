@@ -2,9 +2,9 @@
 title: "Google Analytics"
 output: 
   html_document:
-  toc: true
-  toc_float: true
-  toc_collapsed: true
+    toc: true
+    toc_float: true
+    toc_collapsed: true
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 ---
 
@@ -42,7 +42,7 @@ knitr::kable(ga_dimensions)
 knitr::kable(ga_link_clicks)
 ```
 
-### Setting up Google Analytics
+## Setting up Google Analytics
 
 [Follow the steps from the above section to authenticate Google](#setting-up-google-authentication) -- make sure that the account you have authenticated for has access to the Google Analytics properties you wish to collect.
 

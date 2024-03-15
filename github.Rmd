@@ -2,9 +2,9 @@
 title: "GitHub"
 output: 
   html_document:
-  toc: true
-  toc_float: true
-  toc_collapsed: true
+    toc: true
+    toc_float: true
+    toc_collapsed: true
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 
 ---
@@ -71,7 +71,7 @@ Data information for `github timecourse`:
 knitr::kable(github_timecourse)
 ```
 
-### Setting up GitHub
+## Setting up GitHub
 
 At this point you should already have your GitHub authorization set up for your metricminer dashboard by having [followed the instructions above.](#setting-up-your-dashboard-repository).
 
