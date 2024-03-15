@@ -5,9 +5,6 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 ---
 
 ## Setting up GitHub
-asbhduifbas
-ashdiufhs
-asbdihfsb
 
 ## Preview
 
