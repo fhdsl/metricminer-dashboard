@@ -122,10 +122,6 @@ calendly_googlesheet:
 
 CRAN does not require any authorization. But in the `_config_automation.yml` you will need to specify a few things.
 
-- [ ] Make sure that `refresh-cran` is set to "yes".
-- [ ] Type the names of the packages that you'd like to collect data from on CRAN. Type them exactly as they are spelled, case sensitive, separated by commas. Delete the example package names we've put there.
-- [ ] Optionally, if you are saving data to google, specify a googlesheet ID you'd like the CRAN data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
-
 ```
 ###### CRAN ######
 refresh-cran: yes
@@ -133,20 +129,27 @@ cran_packages: [ metricminer, ottrpal ]
 cran_googlesheet:
 ```
 
+- [ ] Make sure that `refresh-cran` is set to "yes".
+- [ ] Type the names of the packages that you'd like to collect data from on CRAN. Type them exactly as they are spelled, case sensitive, separated by commas. Delete the example package names we've put there.
+- [ ] Optionally, if you are saving data to google, specify a googlesheet ID in `cran_googlesheet` you'd like the CRAN data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
+
+
 ### Setting up GitHub
 
 At this point you should already have your GitHub authorization set up for your metricminer dashboard by having [followed the instructions above.](#setting-up-your-dashboard-repository).
 
-- [ ] Make sure that `refresh-github` is set to "yes".
-- [ ] Specify the names of the repositories you'd like to collect data from in `github_repos`. Make sure it includes the `owner/repository` e.g. `fhdsl/metricminer` not just `metricminer`. Commas need to separate the repositories. Delete the example repositories we put there.
-- [ ] Optionally, if you are saving data to Google, specify a googlesheet ID you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
-
+In the `_config_automation.yml` you will need to specify items in the GitHub section.
 ```
 ###### GitHub ######
 refresh-github: yes
 github_repos: [ fhdsl/metricminer, fhdsl/metricminer.org ]
 github_googlesheet:
 ```
+
+- [ ] Make sure that `refresh-github` is set to "yes".
+- [ ] Specify the names of the repositories you'd like to collect data from in `github_repos`. Make sure it includes the `owner/repository` e.g. `fhdsl/metricminer` not just `metricminer`. Commas need to separate the repositories. Delete the example repositories we put there.
+- [ ] Optionally, if you are saving data to Google, specify a googlesheet ID in `github_googlesheet` you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
+
 
 ### Setting up Google Analytics
 
@@ -175,7 +178,7 @@ ga_googlesheet:
 ```
 
 - [ ] Make sure that `refresh-ga` is set to "yes".
-- [ ] Optionally, if you are saving data to Google, specify a googlesheet ID you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
+- [ ] Optionally, if you are saving data to Google, specify a googlesheet ID in `ga_googlesheet` you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
 
 ### Setting up Google Forms
 
@@ -198,7 +201,7 @@ googleforms_googlesheet:
 ```
 
 - [ ] Make sure that `refresh-googleforms` is set to "yes".
-- [ ] Optionally, if you are saving data to Google, specify a googlesheet ID you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
+- [ ] Optionally, if you are saving data to Google, specify a googlesheet ID in `googleforms_googlesheet` you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
 
 ### Setting up Slido
 
@@ -217,7 +220,7 @@ slido_googlesheet:
 ```
 
 - [ ] Make sure that `refresh-slido` is set to "yes".
-- [ ] Optionally, if you are saving data to Google, specify a googlesheet ID you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
+- [ ] Optionally, if you are saving data to Google, specify a googlesheet ID in `slido_googlesheet` that you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
 
 ### Setting up YouTube
 
@@ -236,3 +239,6 @@ refresh-youtube: yes
 video_ids: [ XN_QPRrJZAw, YkYnni-WuaQ ]
 youtube_googlesheet:
 ```
+
+- [ ] Make sure that `refresh-slido` is set to "yes".
+- [ ] Optionally, if you are saving data to Google, specify a googlesheet ID in `youtube_googlesheet` that you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
