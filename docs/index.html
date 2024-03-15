@@ -13,8 +13,8 @@
 
 <title>metricminer</title>
 
-<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -32,8 +32,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link rel="shortcut icon" href="resources/images/favicon.ico" />
  <!--- go to https://favicon.io/favicon-converter/ to upload an image to make a new favicon.io. You will need to replace the current favicon.io image with the one in the downloaded directory from the website. The current image is in the resources/images/ directory --->
 
@@ -64,7 +64,6 @@ if (window.hljs) {
 
 
 
-
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -85,9 +84,6 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
-}
-details > summary > p:only-child {
-  display: inline;
 }
 pre code {
   padding: 0;
@@ -145,15 +141,11 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark the anchor link active (and if it's in a dropdown, also mark that active)
-  var dropdown = menuAnchor.closest('li.dropdown');
-  if (window.bootstrap) { // Bootstrap 4+
-    menuAnchor.addClass('active');
-    dropdown.find('> .dropdown-toggle').addClass('active');
-  } else { // Bootstrap 3
-    menuAnchor.parent().addClass('active');
-    dropdown.addClass('active');
-  }
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -182,8 +174,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "\e259";
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -191,9 +183,16 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "\e258";
-  font-family: 'Glyphicons Halflings';
+  content: "&#xe258;";
   border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -237,7 +236,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -316,48 +315,29 @@ $(document).ready(function () {
 <div id="setting-up-your-dashboard-repository" class="section level2">
 <h2>Setting up your dashboard repository</h2>
 <ol style="list-style-type: decimal">
-<li>To get started, go to the <a
-href="https://github.com/fhdsl/metricminer-dashboard">metricminer-dashboard
-template GitHub repo</a></li>
-<li>Click the green “Use this template” button in the upper right
-corner. If you do not see it, make sure you are logged in to GitHub (and
-have an account).</li>
-<li>Name your new metricminer dashboard repository on this screen. Then
-click “Create new repository”.</li>
-<li>Create your GitHub secret by going to <a
-href="https://github.com/settings/tokens/new"
-class="uri">https://github.com/settings/tokens/new</a></li>
-<li>Make sure your GitHub secret has the <code>repo</code> scopes box
-checked. Name it something that will remind you it has to do with your
-metricminer dashboard and then scroll to the bottom and click “Generate
-Token”. Keep this page open for now.</li>
-<li>Return to your metricminer dashboard repository and go to Settings
-&gt; Secrets and variables &gt; Actions.</li>
-<li>Click on <code>New repository secret</code>. Name your new secret
-<em>exactly</em> <code>METRICMINER_GITHUB_PAT</code></li>
-<li>Copy and paste your Personal access token in the <code>Secret</code>
-box and then click the green “Add secret” button.</li>
+<li>To get started, go to the <a href="https://github.com/fhdsl/metricminer-dashboard">metricminer-dashboard template GitHub repo</a></li>
+<li>Click the green “Use this template” button in the upper right corner. If you do not see it, make sure you are logged in to GitHub (and have an account).</li>
+<li>Name your new metricminer dashboard repository on this screen. Then click “Create new repository”.</li>
+<li>Create your GitHub secret by going to <a href="https://github.com/settings/tokens/new" class="uri">https://github.com/settings/tokens/new</a></li>
+<li>Make sure your GitHub secret has the <code>repo</code> scopes box checked. Name it something that will remind you it has to do with your metricminer dashboard and then scroll to the bottom and click “Generate Token”. Keep this page open for now.</li>
+<li>Return to your metricminer dashboard repository and go to Settings &gt; Secrets and variables &gt; Actions.</li>
+<li>Click on <code>New repository secret</code>. Name your new secret <em>exactly</em> <code>METRICMINER_GITHUB_PAT</code></li>
+<li>Copy and paste your Personal access token in the <code>Secret</code> box and then click the green “Add secret” button.</li>
 </ol>
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-<p><strong>Table of Contents</strong> <em>generated with <a
-href="https://github.com/thlorenz/doctoc">DocToc</a></em></p>
+<p><strong>Table of Contents</strong> <em>generated with <a href="https://github.com/thlorenz/doctoc">DocToc</a></em></p>
 <ul>
-<li><a href="#setting-up-your-dashboard-repository">Setting up your
-dashboard repository</a></li>
-<li><a href="#setting-up-your-config-file">Setting up your config
-file</a>
+<li><a href="#setting-up-your-dashboard-repository">Setting up your dashboard repository</a></li>
+<li><a href="#setting-up-your-config-file">Setting up your config file</a>
 <ul>
 <li><a href="#overall-settings">Overall settings</a></li>
-<li><a href="#where-your-data-are-saved">Where your data are
-saved</a></li>
-<li><a href="#setting-up-google-authentication">Setting up Google
-Authentication</a></li>
+<li><a href="#where-your-data-are-saved">Where your data are saved</a></li>
+<li><a href="#setting-up-google-authentication">Setting up Google Authentication</a></li>
 <li><a href="#setting-up-calendly">Setting up Calendly</a></li>
 <li><a href="#setting-up-cran">Setting up CRAN</a></li>
 <li><a href="#setting-up-github">Setting up GitHub</a></li>
-<li><a href="#setting-up-google-analytics">Setting up Google
-Analytics</a></li>
+<li><a href="#setting-up-google-analytics">Setting up Google Analytics</a></li>
 <li><a href="#setting-up-google-forms">Setting up Google Forms</a></li>
 <li><a href="#setting-up-slido">Setting up Slido</a></li>
 <li><a href="#setting-up-youtube">Setting up YouTube</a></li>
@@ -367,22 +347,11 @@ Analytics</a></li>
 </div>
 <div id="setting-up-your-config-file" class="section level2">
 <h2>Setting up your config file</h2>
-<p>Return to the <code>Code</code> on your metricminer dashboard github
-repository. And find the <code>_config_automation.yml</code> github
-file. Open up that file and we will start setting up which metrics you’d
-like to be retrieved.</p>
+<p>Return to the <code>Code</code> on your metricminer dashboard github repository. And find the <code>_config_automation.yml</code> github file. Open up that file and we will start setting up which metrics you’d like to be retrieved.</p>
 <div id="overall-settings" class="section level3">
 <h3>Overall settings</h3>
-<p>metricminer dashboard is an OTTR website with additional metric
-collecting functionality powered by metricminer. <a
-href="https://www.ottrproject.org/editing_website.html">You can read
-more details about how to update your metricminer/OTTR website here</a>.
-If you are not familiar with pull requests, we recommend you go read
-those OTTR docs first.</p>
-<p>At the top of the config file you will see a listing of the checks
-that are run upon filing a pull request. If at any time you don’t want
-these checks to be run you can set them to <code>no</code> and GitHub
-Actions will not run them.</p>
+<p>metricminer dashboard is an OTTR website with additional metric collecting functionality powered by metricminer. <a href="https://www.ottrproject.org/editing_website.html">You can read more details about how to update your metricminer/OTTR website here</a>. If you are not familiar with pull requests, we recommend you go read those OTTR docs first.</p>
+<p>At the top of the config file you will see a listing of the checks that are run upon filing a pull request. If at any time you don’t want these checks to be run you can set them to <code>no</code> and GitHub Actions will not run them.</p>
 <pre><code># Check that urls in the content are not broken
 url-checker: yes
 # Render preview of content with changes (Rmd&#39;s and md&#39;s are checked)
@@ -394,52 +363,27 @@ style-code: yes</code></pre>
 </div>
 <div id="where-your-data-are-saved" class="section level3">
 <h3>Where your data are saved</h3>
-<p>By default there are two destinations you can save your data for
-metricminer (although if you change the code yourself you can feel free
-to save the data wherever you like). Built in to metricminer-dashboard
-however we have github and google as your options for a data
-destination.</p>
-<p>By default your data is saved to github. But this will only be
-appropriate for small amounts of data (you could use something called
-git-lfs but we find it can be a bit of a hassle).</p>
+<p>By default there are two destinations you can save your data for metricminer (although if you change the code yourself you can feel free to save the data wherever you like). Built in to metricminer-dashboard however we have github and google as your options for a data destination.</p>
+<p>By default your data is saved to github. But this will only be appropriate for small amounts of data (you could use something called git-lfs but we find it can be a bit of a hassle).</p>
 <pre><code>### Options are &quot;github&quot; or &quot;google&quot;
 data_dest: github
 folder_path:</code></pre>
-<p>If in your config file you choose “google” as your data destination
-you will need to do two things: 1. Set up your Google Authentication
-secrets in this repository 2. Give a folder path to your Google drive
-where you’d like your data to be saved.</p>
+<p>If in your config file you choose “google” as your data destination you will need to do two things: 1. Set up your Google Authentication secrets in this repository 2. Give a folder path to your Google drive where you’d like your data to be saved.</p>
 </div>
 <div id="setting-up-google-authentication" class="section level3">
 <h3>Setting up Google Authentication</h3>
-<p>Your metricminer dashboard will need permissions to Google if you are
-saving data there, or wanting to use any data from a Google product
-including: Google Analytics, Google Forms, Googledrive, or Youtube.</p>
-<p>To setup Google Authentication for your metricminer dashboard, you’ll
-need to open up R on your local computer and run the following code: If
-you aren’t a regular R user you can always use <a
-href="https://posit.cloud/">posit.cloud</a> to avoid the installation
-process.</p>
+<p>Your metricminer dashboard will need permissions to Google if you are saving data there, or wanting to use any data from a Google product including: Google Analytics, Google Forms, Googledrive, or Youtube.</p>
+<p>To setup Google Authentication for your metricminer dashboard, you’ll need to open up R on your local computer and run the following code: If you aren’t a regular R user you can always use <a href="https://posit.cloud/">posit.cloud</a> to avoid the installation process.</p>
 <pre><code>install.packages(&quot;metricminer&quot;)
 token &lt;- authorize(&quot;google&quot;)</code></pre>
-<p>Then you can use this object to extract two secrets by printing them
-out like this and you will need to store both to your metricminer
-dashboard GitHub secrets (which we will describe how to here).</p>
-<p>First, return to your metricminer dashboard repository and go to
-<code>Settings</code> &gt; <code>Secrets and variables</code> &gt;
-<code>Actions</code>. - Click on <code>New repository secret</code>.
-Name your new secret <em>exactly</em>
-<code>METRICMINER_GOOGLE_ACCESS</code> - Copy what is printed out in R
-when you run:</p>
+<p>Then you can use this object to extract two secrets by printing them out like this and you will need to store both to your metricminer dashboard GitHub secrets (which we will describe how to here).</p>
+<p>First, return to your metricminer dashboard repository and go to <code>Settings</code> &gt; <code>Secrets and variables</code> &gt; <code>Actions</code>. - Click on <code>New repository secret</code>. Name your new secret <em>exactly</em> <code>METRICMINER_GOOGLE_ACCESS</code> - Copy what is printed out in R when you run:</p>
 <pre><code>token$credentials$access_token</code></pre>
-<p>and paste it into the <code>Secret</code> box and then click the
-green “Add secret” button.</p>
-<p>Repeat the same steps for the Refresh token except call this
-<code>METRICMINER_GOOGLE_REFRESH</code></p>
+<p>and paste it into the <code>Secret</code> box and then click the green “Add secret” button.</p>
+<p>Repeat the same steps for the Refresh token except call this <code>METRICMINER_GOOGLE_REFRESH</code></p>
 <pre><code>token$credentials$refresh_token</code></pre>
 <hr />
-<p>This work is funded by NCI UE5CA254170 as a part of the <a
-href="https://www.itcrtraining.org/">ITCR Training Network</a></p>
+<p>This work is funded by NCI UE5CA254170 as a part of the <a href="https://www.itcrtraining.org/">ITCR Training Network</a></p>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-951TGMSPH7"></script>
 <script>
@@ -449,8 +393,7 @@ href="https://www.itcrtraining.org/">ITCR Training Network</a></p>
 
   gtag('config', 'G-951TGMSPH7');
 </script>
-<p><a href="https://www.metricminer.org/privacypolicy.html">See privacy
-policy</a></p>
+<p><a href="https://www.metricminer.org/privacypolicy.html">See privacy policy</a></p>
 </div>
 </div>
 
