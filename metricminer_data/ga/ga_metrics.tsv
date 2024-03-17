@@ -1,3 +1,3 @@
 website	activeUsers	newUsers	totalUsers	eventCountPerUser	screenPageViewsPerUser	sessions	averageSessionDuration	screenPageViews	engagementRate
-dummy-website-2	3	3	3	4.333333333333333	1	3	3.6102060000000002	3	0
-dummy-website	4	4	4	15	4.25	6	54.992872166666665	17	0.6666666666666666
+dummy-website-2	3	3	3	4.333333333333333	1	3	3.610206	3	0
+dummy-website	5	5	5	14	3.8	8	42.782559375	19	0.5
