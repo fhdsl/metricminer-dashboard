@@ -4,8 +4,6 @@ output: html_document
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 ---
 
-## Setting up Google Analytics
-
 ## Preview
 
 ```{r, echo = FALSE, hide = TRUE}
@@ -24,16 +22,69 @@ ga_link_clicks <- readr::read_tsv(file.path("metricminer_data", "ga", "ga_link_c
 # ga_link_clicks <- googlesheets4::read_sheet(yaml$ga_googlesheet, sheet = "link_clicks")
 ```
 
+**Still need to add plots here. Describe below what kinds of plots may work for the data available**
+
+## Data Information
+
+Data information for google analytics metrics (`ga_metrics`):
+
+Most of these metrics involve how users interact with a website or app, specifically in "event" terminology. Events are a means of measuring user interaction and can include actions like loading a page, clicking a link, submitting a form or requesting information, searches, shares content from. Do website creators need to define or add/create events to track for their website or is that automatic?
+
+  * `activeUsers`: The number of distinct users who visited your website or application. An active user is any user who visited your website or application. An active user is any user who has an engaged session or when Analytics collects parameters from a website or app indicative of a first time or active user.
+  * `newUsers`: The number of new unique user IDs that logged the first_open or first_visit event. The metric allows you to measure the number of users who interacted with your site or launched your app for the first time. 
+  * `totalUsers`: The number of unique user IDs that triggered any events. The metric allows you to measure the number of unique users who logged an event.
+  * `eventCountPerUser`: The average number of events triggered per user. Specifically the event count divided by the number of active users. The event count in turn is the number of times users triggered an event.
+  * `screenPageViewsPerUser`: The average number of mobile app screens or web pages viewed per user. This would then be the total number of views (`screenPageViews`) divided by the total number of users (`totalUsers`)  
+  * `sessions`: The number of sessions that began on your website or application. A session is a period of time during which a user interacts with your website or app. A session initiates when a user either opens your app in the foreground or views a page or screen and no session is currently active (e.g., their previous session has timed out). By default, a session ends (times out) after 30 minutes of user inactivity. There is no limit to how long a session can last.
+  * `averageSessionDuration`: The average duration (in seconds) of users' sessions. 
+  * `screenPageViews`: The number of mobile app screens or web pages your users saw. Repeated views of a single screen or page are counted. 
+  * `engagementRate`: The percentage of sessions that were engaged sessions. Specifically, the number of engaged sessions divided by the total number of sessions. An engaged session is a session that lasts 10 seconds or longer or has 1 or more conversion events or 2 or more page or screen views. (A conversion event is any user action that's valuable to your business and is defined by marking the event as a conversion. This is in contrast to most other metrics that are populated automatically.)  
+
 ```{r}
 knitr::kable(ga_metrics)
 ```
+
+**In the preview section above**: *Add plots that are like Figures 9 and 10 from the ITN evaluation*
+
+Data information for google analytics dimensions (`ga_dimensions`):
+
+  * `website`: Indicates the name of the website associated with that session. 
+  * `day`: Indicates the day of the session
+  * `month`: Indicates the month of the session
+  * `year`: Indicates the year of the session
+  * `country`: Indicates the country from which a session originates
+  * `fullPageURL`: Indicates full page URL of the page that is viewed in that session. 
 
 
 ```{r}
 knitr::kable(ga_dimensions)
 ```
 
+**In the preview section above**: *Add a plot that shows a map and distribution of countries? (though this might not generalize well)* or *Add a plot that shows traffic over time*
+
+Data information for google analytics link clicks (`ga_link_clicks`):
+
+  * `website`: Indicates the website on which the outbound click event occurred
+  * `linkURL`: Indicates the URL for the outbound click. What does NA mean for this -- a random click on the website?
+
 
 ```{r}
 knitr::kable(ga_link_clicks)
 ```
+
+**In the preview section above**: *Add a plot that shows the most visited linkURL* or *Add a plot that shows how many outbound clicks are associated with each website*
+
+## Setting up Google Analytics
+
+Grab information from vignette
+
+## Customization
+
+### Customizing Google Analytics Data
+
+Google Analytics explains that each dimension and metric that can be collected and reported has a scope (user-, session-, or hit-level) and in most cases, only dimensions and metrics that share the same scope can be combined. 
+
+### Plots
+
+Review ggplot2 documentation for customization of plots [visit the ggplot2 documentation here](https://ggplot2.tidyverse.org/) or [look at this posit cheatsheet](https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf).
+
