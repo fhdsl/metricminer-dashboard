@@ -84,6 +84,8 @@ Grab information from vignette
 
 Google Analytics explains that each dimension and metric that can be collected and reported has a scope (user-, session-, or hit-level) and in most cases, only dimensions and metrics that share the same scope can be combined. 
 
+To learn more about about Google Analytics in general, [visit the google analytics documentation](https://analytics.google.com/analytics/academy/), and [visit your own dashboard](https://analytics.google.com/analytics/) to customize and explore the possibilites of what you can collect.
+
 ### Plots
 
 Review ggplot2 documentation for customization of plots [visit the ggplot2 documentation here](https://ggplot2.tidyverse.org/) or [look at this posit cheatsheet](https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf).
