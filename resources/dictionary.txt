@@ -1,3 +1,9 @@
+analytics
+cheatsheet
+favorited
+ggplot
+ITN
+possibilities
 navbar
 googlesheet
 dropdown
