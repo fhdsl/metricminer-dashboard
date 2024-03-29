@@ -261,6 +261,13 @@ $(document).ready(function () {
   </a>
 </li>
 <li>
+  <a href="citations.html">
+    <span class="fa fa-scroll"></span>
+     
+    Citations
+  </a>
+</li>
+<li>
   <a href="cran.html">
     <span class="fa fa-r"></span>
      
@@ -279,13 +286,6 @@ $(document).ready(function () {
     <span class="fa fa-google"></span>
      
     Google Analytics
-  </a>
-</li>
-<li>
-  <a href="slido.html">
-    <span class="a a-square-poll-vertical"></span>
-     
-    Slido
   </a>
 </li>
 <li>
@@ -338,6 +338,32 @@ Token”. Keep this page open for now.</li>
 <li>Copy and paste your Personal access token in the <code>Secret</code>
 box and then click the green “Add secret” button.</li>
 </ol>
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong> <em>generated with <a
+href="https://github.com/thlorenz/doctoc">DocToc</a></em></p>
+<ul>
+<li><a href="#setting-up-your-dashboard-repository">Setting up your
+dashboard repository</a></li>
+<li><a href="#setting-up-your-config-file">Setting up your config
+file</a>
+<ul>
+<li><a href="#overall-settings">Overall settings</a></li>
+<li><a href="#where-your-data-are-saved">Where your data are
+saved</a></li>
+<li><a href="#setting-up-google-authentication">Setting up Google
+Authentication</a></li>
+<li><a href="#setting-up-calendly">Setting up Calendly</a></li>
+<li><a href="#setting-up-cran">Setting up CRAN</a></li>
+<li><a href="#setting-up-github">Setting up GitHub</a></li>
+<li><a href="#setting-up-google-analytics">Setting up Google
+Analytics</a></li>
+<li><a href="#setting-up-google-forms">Setting up Google Forms</a></li>
+<li><a href="#setting-up-slido">Setting up Slido</a></li>
+<li><a href="#setting-up-youtube">Setting up YouTube</a></li>
+</ul></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 </div>
 <div id="setting-up-your-config-file" class="section level2">
 <h2>Setting up your config file</h2>
@@ -366,8 +392,8 @@ spell-check: yes
 # Style any R code
 style-code: yes</code></pre>
 </div>
-<div id="where-your-data-is-saved" class="section level3">
-<h3>Where your data is saved</h3>
+<div id="where-your-data-are-saved" class="section level3">
+<h3>Where your data are saved</h3>
 <p>By default there are two destinations you can save your data for
 metricminer (although if you change the code yourself you can feel free
 to save the data wherever you like). Built in to metricminer-dashboard
@@ -386,9 +412,14 @@ where you’d like your data to be saved.</p>
 </div>
 <div id="setting-up-google-authentication" class="section level3">
 <h3>Setting up Google Authentication</h3>
-<p>Your metricminer dashboard will need permissions to save to your
-Google drive. To do this, you’ll need to open up R on your local
-computer and run the following code:</p>
+<p>Your metricminer dashboard will need permissions to Google if you are
+saving data there, or wanting to use any data from a Google product
+including: Google Analytics, Google Forms, Googledrive, or Youtube.</p>
+<p>To setup Google Authentication for your metricminer dashboard, you’ll
+need to open up R on your local computer and run the following code: If
+you aren’t a regular R user you can always use <a
+href="https://posit.cloud/">posit.cloud</a> to avoid the installation
+process.</p>
 <pre><code>install.packages(&quot;metricminer&quot;)
 token &lt;- authorize(&quot;google&quot;)</code></pre>
 <p>Then you can use this object to extract two secrets by printing them
@@ -406,7 +437,6 @@ green “Add secret” button.</p>
 <p>Repeat the same steps for the Refresh token except call this
 <code>METRICMINER_GOOGLE_REFRESH</code></p>
 <pre><code>token$credentials$refresh_token</code></pre>
-<p><strong>THIS IS STILL UNDER CONSTRUCTION</strong></p>
 <hr />
 <p>This work is funded by NCI UE5CA254170 as a part of the <a
 href="https://www.itcrtraining.org/">ITCR Training Network</a></p>

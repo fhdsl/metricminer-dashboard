@@ -1,12 +1,16 @@
 ---
 title: "Google Analytics"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    toc_collapsed: true
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 ---
 
 ## Preview
 
-```{r, echo = FALSE, hide = TRUE}
+```{r, echo = FALSE, hide = TRUE, message = FALSE}
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 yaml <- yaml::read_yaml(file.path(root_dir, "_config_automation.yml"))
 
@@ -72,8 +76,6 @@ Data information for google analytics link clicks (`ga_link_clicks`):
 knitr::kable(ga_link_clicks)
 ```
 
-**In the preview section above**: *Add a plot that shows the most visited linkURL* or *Add a plot that shows how many outbound clicks are associated with each website*
-
 ## Setting up Google Analytics
 
 Grab information from vignette
@@ -90,3 +92,41 @@ To learn more about about Google Analytics in general, [visit the google analyti
 
 Review ggplot2 documentation for customization of plots [visit the ggplot2 documentation here](https://ggplot2.tidyverse.org/) or [look at this posit cheatsheet](https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf).
 
+## Setting up Google Analytics
+
+[Follow the steps from the above section to authenticate Google](#setting-up-google-authentication) -- make sure that the account you have authenticated for has access to the Google Analytics properties you wish to collect.
+
+We'll need to collect the Google Analytics property IDs for the websites you want to retrieve data from.
+
+1. Go to https://analytics.google.com/ -- You may have to login. These instructions are assuming you have already set up Google Analytics and have been collecting data.
+2. Then click on the website at the top of the navbar. It will bring you to a dropdown that shows all your websites.
+
+<img src = "resources/images/google-analytics-dropdown.png" width = "50%">
+
+4 .Click on one of the websites where you'd like to retrieve data from. The URL will look something like this:
+```
+https://analytics.google.com/analytics/web/?authuser=1#/p<PROPERTY_ID_HERE>/reports/home
+```
+5. Copy the property id and put it in the `ga_property_ids:` part of the `_config_automation.yml`.
+
+Repeat these same steps for all the properties you'd like to collect data for, separating the IDs by commas. Delete the example IDs we have put there as placeholders.
+
+```
+###### Google Analytics ######
+refresh-ga: yes
+ga_property_ids: [ 422671031, 422558989 ]
+ga_googlesheet:
+```
+
+- [ ] In the `config_automation.yml` file, make sure that `refresh-ga` is set to "yes".
+- [ ] Optionally, if you are saving data to Google, specify a googlesheet ID in `ga_googlesheet` you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
+
+
+## Customizing the data 
+
+In order to customize the data you are downloading from Google Analytics you can modify the 
+`refresh-scripts/refresh-ga.R` script in your repository. 
+
+You can take a look at the [`metricminer` R package documentation](https://hutchdatascience.org/metricminer/articles/getting-started.html) for more details about the functions and what is possible. 
+
+If you have a metric need that is not currently fulfilled by `metricminer` or `metricminer-dashboard` we encourage you to [file a GitHub issue with us and let us know about your new feature idea (or bug report)](https://github.com/fhdsl/metricminer/issues/new/choose). 

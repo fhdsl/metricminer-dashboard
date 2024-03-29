@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -223,6 +226,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -230,6 +296,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -261,6 +337,13 @@ $(document).ready(function () {
   </a>
 </li>
 <li>
+  <a href="citations.html">
+    <span class="fa fa-scroll"></span>
+     
+    Citations
+  </a>
+</li>
+<li>
   <a href="cran.html">
     <span class="fa fa-r"></span>
      
@@ -279,13 +362,6 @@ $(document).ready(function () {
     <span class="fa fa-google"></span>
      
     Google Analytics
-  </a>
-</li>
-<li>
-  <a href="slido.html">
-    <span class="a a-square-poll-vertical"></span>
-     
-    Slido
   </a>
 </li>
 <li>
@@ -308,33 +384,13 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Google Forms</h1>
-<h4 class="date">06 March, 2024</h4>
+<h4 class="date">29 March, 2024</h4>
 
 </div>
 
 
-<div id="setting-up-google-forms" class="section level2">
-<h2>Setting up Google Forms</h2>
-</div>
 <div id="preview" class="section level2">
 <h2>Preview</h2>
-</div>
-<div id="preview-1" class="section level2">
-<h2>Preview</h2>
-<pre><code>## Rows: 4 Columns: 3
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: &quot;\t&quot;
-## chr (3): reponse_id, X103e69c2_answers, X7a10555e_answers
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-## Rows: 4 Columns: 3
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: &quot;\t&quot;
-## chr (3): reponse_id, X103e69c2_answers, X7a10555e_answers
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre class="r"><code>googleform_1</code></pre>
 <pre><code>## # A tibble: 4 × 3
 ##   reponse_id                                 X103e69c2_answers X7a10555e_answers
@@ -352,9 +408,58 @@ $(document).ready(function () {
 ## 3 ACYDBNgHfXMXKJ7Z8VQe87e-IrBdrBad0mBWjO1UH… Here&#39;s a really … Option A         
 ## 4 ACYDBNgdPc1CkWX1dDycG2cYILE9SLdABPfcRox8W… Here&#39;s a really … Option B</code></pre>
 </div>
+<div id="setting-up-google-forms" class="section level2">
+<h2>Setting up Google Forms</h2>
+<p><a href="#setting-up-google-authentication">Follow the steps from the
+above section to authenticate Google</a> – make sure that the account
+you have authenticated for has access to the Google Forms you wish to
+collect.</p>
+<p>Go to a form you’d like to collect data from. The URL should look
+something like this:</p>
+<pre><code>https://docs.google.com/forms/u/1/d/&lt;GOOGLE_FORM_ID_HERE&gt;/edit?usp=drive_web</code></pre>
+<p>Extract the Google Form ID from the URL and put it in the
+<code>google_forms</code> section of the
+<code>_config_automation.yml</code> file. Do this for each form you’d
+like to collect data from and separate the form IDs with commas. Delete
+the example IDs we have put there as placeholders.</p>
+<pre><code>###### Google Forms ######
+refresh-googleforms: yes
+google_forms: [
+  1pbFfgUPYH2w9zEoCDjCa4HFOxzEhGOseufw28Xxmd-o,
+  1JjmsiuVoGSxvl-1M_oWittcftO955tijzeNc-cgJlo8 ]
+googleforms_googlesheet:</code></pre>
+<ul class="task-list">
+<li><input type="checkbox" />In the <code>config_automation.yml</code>
+file, make sure that <code>refresh-googleforms</code> is set to
+“yes”.</li>
+<li><input type="checkbox" />Optionally, if you are saving data to
+Google, specify a googlesheet ID in <code>googleforms_googlesheet</code>
+you’d like the GitHub data to be saved to. This will only be relevant if
+you’ve set <code>data_dest</code> to <code>google</code>.</li>
+</ul>
+</div>
+<div id="customizing-the-google-forms-data" class="section level2">
+<h2>Customizing the Google Forms Data</h2>
+<p>In order to customize the data you are downloading from your Google
+Forms you can modify the
+<code>refresh-scripts/refresh-googleforms.R</code> script in your
+repository.</p>
+<p>You can take a look at the <a
+href="https://hutchdatascience.org/metricminer/articles/getting-started.html"><code>metricminer</code>
+R package documentation</a> for more details about the functions and
+what is possible.</p>
+<p>If you have a metric need that is not currently fulfilled by
+<code>metricminer</code> or <code>metricminer-dashboard</code> we
+encourage you to <a
+href="https://github.com/fhdsl/metricminer/issues/new/choose">file a
+GitHub issue with us and let us know about your new feature idea (or bug
+report)</a>.</p>
+</div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -387,6 +492,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

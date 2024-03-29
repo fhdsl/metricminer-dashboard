@@ -1,23 +1,97 @@
 ---
 title: "GitHub"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    toc_collapsed: true
 date: "`r format(Sys.time(), '%d %B, %Y')`"
----
 
-## Setting up GitHub
+---
 
 ## Preview
 
-```{r, echo = FALSE, hide = TRUE}
+```{r, echo = FALSE, hide = TRUE, message=FALSE, warning = FALSE}
+library(ggplot2)
+library(magrittr)
+
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 yaml <- yaml::read_yaml(file.path(root_dir, "_config_automation.yml"))
 
 ## For github
-github <- readr::read_tsv(file.path("metricminer_data", "github", "github.tsv"))
+github_overall <- readr::read_tsv(file.path("metricminer_data", "github", "github.tsv"))
+github_timecourse <- readr::read_tsv(file.path("metricminer_data", "github", "github_timecourse.tsv"))
 
-## For google 
-# github <- googlesheets4::read_sheet(yaml$github_googlesheet)
+## For google
+# github_overall <- googlesheets4::read_sheet(yaml$github_googlesheet, sheet = "overall_stats")
+# github_timecourse <- googlesheets4::read_sheet(yaml$github_googlesheet, sheet = "timecourse")
 ```
-```{r}
-knitr::kable(github)
+
+Contributions to a repository example:
+
+```{r echo = FALSE, hide = TRUE, message=FALSE, warning = FALSE}
+github_overall %>% 
+  ggplot(aes(x = repo_name, y = total_contributions)) + 
+  geom_bar(stat = "identity", fill = "lavender") + 
+  theme_classic()
 ```
+
+Views of a GitHub Repository over time 
+
+```{r echo = FALSE, hide = TRUE, message=FALSE}
+github_timecourse %>% 
+  ggplot(aes(x = timestamp, y = count_views, fill = repo, color = repo)) + 
+  geom_line(stat = "identity") + 
+  theme_classic() + 
+  ylab("date")
+```
+
+## Data information 
+
+Data information for `github overall data`:
+
+- `num_forks` shows the number of times this repo has been forked. NA means it has never been forked. 
+- `num_contributors` how many people have contributed to this repo
+- `num_stars` how many people have starred this repo?
+- `health_percentage` what percentage of ["good software health" items as described by GitHub](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/about-community-profiles-for-public-repositories) does this repo have? 
+
+```{r, message=FALSE}
+knitr::kable(github_overall)
+```
+
+Data information for `github timecourse`:
+
+- `timestamp` shows the date the counts correspond to
+- `count_clones` tells the number of clones made on this day. NAs generally indicate no one cloned the repository that day. 
+- `unique_clones` tells how many people did these clones come from? NAs generally indicate no one cloned the repository that day.
+- `count_views` how many views did the repo get on this day? NAs generally indicate no one viewed the repository that date
+- `unique_views` how many people were those views from? NAs generally indicate no one viewed the repository that date
+
+```{r, message=FALSE}
+knitr::kable(github_timecourse)
+```
+
+## Setting up GitHub
+
+At this point you should already have your GitHub authorization set up for your metricminer dashboard by having [followed the instructions above.](#setting-up-your-dashboard-repository).
+
+In the `_config_automation.yml` you will need to specify items in the GitHub section.
+```
+###### GitHub ######
+refresh-github: yes
+github_repos: [ fhdsl/metricminer, fhdsl/metricminer.org ]
+github_googlesheet:
+```
+
+- [ ] In the `_config_automation.yml` file, make sure that `refresh-github` is set to "yes".
+- [ ] In `github_repos` of your `_config_automation.yml`, specify the names of the repositories you'd like to collect data from in `github_repos`. Make sure it includes the `owner/repository` e.g. `fhdsl/metricminer` not just `metricminer`. Commas need to separate the repositories. Delete the example repositories we put there.
+- [ ] Optionally, if you are saving data to Google, specify a googlesheet ID in `github_googlesheet` you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
+
+## Customizing GitHub Data 
+
+In order to customize the data you are downloading from GitHub you can modify the 
+`refresh-scripts/refresh-github.R` script in your repository. 
+
+You can take a look at the [`metricminer` R package documentation](https://hutchdatascience.org/metricminer/articles/getting-started.html) for more details about the functions and what is possible. 
+
+If you have a metric need that is not currently fulfilled by `metricminer` or `metricminer-dashboard` we encourage you to [file a GitHub issue with us and let us know about your new feature idea (or bug report)](https://github.com/fhdsl/metricminer/issues/new/choose). 

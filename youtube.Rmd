@@ -1,14 +1,16 @@
 ---
 title: "YouTube"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    toc_collapsed: true
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 ---
 
-## Setting up Youtube
-
 ## Preview
 
-```{r, echo = FALSE, hide = TRUE}
+```{r, echo = FALSE, hide = TRUE, message = FALSE, warning = FALSE}
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 yaml <- yaml::read_yaml(file.path(root_dir, "_config_automation.yml"))
 
@@ -18,6 +20,44 @@ youtube <- readr::read_tsv(file.path("metricminer_data", "youtube", "youtube.tsv
 ## For youtube
 ```
 
+## Data information 
+
+- `viewCount` how many times has the video been viewed?
+- `likeCount` how many times has the video been liked?
+- `dislikeCount` - how many times has the video been disliked?
+- `favoriteCount` - how many times has the video been favorited?
+- `commentCount` - how many comments on the video?
+
 ```{r}
 knitr::kable(youtube)
 ```
+
+## Setting up YouTube
+
+[Follow the steps from the above section to authenticate Google](#setting-up-google-authentication) -- make sure that the account you have authenticated for has access to the YouTube you wish to collect.
+
+Go to a video you'd like to collect data from. The URL should look something like this:
+```
+https://www.youtube.com/watch?v=<YOUTUBE_VIDEO_ID_HERE>
+```
+Extract the Youtube Video ID from the URL and put it in the `video_ids` section of the `_config_automation.yml` file. Delete the example IDs we have put there as placeholders.
+Do this for each video you'd like to collect data from and separate the IDs with commas.
+
+```
+###### YouTube ######
+refresh-youtube: yes
+video_ids: [ XN_QPRrJZAw, YkYnni-WuaQ ]
+youtube_googlesheet:
+```
+
+- [ ] In the `config_automation.yml` file, make sure that `refresh-slido` is set to "yes".
+- [ ] Optionally, if you are saving data to Google, specify a googlesheet ID in `youtube_googlesheet` that you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
+
+## Customizing the YouTube Data 
+
+In order to customize the data you are downloading from your YouTube you can modify the 
+`refresh-scripts/refresh-youtube.R` script in your repository. 
+
+You can take a look at the [`metricminer` R package documentation](https://hutchdatascience.org/metricminer/articles/getting-started.html) for more details about the functions and what is possible. 
+
+If you have a metric need that is not currently fulfilled by `metricminer` or `metricminer-dashboard` we encourage you to [file a GitHub issue with us and let us know about your new feature idea (or bug report)](https://github.com/fhdsl/metricminer/issues/new/choose). 

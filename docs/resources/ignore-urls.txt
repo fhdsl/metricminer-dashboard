@@ -1,1 +1,5 @@
 https://username.github.io/repository_name/
+https://docs.google.com/forms/u/1/d/<GOOGLE_FORM_ID_HERE>/edit?usp=drive_web
+https://www.youtube.com/watch?v=<YOUTUBE_VIDEO_ID_HERE>
+https://drive.google.com/drive/u/1/folders/<SOME_FOLDER_ID_HERE>
+https://analytics.google.com/analytics/web/?authuser=1#/p<PROPERTY_ID_HERE>/reports/home

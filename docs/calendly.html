@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -223,6 +226,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -230,6 +296,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -261,6 +337,13 @@ $(document).ready(function () {
   </a>
 </li>
 <li>
+  <a href="citations.html">
+    <span class="fa fa-scroll"></span>
+     
+    Citations
+  </a>
+</li>
+<li>
   <a href="cran.html">
     <span class="fa fa-r"></span>
      
@@ -279,13 +362,6 @@ $(document).ready(function () {
     <span class="fa fa-google"></span>
      
     Google Analytics
-  </a>
-</li>
-<li>
-  <a href="slido.html">
-    <span class="a a-square-poll-vertical"></span>
-     
-    Slido
   </a>
 </li>
 <li>
@@ -308,20 +384,18 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Calendly</h1>
-<h4 class="date">06 March, 2024</h4>
+<h4 class="date">29 March, 2024</h4>
 
 </div>
 
 
-<div id="setting-up-calendly" class="section level2">
-<h2>Setting up Calendly</h2>
-</div>
 <div id="preview" class="section level2">
 <h2>Preview</h2>
-<pre><code>## Rows: 1 Columns: 8
+<pre><code>## Rows: 1 Columns: 10
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;\t&quot;
 ## chr  (4): event_type, name, status, uri
+## lgl  (2): meeting_notes_html, meeting_notes_plain
 ## dttm (4): created_at, end_time, start_time, updated_at
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
@@ -329,20 +403,24 @@ $(document).ready(function () {
 <pre class="r"><code>knitr::kable(calendly)</code></pre>
 <table>
 <colgroup>
-<col width="7%" />
-<col width="7%" />
-<col width="28%" />
 <col width="6%" />
-<col width="7%" />
+<col width="6%" />
+<col width="24%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
 <col width="2%" />
-<col width="7%" />
-<col width="30%" />
+<col width="6%" />
+<col width="26%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="left">created_at</th>
 <th align="left">end_time</th>
 <th align="left">event_type</th>
+<th align="left">meeting_notes_html</th>
+<th align="left">meeting_notes_plain</th>
 <th align="left">name</th>
 <th align="left">start_time</th>
 <th align="left">status</th>
@@ -357,6 +435,8 @@ $(document).ready(function () {
 <td align="left"><a
 href="https://api.calendly.com/event_types/d39d7211-9c78-4121-8271-208cfaa34989"
 class="uri">https://api.calendly.com/event_types/d39d7211-9c78-4121-8271-208cfaa34989</a></td>
+<td align="left">NA</td>
+<td align="left">NA</td>
 <td align="left">30 Minute Meeting</td>
 <td align="left">2024-01-17 14:00:00</td>
 <td align="left">active</td>
@@ -368,9 +448,60 @@ class="uri">https://api.calendly.com/scheduled_events/ac7a3d65-37ee-4277-a057-c3
 </tbody>
 </table>
 </div>
+<div id="setting-up-calendly" class="section level2">
+<h2>Setting Up Calendly</h2>
+<ol style="list-style-type: decimal">
+<li>To set up calendly authorization <a
+href="https://calendly.com/integrations/api_webhooks">go here</a> and
+click “Generate Token”.</li>
+<li>Underneath “Choose a name for this token” pick a name that will
+remind you of this project.</li>
+<li>Click “Create Token” and it will send you an authorization code to
+your email.</li>
+<li>Click “Copy Token” and keep this handy.</li>
+<li>Return to your metricminer dashboard repository and go to
+<code>Settings</code> &gt; <code>Secrets and variables</code> &gt;
+<code>Actions</code>.</li>
+<li>Click on <code>New repository secret</code>. Name your new secret
+<em>exactly</em> <code>METRICMINER_CALENDLY</code></li>
+<li>Paste your token into the <code>Secret</code> box and then click the
+green “Add secret” button.</li>
+</ol>
+<p>After you’ve set up authorization you’ll need to check the following
+items in the <code>_config_automation.yml</code> file.</p>
+<ul class="task-list">
+<li><input type="checkbox" />In the <code>config_automation.yml</code>
+file, make sure that <code>refresh-calendly</code> is set to “yes”.</li>
+<li><input type="checkbox" />Optionally, if you are saving data to
+google, specify a googlesheet ID you’d like the CRAN data to be saved
+to. This will only be relevant if you’ve set <code>data_dest</code> to
+<code>google</code>.</li>
+</ul>
+<pre><code>###### Calendly ######
+refresh-calendly: yes
+calendly_googlesheet:</code></pre>
+</div>
+<div id="customizing-the-data" class="section level2">
+<h2>Customizing the data</h2>
+<p>In order to customize the data you are downloading from calendly you
+can modify the <code>refresh-scripts/refresh-calendly.R</code> script in
+your repository.</p>
+<p>You can take a look at the <a
+href="https://hutchdatascience.org/metricminer/articles/getting-started.html"><code>metricminer</code>
+R package documentation</a> for more details about the functions and
+what is possible.</p>
+<p>If you have a metric need that is not currently fulfilled by
+<code>metricminer</code> or <code>metricminer-dashboard</code> we
+encourage you to <a
+href="https://github.com/fhdsl/metricminer/issues/new/choose">file a
+GitHub issue with us and let us know about your new feature idea (or bug
+report)</a>.</p>
+</div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -403,6 +534,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
