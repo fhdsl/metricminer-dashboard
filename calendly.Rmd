@@ -1,6 +1,10 @@
 ---
 title: "Calendly"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    toc_collapsed: true
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 ---
 
@@ -40,3 +44,13 @@ After you've set up authorization you'll need to check the following items in th
 refresh-calendly: yes
 calendly_googlesheet:
 ```
+
+## Customizing the data 
+
+In order to customize the data you are downloading from calendly you can modify the 
+`refresh-scripts/refresh-calendly.R` script in your repository. 
+
+You can take a look at the [`metricminer` R package documentation](https://hutchdatascience.org/metricminer/articles/getting-started.html) for more details about the functions and what is possible. 
+
+If you have a metric need that is not currently fulfilled by `metricminer` or `metricminer-dashboard` we encourage you to [file a GitHub issue with us and let us know about your new feature idea (or bug report)](https://github.com/fhdsl/metricminer/issues/new/choose). 
+

@@ -1,6 +1,10 @@
 ---
 title: "Google Analytics"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    toc_collapsed: true
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 ---
 
@@ -8,7 +12,7 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 
 ## Preview
 
-```{r, echo = FALSE, hide = TRUE}
+```{r, echo = FALSE, hide = TRUE, message = FALSE}
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 yaml <- yaml::read_yaml(file.path(root_dir, "_config_automation.yml"))
 
@@ -38,7 +42,7 @@ knitr::kable(ga_dimensions)
 knitr::kable(ga_link_clicks)
 ```
 
-### Setting up Google Analytics
+## Setting up Google Analytics
 
 [Follow the steps from the above section to authenticate Google](#setting-up-google-authentication) -- make sure that the account you have authenticated for has access to the Google Analytics properties you wish to collect.
 
@@ -66,3 +70,13 @@ ga_googlesheet:
 
 - [ ] In the `config_automation.yml` file, make sure that `refresh-ga` is set to "yes".
 - [ ] Optionally, if you are saving data to Google, specify a googlesheet ID in `ga_googlesheet` you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
+
+
+## Customizing the data 
+
+In order to customize the data you are downloading from Google Analytics you can modify the 
+`refresh-scripts/refresh-ga.R` script in your repository. 
+
+You can take a look at the [`metricminer` R package documentation](https://hutchdatascience.org/metricminer/articles/getting-started.html) for more details about the functions and what is possible. 
+
+If you have a metric need that is not currently fulfilled by `metricminer` or `metricminer-dashboard` we encourage you to [file a GitHub issue with us and let us know about your new feature idea (or bug report)](https://github.com/fhdsl/metricminer/issues/new/choose). 
