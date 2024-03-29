@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -223,6 +226,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -230,6 +296,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -308,7 +384,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Google Analytics</h1>
-<h4 class="date">15 March, 2024</h4>
+<h4 class="date">29 March, 2024</h4>
 
 </div>
 
@@ -318,29 +394,6 @@ $(document).ready(function () {
 </div>
 <div id="preview" class="section level2">
 <h2>Preview</h2>
-<pre><code>## Rows: 2 Columns: 10
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: &quot;\t&quot;
-## chr (1): website
-## dbl (9): activeUsers, newUsers, totalUsers, eventCountPerUser, screenPageVie...
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-## Rows: 6 Columns: 6
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: &quot;\t&quot;
-## chr (4): website, month, country, fullPageUrl
-## dbl (2): day, year
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-## Rows: 4 Columns: 2
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: &quot;\t&quot;
-## chr (2): website, linkUrl
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre class="r"><code>knitr::kable(ga_metrics)</code></pre>
 <table>
 <colgroup>
@@ -376,23 +429,23 @@ $(document).ready(function () {
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">4.333333</td>
-<td align="right">1.00</td>
+<td align="right">1.0</td>
 <td align="right">3</td>
 <td align="right">3.610206</td>
 <td align="right">3</td>
-<td align="right">0.0000000</td>
+<td align="right">0.0</td>
 </tr>
 <tr class="even">
 <td align="left">dummy-website</td>
-<td align="right">4</td>
-<td align="right">4</td>
-<td align="right">4</td>
-<td align="right">15.000000</td>
-<td align="right">4.25</td>
-<td align="right">6</td>
-<td align="right">54.992872</td>
-<td align="right">17</td>
-<td align="right">0.6666667</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">14.000000</td>
+<td align="right">3.8</td>
+<td align="right">8</td>
+<td align="right">42.782559</td>
+<td align="right">19</td>
+<td align="right">0.5</td>
 </tr>
 </tbody>
 </table>
@@ -465,6 +518,22 @@ $(document).ready(function () {
 <td align="left">United States</td>
 <td align="left">metricminer.github.io/dummy-website/</td>
 </tr>
+<tr class="odd">
+<td align="left">dummy-website</td>
+<td align="right">14</td>
+<td align="left">03</td>
+<td align="right">2024</td>
+<td align="left">United States</td>
+<td align="left">metricminer.github.io/dummy-website/</td>
+</tr>
+<tr class="even">
+<td align="left">dummy-website</td>
+<td align="right">15</td>
+<td align="left">03</td>
+<td align="right">2024</td>
+<td align="left">United States</td>
+<td align="left">metricminer.github.io/dummy-website/</td>
+</tr>
 </tbody>
 </table>
 <pre class="r"><code>knitr::kable(ga_link_clicks)</code></pre>
@@ -496,8 +565,9 @@ class="uri">https://www.metricminer.org/</a></td>
 </tr>
 </tbody>
 </table>
-<div id="setting-up-google-analytics-1" class="section level3">
-<h3>Setting up Google Analytics</h3>
+</div>
+<div id="setting-up-google-analytics-1" class="section level2">
+<h2>Setting up Google Analytics</h2>
 <p><a href="#setting-up-google-authentication">Follow the steps from the
 above section to authenticate Google</a> – make sure that the account
 you have authenticated for has access to the Google Analytics properties
@@ -536,10 +606,27 @@ like the GitHub data to be saved to. This will only be relevant if
 you’ve set <code>data_dest</code> to <code>google</code>.</li>
 </ul>
 </div>
+<div id="customizing-the-data" class="section level2">
+<h2>Customizing the data</h2>
+<p>In order to customize the data you are downloading from Google
+Analytics you can modify the <code>refresh-scripts/refresh-ga.R</code>
+script in your repository.</p>
+<p>You can take a look at the <a
+href="https://hutchdatascience.org/metricminer/articles/getting-started.html"><code>metricminer</code>
+R package documentation</a> for more details about the functions and
+what is possible.</p>
+<p>If you have a metric need that is not currently fulfilled by
+<code>metricminer</code> or <code>metricminer-dashboard</code> we
+encourage you to <a
+href="https://github.com/fhdsl/metricminer/issues/new/choose">file a
+GitHub issue with us and let us know about your new feature idea (or bug
+report)</a>.</p>
 </div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -572,6 +659,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

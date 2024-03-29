@@ -13,7 +13,7 @@
 
 <title>GitHub</title>
 
-<script src="site_libs/header-attrs-2.26/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -223,6 +226,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -230,6 +296,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -308,7 +384,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">GitHub</h1>
-<h4 class="date">15 March, 2024</h4>
+<h4 class="date">29 March, 2024</h4>
 
 </div>
 
@@ -318,7 +394,7 @@ $(document).ready(function () {
 <p>Contributions to a repository example:</p>
 <p><img src="github_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>Views of a GitHub Repository over time</p>
-<pre><code>## Warning: Removed 2 rows containing missing values or values outside the scale range
+<pre><code>## Warning: Removed 3 rows containing missing values or values outside the scale range
 ## (`geom_line()`).</code></pre>
 <p><img src="github_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
@@ -361,9 +437,9 @@ have?</li>
 <td align="left">fhdsl/metricminer</td>
 <td align="left">NA</td>
 <td align="right">4</td>
-<td align="right">432</td>
+<td align="right">434</td>
 <td align="right">1</td>
-<td align="right">37</td>
+<td align="right">62</td>
 </tr>
 <tr class="even">
 <td align="left">fhdsl/metricminer.org</td>
@@ -377,15 +453,16 @@ have?</li>
 </table>
 <p>Data information for <code>github timecourse</code>:</p>
 <ul>
-<li><code>timestampe</code> shows the date the counts correspond to</li>
+<li><code>timestamp</code> shows the date the counts correspond to</li>
 <li><code>count_clones</code> tells the number of clones made on this
-day</li>
+day. NAs generally indicate no one cloned the repository that day.</li>
 <li><code>unique_clones</code> tells how many people did these clones
-come from?</li>
+come from? NAs generally indicate no one cloned the repository that
+day.</li>
 <li><code>count_views</code> how many views did the repo get on this
-day?</li>
-<li><code>unique_views</code> how many people were those views
-from?</li>
+day? NAs generally indicate no one viewed the repository that date</li>
+<li><code>unique_views</code> how many people were those views from? NAs
+generally indicate no one viewed the repository that date</li>
 </ul>
 <pre class="r"><code>knitr::kable(github_timecourse)</code></pre>
 <table>
@@ -410,67 +487,35 @@ from?</li>
 <tbody>
 <tr class="odd">
 <td align="left">fhdsl/metricminer</td>
-<td align="left">2024-03-01</td>
-<td align="right">10</td>
-<td align="right">1</td>
-<td align="right">16</td>
-<td align="right">3</td>
-</tr>
-<tr class="even">
-<td align="left">fhdsl/metricminer</td>
-<td align="left">2024-03-04</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">6</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">fhdsl/metricminer</td>
-<td align="left">2024-03-05</td>
-<td align="right">35</td>
-<td align="right">5</td>
-<td align="right">26</td>
-<td align="right">3</td>
-</tr>
-<tr class="even">
-<td align="left">fhdsl/metricminer</td>
-<td align="left">2024-03-06</td>
-<td align="right">56</td>
-<td align="right">13</td>
-<td align="right">21</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">fhdsl/metricminer</td>
-<td align="left">2024-03-08</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">3</td>
-</tr>
-<tr class="even">
-<td align="left">fhdsl/metricminer</td>
 <td align="left">2024-03-11</td>
 <td align="right">1</td>
 <td align="right">1</td>
 <td align="right">2</td>
 <td align="right">2</td>
 </tr>
+<tr class="even">
+<td align="left">fhdsl/metricminer</td>
+<td align="left">2024-03-18</td>
+<td align="right">18</td>
+<td align="right">7</td>
+<td align="right">19</td>
+<td align="right">2</td>
+</tr>
 <tr class="odd">
 <td align="left">fhdsl/metricminer</td>
-<td align="left">2024-03-07</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
+<td align="left">2024-03-21</td>
+<td align="right">7</td>
 <td align="right">3</td>
-<td align="right">1</td>
+<td align="right">29</td>
+<td align="right">6</td>
 </tr>
 <tr class="even">
 <td align="left">fhdsl/metricminer</td>
-<td align="left">2024-03-09</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
+<td align="left">2024-03-23</td>
 <td align="right">1</td>
 <td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 </tr>
 <tr class="odd">
 <td align="left">fhdsl/metricminer</td>
@@ -489,14 +534,38 @@ from?</li>
 <td align="right">1</td>
 </tr>
 <tr class="odd">
+<td align="left">fhdsl/metricminer</td>
+<td align="left">2024-03-15</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">3</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">fhdsl/metricminer</td>
+<td align="left">2024-03-19</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">fhdsl/metricminer</td>
+<td align="left">2024-03-22</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">8</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
 <td align="left">fhdsl/metricminer.org</td>
-<td align="left">2024-03-04</td>
+<td align="left">2024-03-20</td>
 <td align="right">1</td>
 <td align="right">1</td>
 <td align="right">NA</td>
 <td align="right">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">fhdsl/metricminer.org</td>
 <td align="left">NA</td>
 <td align="right">NA</td>
@@ -506,8 +575,9 @@ from?</li>
 </tr>
 </tbody>
 </table>
-<div id="setting-up-github" class="section level3">
-<h3>Setting up GitHub</h3>
+</div>
+<div id="setting-up-github" class="section level2">
+<h2>Setting up GitHub</h2>
 <p>At this point you should already have your GitHub authorization set
 up for your metricminer dashboard by having <a
 href="#setting-up-your-dashboard-repository">followed the instructions
@@ -534,10 +604,27 @@ you’d like the GitHub data to be saved to. This will only be relevant if
 you’ve set <code>data_dest</code> to <code>google</code>.</li>
 </ul>
 </div>
+<div id="customizing-github-data" class="section level2">
+<h2>Customizing GitHub Data</h2>
+<p>In order to customize the data you are downloading from GitHub you
+can modify the <code>refresh-scripts/refresh-github.R</code> script in
+your repository.</p>
+<p>You can take a look at the <a
+href="https://hutchdatascience.org/metricminer/articles/getting-started.html"><code>metricminer</code>
+R package documentation</a> for more details about the functions and
+what is possible.</p>
+<p>If you have a metric need that is not currently fulfilled by
+<code>metricminer</code> or <code>metricminer-dashboard</code> we
+encourage you to <a
+href="https://github.com/fhdsl/metricminer/issues/new/choose">file a
+GitHub issue with us and let us know about your new feature idea (or bug
+report)</a>.</p>
 </div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -570,6 +657,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
