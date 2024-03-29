@@ -389,11 +389,64 @@ div.tocify {
 </div>
 
 
-<div id="setting-up-google-analytics" class="section level2">
-<h2>Setting up Google Analytics</h2>
-</div>
 <div id="preview" class="section level2">
 <h2>Preview</h2>
+<p><strong>Still need to add plots here. Describe below what kinds of
+plots may work for the data available</strong></p>
+</div>
+<div id="data-information" class="section level2">
+<h2>Data Information</h2>
+<p>Data information for google analytics metrics
+(<code>ga_metrics</code>):</p>
+<p>Most of these metrics involve how users interact with a website or
+app, specifically in “event” terminology. Events are a means of
+measuring user interaction and can include actions like loading a page,
+clicking a link, submitting a form or requesting information, searches,
+shares content from. Do website creators need to define or add/create
+events to track for their website or is that automatic?</p>
+<ul>
+<li><code>activeUsers</code>: The number of distinct users who visited
+your website or application. An active user is any user who visited your
+website or application. An active user is any user who has an engaged
+session or when Analytics collects parameters from a website or app
+indicative of a first time or active user.</li>
+<li><code>newUsers</code>: The number of new unique user IDs that logged
+the first_open or first_visit event. The metric allows you to measure
+the number of users who interacted with your site or launched your app
+for the first time.</li>
+<li><code>totalUsers</code>: The number of unique user IDs that
+triggered any events. The metric allows you to measure the number of
+unique users who logged an event.</li>
+<li><code>eventCountPerUser</code>: The average number of events
+triggered per user. Specifically the event count divided by the number
+of active users. The event count in turn is the number of times users
+triggered an event.</li>
+<li><code>screenPageViewsPerUser</code>: The average number of mobile
+app screens or web pages viewed per user. This would then be the total
+number of views (<code>screenPageViews</code>) divided by the total
+number of users (<code>totalUsers</code>)<br />
+</li>
+<li><code>sessions</code>: The number of sessions that began on your
+website or application. A session is a period of time during which a
+user interacts with your website or app. A session initiates when a user
+either opens your app in the foreground or views a page or screen and no
+session is currently active (e.g., their previous session has timed
+out). By default, a session ends (times out) after 30 minutes of user
+inactivity. There is no limit to how long a session can last.</li>
+<li><code>averageSessionDuration</code>: The average duration (in
+seconds) of users’ sessions.</li>
+<li><code>screenPageViews</code>: The number of mobile app screens or
+web pages your users saw. Repeated views of a single screen or page are
+counted.</li>
+<li><code>engagementRate</code>: The percentage of sessions that were
+engaged sessions. Specifically, the number of engaged sessions divided
+by the total number of sessions. An engaged session is a session that
+lasts 10 seconds or longer or has 1 or more conversion events or 2 or
+more page or screen views. (A conversion event is any user action that’s
+valuable to your business and is defined by marking the event as a
+conversion. This is in contrast to most other metrics that are populated
+automatically.)</li>
+</ul>
 <pre class="r"><code>knitr::kable(ga_metrics)</code></pre>
 <table>
 <colgroup>
@@ -449,6 +502,21 @@ div.tocify {
 </tr>
 </tbody>
 </table>
+<p><strong>In the preview section above</strong>: <em>Add plots that are
+like Figures 9 and 10 from the ITN evaluation</em></p>
+<p>Data information for google analytics dimensions
+(<code>ga_dimensions</code>):</p>
+<ul>
+<li><code>website</code>: Indicates the name of the website associated
+with that session.</li>
+<li><code>day</code>: Indicates the day of the session</li>
+<li><code>month</code>: Indicates the month of the session</li>
+<li><code>year</code>: Indicates the year of the session</li>
+<li><code>country</code>: Indicates the country from which a session
+originates</li>
+<li><code>fullPageURL</code>: Indicates full page URL of the page that
+is viewed in that session.</li>
+</ul>
 <pre class="r"><code>knitr::kable(ga_dimensions)</code></pre>
 <table>
 <colgroup>
@@ -536,6 +604,18 @@ div.tocify {
 </tr>
 </tbody>
 </table>
+<p><strong>In the preview section above</strong>: <em>Add a plot that
+shows a map and distribution of countries? (though this might not
+generalize well)</em> or <em>Add a plot that shows traffic over
+time</em></p>
+<p>Data information for google analytics link clicks
+(<code>ga_link_clicks</code>):</p>
+<ul>
+<li><code>website</code>: Indicates the website on which the outbound
+click event occurred</li>
+<li><code>linkURL</code>: Indicates the URL for the outbound click. What
+does NA mean for this – a random click on the website?</li>
+</ul>
 <pre class="r"><code>knitr::kable(ga_link_clicks)</code></pre>
 <table>
 <thead>
@@ -565,6 +645,34 @@ class="uri">https://www.metricminer.org/</a></td>
 </tr>
 </tbody>
 </table>
+</div>
+<div id="setting-up-google-analytics" class="section level2">
+<h2>Setting up Google Analytics</h2>
+<p>Grab information from vignette</p>
+</div>
+<div id="customization" class="section level2">
+<h2>Customization</h2>
+<div id="customizing-google-analytics-data" class="section level3">
+<h3>Customizing Google Analytics Data</h3>
+<p>Google Analytics explains that each dimension and metric that can be
+collected and reported has a scope (user-, session-, or hit-level) and
+in most cases, only dimensions and metrics that share the same scope can
+be combined.</p>
+<p>To learn more about about Google Analytics in general, <a
+href="https://analytics.google.com/analytics/academy/">visit the google
+analytics documentation</a>, and <a
+href="https://analytics.google.com/analytics/">visit your own
+dashboard</a> to customize and explore the possibilites of what you can
+collect.</p>
+</div>
+<div id="plots" class="section level3">
+<h3>Plots</h3>
+<p>Review ggplot2 documentation for customization of plots <a
+href="https://ggplot2.tidyverse.org/">visit the ggplot2 documentation
+here</a> or <a
+href="https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf">look
+at this posit cheatsheet</a>.</p>
+</div>
 </div>
 <div id="setting-up-google-analytics-1" class="section level2">
 <h2>Setting up Google Analytics</h2>

@@ -394,7 +394,7 @@ div.tocify {
 <p>Contributions to a repository example:</p>
 <p><img src="github_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>Views of a GitHub Repository over time</p>
-<pre><code>## Warning: Removed 3 rows containing missing values or values outside the scale range
+<pre><code>## Warning: Removed 4 rows containing missing values or values outside the scale range
 ## (`geom_line()`).</code></pre>
 <p><img src="github_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
@@ -413,19 +413,19 @@ software health” items as described by GitHub</a> does this repo
 have?</li>
 </ul>
 <pre class="r"><code>knitr::kable(github_overall)</code></pre>
-<table style="width:100%;">
+<table>
 <colgroup>
-<col width="22%" />
-<col width="10%" />
+<col width="27%" />
+<col width="9%" />
+<col width="16%" />
+<col width="19%" />
+<col width="9%" />
 <col width="17%" />
-<col width="20%" />
-<col width="10%" />
-<col width="18%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="left">repo_name</th>
-<th align="left">num_forks</th>
+<th align="right">num_forks</th>
 <th align="right">num_contributors</th>
 <th align="right">total_contributions</th>
 <th align="right">num_stars</th>
@@ -435,17 +435,33 @@ have?</li>
 <tbody>
 <tr class="odd">
 <td align="left">fhdsl/metricminer</td>
-<td align="left">NA</td>
+<td align="right">NA</td>
 <td align="right">4</td>
 <td align="right">434</td>
 <td align="right">1</td>
 <td align="right">62</td>
 </tr>
 <tr class="even">
-<td align="left">fhdsl/metricminer.org</td>
-<td align="left">NA</td>
-<td align="right">2</td>
-<td align="right">28</td>
+<td align="left">fhdsl/metricminer-dashboard</td>
+<td align="right">NA</td>
+<td align="right">3</td>
+<td align="right">158</td>
+<td align="right">0</td>
+<td align="right">62</td>
+</tr>
+<tr class="odd">
+<td align="left">jhudsl/OTTR_Template</td>
+<td align="right">12</td>
+<td align="right">17</td>
+<td align="right">937</td>
+<td align="right">14</td>
+<td align="right">75</td>
+</tr>
+<tr class="even">
+<td align="left">jhudsl/OTTR_Template_Website</td>
+<td align="right">1</td>
+<td align="right">7</td>
+<td align="right">245</td>
 <td align="right">0</td>
 <td align="right">37</td>
 </tr>
@@ -465,14 +481,14 @@ day? NAs generally indicate no one viewed the repository that date</li>
 generally indicate no one viewed the repository that date</li>
 </ul>
 <pre class="r"><code>knitr::kable(github_timecourse)</code></pre>
-<table>
+<table style="width:100%;">
 <colgroup>
-<col width="25%" />
+<col width="30%" />
+<col width="11%" />
+<col width="13%" />
+<col width="15%" />
 <col width="12%" />
 <col width="14%" />
-<col width="17%" />
-<col width="13%" />
-<col width="16%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -487,21 +503,13 @@ generally indicate no one viewed the repository that date</li>
 <tbody>
 <tr class="odd">
 <td align="left">fhdsl/metricminer</td>
-<td align="left">2024-03-11</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">2</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td align="left">fhdsl/metricminer</td>
 <td align="left">2024-03-18</td>
 <td align="right">18</td>
 <td align="right">7</td>
 <td align="right">19</td>
 <td align="right">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">fhdsl/metricminer</td>
 <td align="left">2024-03-21</td>
 <td align="right">7</td>
@@ -509,7 +517,7 @@ generally indicate no one viewed the repository that date</li>
 <td align="right">29</td>
 <td align="right">6</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">fhdsl/metricminer</td>
 <td align="left">2024-03-23</td>
 <td align="right">1</td>
@@ -517,29 +525,21 @@ generally indicate no one viewed the repository that date</li>
 <td align="right">NA</td>
 <td align="right">NA</td>
 </tr>
-<tr class="odd">
-<td align="left">fhdsl/metricminer</td>
-<td align="left">2024-03-13</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">1</td>
-<td align="right">1</td>
-</tr>
 <tr class="even">
 <td align="left">fhdsl/metricminer</td>
-<td align="left">2024-03-14</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">11</td>
+<td align="left">2024-03-28</td>
 <td align="right">1</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">3</td>
 </tr>
 <tr class="odd">
 <td align="left">fhdsl/metricminer</td>
-<td align="left">2024-03-15</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">3</td>
+<td align="left">2024-03-29</td>
 <td align="right">1</td>
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 </tr>
 <tr class="even">
 <td align="left">fhdsl/metricminer</td>
@@ -558,20 +558,292 @@ generally indicate no one viewed the repository that date</li>
 <td align="right">3</td>
 </tr>
 <tr class="even">
-<td align="left">fhdsl/metricminer.org</td>
+<td align="left">fhdsl/metricminer</td>
+<td align="left">2024-03-25</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">2</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">fhdsl/metricminer-dashboard</td>
+<td align="left">2024-03-16</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">fhdsl/metricminer-dashboard</td>
+<td align="left">2024-03-17</td>
+<td align="right">11</td>
+<td align="right">4</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">fhdsl/metricminer-dashboard</td>
+<td align="left">2024-03-18</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">16</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="left">fhdsl/metricminer-dashboard</td>
+<td align="left">2024-03-21</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">11</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">fhdsl/metricminer-dashboard</td>
+<td align="left">2024-03-22</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">fhdsl/metricminer-dashboard</td>
+<td align="left">2024-03-24</td>
+<td align="right">12</td>
+<td align="right">5</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">fhdsl/metricminer-dashboard</td>
+<td align="left">2024-03-28</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">fhdsl/metricminer-dashboard</td>
+<td align="left">2024-03-15</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">fhdsl/metricminer-dashboard</td>
 <td align="left">2024-03-20</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">17</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="left">fhdsl/metricminer-dashboard</td>
+<td align="left">2024-03-23</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">fhdsl/metricminer-dashboard</td>
+<td align="left">2024-03-25</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">jhudsl/OTTR_Template</td>
+<td align="left">2024-03-15</td>
 <td align="right">1</td>
 <td align="right">1</td>
 <td align="right">NA</td>
 <td align="right">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">fhdsl/metricminer.org</td>
-<td align="left">NA</td>
+<td align="left">jhudsl/OTTR_Template</td>
+<td align="left">2024-03-16</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">jhudsl/OTTR_Template</td>
+<td align="left">2024-03-17</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">18</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">jhudsl/OTTR_Template</td>
+<td align="left">2024-03-18</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">34</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">jhudsl/OTTR_Template</td>
+<td align="left">2024-03-20</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">73</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">jhudsl/OTTR_Template</td>
+<td align="left">2024-03-22</td>
+<td align="right">10</td>
+<td align="right">5</td>
+<td align="right">127</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">jhudsl/OTTR_Template</td>
+<td align="left">2024-03-23</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">6</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left">jhudsl/OTTR_Template</td>
+<td align="left">2024-03-24</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">jhudsl/OTTR_Template</td>
+<td align="left">2024-03-25</td>
+<td align="right">16</td>
+<td align="right">5</td>
+<td align="right">96</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="left">jhudsl/OTTR_Template</td>
+<td align="left">2024-03-26</td>
+<td align="right">3</td>
+<td align="right">1</td>
 <td align="right">NA</td>
 <td align="right">NA</td>
-<td align="right">0</td>
-<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">jhudsl/OTTR_Template</td>
+<td align="left">2024-03-28</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">9</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">jhudsl/OTTR_Template</td>
+<td align="left">2024-03-29</td>
+<td align="right">8</td>
+<td align="right">3</td>
+<td align="right">28</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">jhudsl/OTTR_Template</td>
+<td align="left">2024-03-19</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">2</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">jhudsl/OTTR_Template</td>
+<td align="left">2024-03-21</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">17</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">jhudsl/OTTR_Template</td>
+<td align="left">2024-03-27</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">13</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">jhudsl/OTTR_Template_Website</td>
+<td align="left">2024-03-18</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">jhudsl/OTTR_Template_Website</td>
+<td align="left">2024-03-20</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">16</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">jhudsl/OTTR_Template_Website</td>
+<td align="left">2024-03-21</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">12</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">jhudsl/OTTR_Template_Website</td>
+<td align="left">2024-03-22</td>
+<td align="right">12</td>
+<td align="right">4</td>
+<td align="right">76</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left">jhudsl/OTTR_Template_Website</td>
+<td align="left">2024-03-25</td>
+<td align="right">14</td>
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">jhudsl/OTTR_Template_Website</td>
+<td align="left">2024-03-28</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">6</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">jhudsl/OTTR_Template_Website</td>
+<td align="left">2024-03-19</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">2</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">jhudsl/OTTR_Template_Website</td>
+<td align="left">2024-03-23</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">jhudsl/OTTR_Template_Website</td>
+<td align="left">2024-03-27</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">3</td>
+<td align="right">1</td>
 </tr>
 </tbody>
 </table>
