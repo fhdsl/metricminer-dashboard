@@ -49,12 +49,22 @@ if (yaml$data_dest == "google") {
 }
 
 if (yaml$data_dest == "github") {
-  readr::write_tsv(gh_metrics,
-      file.path(folder_path, "github.tsv")
-    )
-  readr::write_tsv(gh_timecourse,
-      file.path(folder_path, "github_timecourse.tsv")
-    )
+
+  # read in previous data
+  old_gh_metrics <- readr::read_tsv(file.path(folder_path, "github.tsv")) %>% 
+    # Only keep repos that have been specified
+    dplyr::filter(repo_name %in% yaml$github_repos)
+  
+  old_gh_timecourse <- readr::read_tsv(file.path(folder_path, "github_timecourse.tsv")) %>% 
+    dplyr::filter(repo %in% yaml$github_repos)
+
+  dplyr::bind_rows(old_gh_metrics, gh_metrics) %>% 
+    dplyr::distinct() %>% 
+    readr::write_tsv(file.path(folder_path, "github.tsv"))
+  
+  dplyr::bind_rows(old_gh_timecourse, gh_timecourse) %>% 
+    dplyr::distinct() %>% 
+    readr::write_tsv(file.path(folder_path, "github_timecourse.tsv"))
 }
 
 sessionInfo()
