@@ -13,8 +13,8 @@
 
 <title>YouTube</title>
 
-<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -29,14 +29,14 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link rel="shortcut icon" href="resources/images/favicon.ico" />
  <!--- go to https://favicon.io/favicon-converter/ to upload an image to make a new favicon.io. You will need to replace the current favicon.io image with the one in the downloaded directory from the website. The current image is in the resources/images/ directory --->
 
@@ -67,7 +67,6 @@ if (window.hljs) {
 
 
 
-
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -88,9 +87,6 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
-}
-details > summary > p:only-child {
-  display: inline;
 }
 pre code {
   padding: 0;
@@ -148,15 +144,11 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark the anchor link active (and if it's in a dropdown, also mark that active)
-  var dropdown = menuAnchor.closest('li.dropdown');
-  if (window.bootstrap) { // Bootstrap 4+
-    menuAnchor.addClass('active');
-    dropdown.find('> .dropdown-toggle').addClass('active');
-  } else { // Bootstrap 3
-    menuAnchor.parent().addClass('active');
-    dropdown.addClass('active');
-  }
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -185,8 +177,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "\e259";
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -194,9 +186,16 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "\e258";
-  font-family: 'Glyphicons Halflings';
+  content: "&#xe258;";
   border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -313,7 +312,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -327,6 +326,13 @@ div.tocify {
     <span class="fa fa-home"></span>
      
     Home
+  </a>
+</li>
+<li>
+  <a href="getting_started.html">
+    <span class="fa fa-play"></span>
+     
+    Get Started!
   </a>
 </li>
 <li>
@@ -384,7 +390,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">YouTube</h1>
-<h4 class="date">29 March, 2024</h4>
+<h4 class="date">07 June, 2024</h4>
 
 </div>
 
@@ -395,25 +401,14 @@ div.tocify {
 <div id="data-information" class="section level2">
 <h2>Data information</h2>
 <ul>
-<li><code>viewCount</code> how many times has the video been
-viewed?</li>
+<li><code>viewCount</code> how many times has the video been viewed?</li>
 <li><code>likeCount</code> how many times has the video been liked?</li>
-<li><code>dislikeCount</code> - how many times has the video been
-disliked?</li>
-<li><code>favoriteCount</code> - how many times has the video been
-favorited?</li>
+<li><code>dislikeCount</code> - how many times has the video been disliked?</li>
+<li><code>favoriteCount</code> - how many times has the video been favorited?</li>
 <li><code>commentCount</code> - how many comments on the video?</li>
 </ul>
 <pre class="r"><code>knitr::kable(youtube)</code></pre>
 <table>
-<colgroup>
-<col width="16%" />
-<col width="13%" />
-<col width="13%" />
-<col width="18%" />
-<col width="19%" />
-<col width="18%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th align="left">video</th>
@@ -427,7 +422,7 @@ favorited?</li>
 <tbody>
 <tr class="odd">
 <td align="left">XN_QPRrJZAw</td>
-<td align="right">3</td>
+<td align="right">5</td>
 <td align="right">0</td>
 <td align="right">0</td>
 <td align="right">0</td>
@@ -435,7 +430,7 @@ favorited?</li>
 </tr>
 <tr class="even">
 <td align="left">YkYnni-WuaQ</td>
-<td align="right">21</td>
+<td align="right">36</td>
 <td align="right">0</td>
 <td align="right">0</td>
 <td align="right">0</td>
@@ -446,47 +441,26 @@ favorited?</li>
 </div>
 <div id="setting-up-youtube" class="section level2">
 <h2>Setting up YouTube</h2>
-<p><a href="#setting-up-google-authentication">Follow the steps from the
-above section to authenticate Google</a> – make sure that the account
-you have authenticated for has access to the YouTube you wish to
-collect.</p>
-<p>Go to a video you’d like to collect data from. The URL should look
-something like this:</p>
+<p><a href="#setting-up-google-authentication">Follow the steps from the above section to authenticate Google</a> – make sure that the account you have authenticated for has access to the YouTube you wish to collect.</p>
+<p>Go to a video you’d like to collect data from. The URL should look something like this:</p>
 <pre><code>https://www.youtube.com/watch?v=&lt;YOUTUBE_VIDEO_ID_HERE&gt;</code></pre>
-<p>Extract the Youtube Video ID from the URL and put it in the
-<code>video_ids</code> section of the
-<code>_config_automation.yml</code> file. Delete the example IDs we have
-put there as placeholders. Do this for each video you’d like to collect
-data from and separate the IDs with commas.</p>
+<p>Extract the Youtube Video ID from the URL and put it in the <code>video_ids</code> section of the <code>_config_automation.yml</code> file. Delete the example IDs we have put there as placeholders. Do this for each video you’d like to collect data from and separate the IDs with commas.</p>
 <pre><code>###### YouTube ######
 refresh-youtube: yes
 video_ids: [ XN_QPRrJZAw, YkYnni-WuaQ ]
 youtube_googlesheet:</code></pre>
 <ul class="task-list">
-<li><input type="checkbox" />In the <code>config_automation.yml</code>
-file, make sure that <code>refresh-slido</code> is set to “yes”.</li>
-<li><input type="checkbox" />Optionally, if you are saving data to
-Google, specify a googlesheet ID in <code>youtube_googlesheet</code>
-that you’d like the GitHub data to be saved to. This will only be
-relevant if you’ve set <code>data_dest</code> to
-<code>google</code>.</li>
+<li><input type="checkbox" disabled="" />
+In the <code>config_automation.yml</code> file, make sure that <code>refresh-slido</code> is set to “yes”.</li>
+<li><input type="checkbox" disabled="" />
+Optionally, if you are saving data to Google, specify a googlesheet ID in <code>youtube_googlesheet</code> that you’d like the GitHub data to be saved to. This will only be relevant if you’ve set <code>data_dest</code> to <code>google</code>.</li>
 </ul>
 </div>
 <div id="customizing-the-youtube-data" class="section level2">
 <h2>Customizing the YouTube Data</h2>
-<p>In order to customize the data you are downloading from your YouTube
-you can modify the <code>refresh-scripts/refresh-youtube.R</code> script
-in your repository.</p>
-<p>You can take a look at the <a
-href="https://hutchdatascience.org/metricminer/articles/getting-started.html"><code>metricminer</code>
-R package documentation</a> for more details about the functions and
-what is possible.</p>
-<p>If you have a metric need that is not currently fulfilled by
-<code>metricminer</code> or <code>metricminer-dashboard</code> we
-encourage you to <a
-href="https://github.com/fhdsl/metricminer/issues/new/choose">file a
-GitHub issue with us and let us know about your new feature idea (or bug
-report)</a>.</p>
+<p>In order to customize the data you are downloading from your YouTube you can modify the <code>refresh-scripts/refresh-youtube.R</code> script in your repository.</p>
+<p>You can take a look at the <a href="https://hutchdatascience.org/metricminer/articles/getting-started.html"><code>metricminer</code> R package documentation</a> for more details about the functions and what is possible.</p>
+<p>If you have a metric need that is not currently fulfilled by <code>metricminer</code> or <code>metricminer-dashboard</code> we encourage you to <a href="https://github.com/fhdsl/metricminer/issues/new/choose">file a GitHub issue with us and let us know about your new feature idea (or bug report)</a>.</p>
 </div>
 
 

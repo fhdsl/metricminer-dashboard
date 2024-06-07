@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Setting up your metricminer dashboard</title>
+
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link rel="shortcut icon" href="resources/images/favicon.ico" />
+ <!--- go to https://favicon.io/favicon-converter/ to upload an image to make a new favicon.io. You will need to replace the current favicon.io image with the one in the downloaded directory from the website. The current image is in the resources/images/ directory --->
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">metricminer dashboard</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li>
+  <a href="getting_started.html">
+    <span class="fa fa-play"></span>
+     
+    Get Started!
+  </a>
+</li>
+<li>
+  <a href="calendly.html">
+    <span class="fa fa-calendar"></span>
+     
+    Calendly
+  </a>
+</li>
+<li>
+  <a href="citations.html">
+    <span class="fa fa-scroll"></span>
+     
+    Citations
+  </a>
+</li>
+<li>
+  <a href="cran.html">
+    <span class="fa fa-r"></span>
+     
+    CRAN
+  </a>
+</li>
+<li>
+  <a href="github.html">
+    <span class="fa fa-github"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="googleanalytics.html">
+    <span class="fa fa-google"></span>
+     
+    Google Analytics
+  </a>
+</li>
+<li>
+  <a href="youtube.html">
+    <span class="fa fa-play"></span>
+     
+    Youtube
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore"><strong>Setting up your metricminer dashboard</strong></h1>
+
+</div>
+
+
+<p><img src = "resources/images/metricminer-gnome.png" width = 200></p>
+<div id="creating-up-your-dashboard-repository" class="section level2">
+<h2>Creating up your dashboard repository</h2>
+<ol style="list-style-type: decimal">
+<li>To get started, go to the <a href="https://github.com/fhdsl/metricminer-dashboard">metricminer-dashboard template GitHub repo</a></li>
+<li>Click the green “Use this template” button in the upper right corner. If you do not see it, make sure you are logged in to GitHub (and have an account).</li>
+<li>Name your new metricminer dashboard repository on this screen. Then click “Create new repository”. This will create your new dashboard!</li>
+</ol>
+</div>
+<div id="set-up-your-credentials" class="section level2">
+<h2>Set up your Credentials</h2>
+<ol start="4" style="list-style-type: decimal">
+<li>Create your GitHub secret by going to <a href="https://github.com/settings/tokens/new" class="uri">https://github.com/settings/tokens/new</a></li>
+<li>Make sure your GitHub secret has the <code>repo</code> scopes box checked. Name it something that will remind you it has to do with your metricminer dashboard and then scroll to the bottom and click “Generate Token”. Keep this page open for now.</li>
+<li>Return to your metricminer dashboard repository and go to Settings &gt; Secrets and variables &gt; Actions.</li>
+<li>Click on <code>New repository secret</code>. Name your new secret <em>exactly</em> <code>METRICMINER_GITHUB_PAT</code></li>
+<li>Copy and paste your Personal access token in the <code>Secret</code> box and then click the green “Add secret” button.</li>
+</ol>
+</div>
+<div id="summary-of-the-files-here" class="section level2">
+<h2>Summary of the files here</h2>
+<p>What files are in your metricminer dashboard repo to start? Let’s cover this.</p>
+<p>First off, a metricminer dashboard is an OTTR website with extra functionality so please reference <a href="https://www.ottrproject.org/editing_website.html">ottrproject.org</a> for more info.</p>
+<ul>
+<li><code>_config_automation.yml</code> - This file is where you will go to tell <code>metricminer</code> what metrics you’d like to collect and where you’d like them stored.</li>
+<li><code>_site.yml</code> - This file is how you make your navbar. It will start out with things like <code>Home</code>, <code>Getting Started</code>, <code>GitHub</code> and the rest of the sources that you may collect metrics from. If you edit this file you can rearrange what tabs and pages are available from the navbar. <a href="https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html">Read here for more about this file</a>.</li>
+<li>Any files that end with <code>Rmd</code> are likely to be your webpages for your metricminer dashboard. These are all written in markdown language which is a shorthand for html. <a href="https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html">Read here for how to edit these</a>.</li>
+<li><code>refresh-scripts/</code> - this folder holds the scripts that are run by the automated Github Action set up here in order to pull metrics with metricminer and save the data for you. These scripts will likely need to be customized depending on your needs and whether the default metrics collected are what you want.</li>
+<li><code>metricminer-data/</code> - this folder stores the metric data collected when <code>metricminer</code> is run. Take a look at the example data here to see what the default set up is. Note that if you need different metrics collected you will like have to alter the scripts in <code>refresh-scripts/</code> and to do this you’ll need to reference the <a href="https://hutchdatascience.org/metricminer/articles/getting-started.html">metricminer docs</a>.</li>
+</ul>
+</div>
+<div id="what-now" class="section level2">
+<h2>What now?</h2>
+<p>From here, set up your config file using the next sections instructions, keeping in mind you can skip sections that have data sources that may not be pertinent to you. You can start by deleting from the <code>_site.yml</code> file any tabs you won’t want to keep as well as deleting any Rmds you won’t want.</p>
+<p>After initial setup of your config file, you’ll want to edit your Rmd files to display plots and tables that are pertinent to you. In order to do this, you may want to know a little R code. We have example tables and plots but they are probably not going to feature exactly what you need. Edit these to display what you’d like. We recommend seeking out <a href="https://ggplot2.tidyverse.org/">ggplot2</a> and <a href="https://bookdown.org/yihui/rmarkdown-cookbook/tables.html">knitr</a> as two R packages that are great for plots and table making.</p>
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong> <em>generated with <a href="https://github.com/thlorenz/doctoc">DocToc</a></em></p>
+<ul>
+<li><a href="#summary-of-the-files-here">Setting up your dashboard repository</a></li>
+<li><a href="#setting-up-your-config-file">Setting up your config file</a>
+<ul>
+<li><a href="#overall-settings">Overall settings</a></li>
+<li><a href="#where-your-data-are-saved">Where your data are saved</a></li>
+<li><a href="#setting-up-google-authentication">Setting up Google Authentication</a></li>
+<li><a href="#setting-up-calendly">Setting up Calendly</a></li>
+<li><a href="#setting-up-cran">Setting up CRAN</a></li>
+<li><a href="#setting-up-github">Setting up GitHub</a></li>
+<li><a href="#setting-up-google-analytics">Setting up Google Analytics</a></li>
+<li><a href="#setting-up-google-forms">Setting up Google Forms</a></li>
+<li><a href="#setting-up-slido">Setting up Slido</a></li>
+<li><a href="#setting-up-youtube">Setting up YouTube</a></li>
+</ul></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+</div>
+<div id="setting-up-your-config-file" class="section level2">
+<h2>Setting up your config file</h2>
+<p>Return to the <code>Code</code> on your <code>metricminer</code> dashboard github repository. And find the <code>_config_automation.yml</code> github file. Open up that file and we will start setting up which metrics you’d like to be retrieved.</p>
+<div id="overall-settings" class="section level3">
+<h3>Overall settings</h3>
+<p>metricminer dashboard is an OTTR website with additional metric collecting functionality powered by metricminer. <a href="https://www.ottrproject.org/editing_website.html">You can read more details about how to update your metricminer/OTTR website here</a>. If you are not familiar with pull requests, we recommend you go read those OTTR docs first.</p>
+<p>At the top of the config file you will see a listing of the checks that are run upon filing a pull request. If at any time you don’t want these checks to be run you can set them to <code>no</code> and GitHub Actions will not run them.</p>
+<pre><code># Check that urls in the content are not broken
+url-checker: yes
+# Render preview of content with changes (Rmd&#39;s and md&#39;s are checked)
+render-preview: yes
+# Spell check Rmds and quizzes
+spell-check: yes
+# Style any R code
+style-code: yes</code></pre>
+</div>
+<div id="where-your-data-are-saved" class="section level3">
+<h3>Where your data are saved</h3>
+<p>By default there are two destinations you can save your data for metricminer (although if you change the code yourself you can feel free to save the data wherever you like). Built in to metricminer-dashboard however we have github and google as your options for a data destination.</p>
+<p>By default your data is saved to github. But this will only be appropriate for small amounts of data (you could use something called git-lfs but we find it can be a bit of a hassle).</p>
+<pre><code>### Options are &quot;github&quot; or &quot;google&quot;
+data_dest: github
+folder_path:</code></pre>
+<p>If in your config file you choose “google” as your data destination you will need to do two things: 1. Set up your Google Authentication secrets in this repository 2. Give a folder path to your Google drive where you’d like your data to be saved.</p>
+</div>
+<div id="setting-up-google-authentication" class="section level3">
+<h3>Setting up Google Authentication</h3>
+<p>Your metricminer dashboard will need permissions to Google if you are saving data there, or wanting to use any data from a Google product including: Google Analytics, Google Forms, Googledrive, or Youtube.</p>
+<p>To setup Google Authentication for your metricminer dashboard, you’ll need to open up R on your local computer and run the following code: If you aren’t a regular R user you can always use <a href="https://posit.cloud/">posit.cloud</a> to avoid the installation process.</p>
+<pre><code>install.packages(&quot;metricminer&quot;)
+token &lt;- authorize(&quot;google&quot;)</code></pre>
+<p>Then you can use this object to extract two secrets by printing them out like this and you will need to store both to your metricminer dashboard GitHub secrets (which we will describe how to here).</p>
+<p>First, return to your metricminer dashboard repository and go to <code>Settings</code> &gt; <code>Secrets and variables</code> &gt; <code>Actions</code>. - Click on <code>New repository secret</code>. Name your new secret <em>exactly</em> <code>METRICMINER_GOOGLE_ACCESS</code> - Copy what is printed out in R when you run:</p>
+<pre><code>token$credentials$access_token</code></pre>
+<p>and paste it into the <code>Secret</code> box and then click the green “Add secret” button.</p>
+<p>Repeat the same steps for the Refresh token except call this <code>METRICMINER_GOOGLE_REFRESH</code></p>
+<pre><code>token$credentials$refresh_token</code></pre>
+<hr />
+<p>This work is funded by NCI UE5CA254170 as a part of the <a href="https://www.itcrtraining.org/">ITCR Training Network</a></p>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-951TGMSPH7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-951TGMSPH7');
+</script>
+<p><a href="https://www.metricminer.org/privacypolicy.html">See privacy policy</a></p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
