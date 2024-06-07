@@ -6,9 +6,6 @@ navbar:
   - text: Home
     href: index.html
     icon: fa-home
-  - text: Get Started!
-    href: getting_started.html
-    icon: fa-play
   - text: Calendly
     href: calendly.html
     icon: fa-calendar
