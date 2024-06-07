@@ -6,98 +6,15 @@ output:
 
 <img src = "resources/images/metricminer-gnome.png" width = 200>
 
-## Setting up your dashboard repository
+## Welcome to the metricminer dashboard template!
 
-1. To get started, go to the [metricminer-dashboard template GitHub repo](https://github.com/fhdsl/metricminer-dashboard)
-2. Click the green "Use this template" button in the upper right corner. If you do not see it, make sure you are logged in to GitHub (and have an account).
-3. Name your new metricminer dashboard repository on this screen. Then click "Create new repository".
-4. Create your GitHub secret by going to https://github.com/settings/tokens/new
-5. Make sure your GitHub secret has the `repo` scopes box checked. Name it something that will remind you it has to do with your metricminer dashboard and then scroll to the bottom and click "Generate Token". Keep this page open for now.
-6. Return to your metricminer dashboard repository and go to Settings > Secrets and variables > Actions.
-7. Click on `New repository secret`. Name your new secret *exactly* `METRICMINER_GITHUB_PAT`
-8. Copy and paste your Personal access token in the `Secret` box and then click the green "Add secret" button.
+This template allows you to display metrics from metricminer without having to start a website from scratch!
 
+The [getting started page](./getting_started.html) will walk you through the steps but after initial set up what you do to customize your metricminer dashboard will be up to you and what metrics you are look to collect and display. For example, you will see on this template website we have metrics included from a variety of sources: Google Analytics, GitHub, etc. But it is likely that you don't have or won't want to collect data from ALL of the possible sources `metricminer` can collect from.
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+In our guide we will point you to what files you'll need to edit to customize this dashboard to work for you!
 
-  - [Setting up your dashboard repository](#setting-up-your-dashboard-repository)
-  - [Setting up your config file](#setting-up-your-config-file)
-    - [Overall settings](#overall-settings)
-    - [Where your data are saved](#where-your-data-are-saved)
-    - [Setting up Google Authentication](#setting-up-google-authentication)
-    - [Setting up Calendly](#setting-up-calendly)
-    - [Setting up CRAN](#setting-up-cran)
-    - [Setting up GitHub](#setting-up-github)
-    - [Setting up Google Analytics](#setting-up-google-analytics)
-    - [Setting up Google Forms](#setting-up-google-forms)
-    - [Setting up Slido](#setting-up-slido)
-    - [Setting up YouTube](#setting-up-youtube)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-## Setting up your config file
-
-Return to the `Code` on your metricminer dashboard github repository. And find the `_config_automation.yml` github file. Open up that file and we will start setting up which metrics you'd like to be retrieved.
-
-### Overall settings
-
-metricminer dashboard is an OTTR website with additional metric collecting functionality powered by metricminer.
-[You can read more details about how to update your metricminer/OTTR website here](https://www.ottrproject.org/editing_website.html). If you are not familiar with pull requests, we recommend you go read those OTTR docs first.
-
-At the top of the config file you will see a listing of the checks that are run upon filing a pull request. If at any time you don't want these checks to be run you can set them to `no` and GitHub Actions will not run them.
-```
-# Check that urls in the content are not broken
-url-checker: yes
-# Render preview of content with changes (Rmd's and md's are checked)
-render-preview: yes
-# Spell check Rmds and quizzes
-spell-check: yes
-# Style any R code
-style-code: yes
-```
-
-### Where your data are saved
-
-By default there are two destinations you can save your data for metricminer (although if you change the code yourself you can feel free to save the data wherever you like).
-Built in to metricminer-dashboard however we have github and google as  your options for a data destination.
-
-By default your data is saved to github. But this will only be appropriate for small amounts of data (you could use something called git-lfs but we find it can be a bit of a hassle).
-```
-### Options are "github" or "google"
-data_dest: github
-folder_path:
-```
-If in your config file you choose "google" as your data destination you will need to do two things:
-1. Set up your Google Authentication secrets in this repository
-2. Give a folder path to your Google drive where you'd like your data to be saved.
-
-### Setting up Google Authentication
-
-Your metricminer dashboard will need permissions to Google if you are saving data there, or wanting to use any data from a Google product including: Google Analytics, Google Forms, Googledrive, or Youtube. 
-
-To setup Google Authentication for your metricminer dashboard, you'll need to open up R on your local computer and run the following code:
-If you aren't a regular R user you can always use [posit.cloud](https://posit.cloud/) to avoid the installation process. 
-
-```
-install.packages("metricminer")
-token <- authorize("google")
-```
-Then you can use this object to extract two secrets by printing them out like this and you will need to store both to your metricminer dashboard GitHub secrets (which we will describe how to here).
-
-First, return to your metricminer dashboard repository and go to `Settings` > `Secrets and variables` > `Actions`.
-- Click on `New repository secret`. Name your new secret *exactly* `METRICMINER_GOOGLE_ACCESS`
-- Copy what is printed out in R when you run:
-```
-token$credentials$access_token
-```
-and paste it into the `Secret` box and then click the green "Add secret" button.
-
-Repeat the same steps for the Refresh token except call this `METRICMINER_GOOGLE_REFRESH`
-```
-token$credentials$refresh_token
-```
+Please email `itcrtrainingnetwork@gmail.com` with any questions or concerns with this template dashboard or [file a GitHub issue](https://github.com/fhdsl/metricminer-dashboard/issues).
 
 ---
 This work is funded by NCI UE5CA254170 as a part of the [ITCR Training Network](https://www.itcrtraining.org/)

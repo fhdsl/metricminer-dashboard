@@ -1,0 +1,139 @@
+---
+title: "**Setting up your metricminer dashboard**"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    toc_collapsed: true
+---
+
+<img src = "resources/images/metricminer-gnome.png" width = 200>
+
+## Creating up your dashboard repository
+
+1. To get started, go to the [metricminer-dashboard template GitHub repo](https://github.com/fhdsl/metricminer-dashboard)
+2. Click the green "Use this template" button in the upper right corner. If you do not see it, make sure you are logged in to GitHub (and have an account).
+3. Name your new metricminer dashboard repository on this screen. Then click "Create new repository". This will create your new dashboard!
+
+## Set up your Credentials
+
+4. Create your GitHub secret by going to https://github.com/settings/tokens/new
+5. Make sure your GitHub secret has the `repo` scopes box checked. Name it something that will remind you it has to do with your metricminer dashboard and then scroll to the bottom and click "Generate Token". Keep this page open for now.
+6. Return to your metricminer dashboard repository and go to Settings > Secrets and variables > Actions.
+7. Click on `New repository secret`. Name your new secret *exactly* `METRICMINER_GITHUB_PAT`
+8. Copy and paste your Personal access token in the `Secret` box and then click the green "Add secret" button.
+
+
+## Summary of the files here
+
+What files are in your metricminer dashboard repo to start? Let's cover this.
+
+First off, a metricminer dashboard is an OTTR website with extra functionality so please reference [ottrproject.org](https://www.ottrproject.org/editing_website.html) for more info.
+
+- `_config_automation.yml` - This file is where you will go to tell `metricminer` what metrics you'd like to collect and where you'd like them stored.
+- `_site.yml` - This file is how you make your navbar. It will start out with things like `Home`, `Getting Started`, `GitHub` and the rest of the sources that you may collect metrics from. If you edit this file you can rearrange what tabs and pages are available from the navbar. [Read here for more about this file](https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html).
+- Any files that end with `Rmd` are likely to be your webpages for your metricminer dashboard. These are all written in markdown language which is a shorthand for html. [Read here for how to edit these](https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html).
+- `refresh-scripts/` - this folder holds the scripts that are run by the automated Github Action set up here in order to pull metrics with metricminer and save the data for you. These scripts will likely need to be customized depending on your needs and whether the default metrics collected are what you want.
+- `metricminer-data/` - this folder stores the metric data collected when `metricminer` is run. Take a look at the example data here to see what the default set up is. Note that if you need different metrics collected you will like have to alter the scripts in `refresh-scripts/` and to do this you'll need to reference the [metricminer docs](https://hutchdatascience.org/metricminer/articles/getting-started.html).
+
+## What now?
+
+From here, set up your config file using the next sections instructions, keeping in mind you can skip sections that have data sources that may not be pertinent to you. You can start by deleting from the `_site.yml` file any tabs you won't want to keep as well as deleting any Rmds you won't want.
+
+After initial setup of your config file, you'll want to edit your Rmd files to display plots and tables that are pertinent to you. In order to do this, you may want to know a little R code. We have example tables and plots but they are probably not going to feature exactly what you need. Edit these to display what you'd like. We recommend seeking out [ggplot2](https://ggplot2.tidyverse.org/) and [knitr](https://bookdown.org/yihui/rmarkdown-cookbook/tables.html) as two R packages that are great for plots and table making.
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+  - [Setting up your dashboard repository](#summary-of-the-files-here)
+  - [Setting up your config file](#setting-up-your-config-file)
+    - [Overall settings](#overall-settings)
+    - [Where your data are saved](#where-your-data-are-saved)
+    - [Setting up Google Authentication](#setting-up-google-authentication)
+    - [Setting up Calendly](#setting-up-calendly)
+    - [Setting up CRAN](#setting-up-cran)
+    - [Setting up GitHub](#setting-up-github)
+    - [Setting up Google Analytics](#setting-up-google-analytics)
+    - [Setting up Google Forms](#setting-up-google-forms)
+    - [Setting up Slido](#setting-up-slido)
+    - [Setting up YouTube](#setting-up-youtube)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Setting up your config file
+
+Return to the `Code` on your `metricminer` dashboard github repository. And find the `_config_automation.yml` github file. Open up that file and we will start setting up which metrics you'd like to be retrieved.
+
+### Overall settings
+
+metricminer dashboard is an OTTR website with additional metric collecting functionality powered by metricminer.
+[You can read more details about how to update your metricminer/OTTR website here](https://www.ottrproject.org/editing_website.html). If you are not familiar with pull requests, we recommend you go read those OTTR docs first.
+
+At the top of the config file you will see a listing of the checks that are run upon filing a pull request. If at any time you don't want these checks to be run you can set them to `no` and GitHub Actions will not run them.
+```
+# Check that urls in the content are not broken
+url-checker: yes
+# Render preview of content with changes (Rmd's and md's are checked)
+render-preview: yes
+# Spell check Rmds and quizzes
+spell-check: yes
+# Style any R code
+style-code: yes
+```
+
+### Where your data are saved
+
+By default there are two destinations you can save your data for metricminer (although if you change the code yourself you can feel free to save the data wherever you like).
+Built in to metricminer-dashboard however we have github and google as  your options for a data destination.
+
+By default your data is saved to github. But this will only be appropriate for small amounts of data (you could use something called git-lfs but we find it can be a bit of a hassle).
+```
+### Options are "github" or "google"
+data_dest: github
+folder_path:
+```
+If in your config file you choose "google" as your data destination you will need to do two things:
+1. Set up your Google Authentication secrets in this repository
+2. Give a folder path to your Google drive where you'd like your data to be saved.
+
+### Setting up Google Authentication
+
+Your metricminer dashboard will need permissions to Google if you are saving data there, or wanting to use any data from a Google product including: Google Analytics, Google Forms, Googledrive, or Youtube.
+
+To setup Google Authentication for your metricminer dashboard, you'll need to open up R on your local computer and run the following code:
+If you aren't a regular R user you can always use [posit.cloud](https://posit.cloud/) to avoid the installation process.
+
+```
+install.packages("metricminer")
+token <- authorize("google")
+```
+Then you can use this object to extract two secrets by printing them out like this and you will need to store both to your metricminer dashboard GitHub secrets (which we will describe how to here).
+
+First, return to your metricminer dashboard repository and go to `Settings` > `Secrets and variables` > `Actions`.
+- Click on `New repository secret`. Name your new secret *exactly* `METRICMINER_GOOGLE_ACCESS`
+- Copy what is printed out in R when you run:
+```
+token$credentials$access_token
+```
+and paste it into the `Secret` box and then click the green "Add secret" button.
+
+Repeat the same steps for the Refresh token except call this `METRICMINER_GOOGLE_REFRESH`
+```
+token$credentials$refresh_token
+```
+
+---
+This work is funded by NCI UE5CA254170 as a part of the [ITCR Training Network](https://www.itcrtraining.org/)
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-951TGMSPH7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-951TGMSPH7');
+</script>
+
+[See privacy policy](https://www.metricminer.org/privacypolicy.html)
