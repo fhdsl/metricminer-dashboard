@@ -13,8 +13,8 @@
 
 <title>Google Analytics</title>
 
-<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -29,14 +29,14 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link rel="shortcut icon" href="resources/images/favicon.ico" />
  <!--- go to https://favicon.io/favicon-converter/ to upload an image to make a new favicon.io. You will need to replace the current favicon.io image with the one in the downloaded directory from the website. The current image is in the resources/images/ directory --->
 
@@ -67,7 +67,6 @@ if (window.hljs) {
 
 
 
-
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -88,9 +87,6 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
-}
-details > summary > p:only-child {
-  display: inline;
 }
 pre code {
   padding: 0;
@@ -148,15 +144,11 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark the anchor link active (and if it's in a dropdown, also mark that active)
-  var dropdown = menuAnchor.closest('li.dropdown');
-  if (window.bootstrap) { // Bootstrap 4+
-    menuAnchor.addClass('active');
-    dropdown.find('> .dropdown-toggle').addClass('active');
-  } else { // Bootstrap 3
-    menuAnchor.parent().addClass('active');
-    dropdown.addClass('active');
-  }
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -185,8 +177,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "\e259";
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -194,9 +186,16 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "\e258";
-  font-family: 'Glyphicons Halflings';
+  content: "&#xe258;";
   border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -313,7 +312,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -384,68 +383,30 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Google Analytics</h1>
-<h4 class="date">29 March, 2024</h4>
+<h4 class="date">07 June, 2024</h4>
 
 </div>
 
 
 <div id="preview" class="section level2">
 <h2>Preview</h2>
-<p><strong>Still need to add plots here. Describe below what kinds of
-plots may work for the data available</strong></p>
+<p><strong>Still need to add plots here. Describe below what kinds of plots may work for the data available</strong></p>
 </div>
 <div id="data-information" class="section level2">
 <h2>Data Information</h2>
-<p>Data information for google analytics metrics
-(<code>ga_metrics</code>):</p>
-<p>Most of these metrics involve how users interact with a website or
-app, specifically in “event” terminology. Events are a means of
-measuring user interaction and can include actions like loading a page,
-clicking a link, submitting a form or requesting information, searches,
-shares content from. Do website creators need to define or add/create
-events to track for their website or is that automatic?</p>
+<p>Data information for google analytics metrics (<code>ga_metrics</code>):</p>
+<p>Most of these metrics involve how users interact with a website or app, specifically in “event” terminology. Events are a means of measuring user interaction and can include actions like loading a page, clicking a link, submitting a form or requesting information, searches, shares content from. Do website creators need to define or add/create events to track for their website or is that automatic?</p>
 <ul>
-<li><code>activeUsers</code>: The number of distinct users who visited
-your website or application. An active user is any user who visited your
-website or application. An active user is any user who has an engaged
-session or when Analytics collects parameters from a website or app
-indicative of a first time or active user.</li>
-<li><code>newUsers</code>: The number of new unique user IDs that logged
-the first_open or first_visit event. The metric allows you to measure
-the number of users who interacted with your site or launched your app
-for the first time.</li>
-<li><code>totalUsers</code>: The number of unique user IDs that
-triggered any events. The metric allows you to measure the number of
-unique users who logged an event.</li>
-<li><code>eventCountPerUser</code>: The average number of events
-triggered per user. Specifically the event count divided by the number
-of active users. The event count in turn is the number of times users
-triggered an event.</li>
-<li><code>screenPageViewsPerUser</code>: The average number of mobile
-app screens or web pages viewed per user. This would then be the total
-number of views (<code>screenPageViews</code>) divided by the total
-number of users (<code>totalUsers</code>)<br />
+<li><code>activeUsers</code>: The number of distinct users who visited your website or application. An active user is any user who visited your website or application. An active user is any user who has an engaged session or when Analytics collects parameters from a website or app indicative of a first time or active user.</li>
+<li><code>newUsers</code>: The number of new unique user IDs that logged the first_open or first_visit event. The metric allows you to measure the number of users who interacted with your site or launched your app for the first time.</li>
+<li><code>totalUsers</code>: The number of unique user IDs that triggered any events. The metric allows you to measure the number of unique users who logged an event.</li>
+<li><code>eventCountPerUser</code>: The average number of events triggered per user. Specifically the event count divided by the number of active users. The event count in turn is the number of times users triggered an event.</li>
+<li><code>screenPageViewsPerUser</code>: The average number of mobile app screens or web pages viewed per user. This would then be the total number of views (<code>screenPageViews</code>) divided by the total number of users (<code>totalUsers</code>)<br />
 </li>
-<li><code>sessions</code>: The number of sessions that began on your
-website or application. A session is a period of time during which a
-user interacts with your website or app. A session initiates when a user
-either opens your app in the foreground or views a page or screen and no
-session is currently active (e.g., their previous session has timed
-out). By default, a session ends (times out) after 30 minutes of user
-inactivity. There is no limit to how long a session can last.</li>
-<li><code>averageSessionDuration</code>: The average duration (in
-seconds) of users’ sessions.</li>
-<li><code>screenPageViews</code>: The number of mobile app screens or
-web pages your users saw. Repeated views of a single screen or page are
-counted.</li>
-<li><code>engagementRate</code>: The percentage of sessions that were
-engaged sessions. Specifically, the number of engaged sessions divided
-by the total number of sessions. An engaged session is a session that
-lasts 10 seconds or longer or has 1 or more conversion events or 2 or
-more page or screen views. (A conversion event is any user action that’s
-valuable to your business and is defined by marking the event as a
-conversion. This is in contrast to most other metrics that are populated
-automatically.)</li>
+<li><code>sessions</code>: The number of sessions that began on your website or application. A session is a period of time during which a user interacts with your website or app. A session initiates when a user either opens your app in the foreground or views a page or screen and no session is currently active (e.g., their previous session has timed out). By default, a session ends (times out) after 30 minutes of user inactivity. There is no limit to how long a session can last.</li>
+<li><code>averageSessionDuration</code>: The average duration (in seconds) of users’ sessions.</li>
+<li><code>screenPageViews</code>: The number of mobile app screens or web pages your users saw. Repeated views of a single screen or page are counted.</li>
+<li><code>engagementRate</code>: The percentage of sessions that were engaged sessions. Specifically, the number of engaged sessions divided by the total number of sessions. An engaged session is a session that lasts 10 seconds or longer or has 1 or more conversion events or 2 or more page or screen views. (A conversion event is any user action that’s valuable to your business and is defined by marking the event as a conversion. This is in contrast to most other metrics that are populated automatically.)</li>
 </ul>
 <pre class="r"><code>knitr::kable(ga_metrics)</code></pre>
 <table>
@@ -502,31 +463,18 @@ automatically.)</li>
 </tr>
 </tbody>
 </table>
-<p><strong>In the preview section above</strong>: <em>Add plots that are
-like Figures 9 and 10 from the ITN evaluation</em></p>
-<p>Data information for google analytics dimensions
-(<code>ga_dimensions</code>):</p>
+<p><strong>In the preview section above</strong>: <em>Add plots that are like Figures 9 and 10 from the ITN evaluation</em></p>
+<p>Data information for google analytics dimensions (<code>ga_dimensions</code>):</p>
 <ul>
-<li><code>website</code>: Indicates the name of the website associated
-with that session.</li>
+<li><code>website</code>: Indicates the name of the website associated with that session.</li>
 <li><code>day</code>: Indicates the day of the session</li>
 <li><code>month</code>: Indicates the month of the session</li>
 <li><code>year</code>: Indicates the year of the session</li>
-<li><code>country</code>: Indicates the country from which a session
-originates</li>
-<li><code>fullPageURL</code>: Indicates full page URL of the page that
-is viewed in that session.</li>
+<li><code>country</code>: Indicates the country from which a session originates</li>
+<li><code>fullPageURL</code>: Indicates full page URL of the page that is viewed in that session.</li>
 </ul>
 <pre class="r"><code>knitr::kable(ga_dimensions)</code></pre>
 <table>
-<colgroup>
-<col width="19%" />
-<col width="4%" />
-<col width="7%" />
-<col width="6%" />
-<col width="17%" />
-<col width="45%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th align="left">website</th>
@@ -604,17 +552,11 @@ is viewed in that session.</li>
 </tr>
 </tbody>
 </table>
-<p><strong>In the preview section above</strong>: <em>Add a plot that
-shows a map and distribution of countries? (though this might not
-generalize well)</em> or <em>Add a plot that shows traffic over
-time</em></p>
-<p>Data information for google analytics link clicks
-(<code>ga_link_clicks</code>):</p>
+<p><strong>In the preview section above</strong>: <em>Add a plot that shows a map and distribution of countries? (though this might not generalize well)</em> or <em>Add a plot that shows traffic over time</em></p>
+<p>Data information for google analytics link clicks (<code>ga_link_clicks</code>):</p>
 <ul>
-<li><code>website</code>: Indicates the website on which the outbound
-click event occurred</li>
-<li><code>linkURL</code>: Indicates the URL for the outbound click. What
-does NA mean for this – a random click on the website?</li>
+<li><code>website</code>: Indicates the website on which the outbound click event occurred</li>
+<li><code>linkURL</code>: Indicates the URL for the outbound click. What does NA mean for this – a random click on the website?</li>
 </ul>
 <pre class="r"><code>knitr::kable(ga_link_clicks)</code></pre>
 <table>
@@ -631,8 +573,7 @@ does NA mean for this – a random click on the website?</li>
 </tr>
 <tr class="even">
 <td align="left">dummy-website-2</td>
-<td align="left"><a href="https://www.metricminer.org/"
-class="uri">https://www.metricminer.org/</a></td>
+<td align="left"><a href="https://www.metricminer.org/" class="uri">https://www.metricminer.org/</a></td>
 </tr>
 <tr class="odd">
 <td align="left">dummy-website</td>
@@ -640,8 +581,7 @@ class="uri">https://www.metricminer.org/</a></td>
 </tr>
 <tr class="even">
 <td align="left">dummy-website</td>
-<td align="left"><a href="https://www.metricminer.org/"
-class="uri">https://www.metricminer.org/</a></td>
+<td align="left"><a href="https://www.metricminer.org/" class="uri">https://www.metricminer.org/</a></td>
 </tr>
 </tbody>
 </table>
@@ -654,81 +594,45 @@ class="uri">https://www.metricminer.org/</a></td>
 <h2>Customization</h2>
 <div id="customizing-google-analytics-data" class="section level3">
 <h3>Customizing Google Analytics Data</h3>
-<p>Google Analytics explains that each dimension and metric that can be
-collected and reported has a scope (user-, session-, or hit-level) and
-in most cases, only dimensions and metrics that share the same scope can
-be combined.</p>
-<p>To learn more about about Google Analytics in general, <a
-href="https://analytics.google.com/analytics/academy/">visit the google
-analytics documentation</a>, and <a
-href="https://analytics.google.com/analytics/">visit your own
-dashboard</a> to customize and explore the possibilites of what you can
-collect.</p>
+<p>Google Analytics explains that each dimension and metric that can be collected and reported has a scope (user-, session-, or hit-level) and in most cases, only dimensions and metrics that share the same scope can be combined.</p>
+<p>To learn more about about Google Analytics in general, <a href="https://analytics.google.com/analytics/academy/">visit the google analytics documentation</a>, and <a href="https://analytics.google.com/analytics/">visit your own dashboard</a> to customize and explore the possibilites of what you can collect.</p>
 </div>
 <div id="plots" class="section level3">
 <h3>Plots</h3>
-<p>Review ggplot2 documentation for customization of plots <a
-href="https://ggplot2.tidyverse.org/">visit the ggplot2 documentation
-here</a> or <a
-href="https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf">look
-at this posit cheatsheet</a>.</p>
+<p>Review ggplot2 documentation for customization of plots <a href="https://ggplot2.tidyverse.org/">visit the ggplot2 documentation here</a> or <a href="https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf">look at this posit cheatsheet</a>.</p>
 </div>
 </div>
 <div id="setting-up-google-analytics-1" class="section level2">
 <h2>Setting up Google Analytics</h2>
-<p><a href="#setting-up-google-authentication">Follow the steps from the
-above section to authenticate Google</a> – make sure that the account
-you have authenticated for has access to the Google Analytics properties
-you wish to collect.</p>
-<p>We’ll need to collect the Google Analytics property IDs for the
-websites you want to retrieve data from.</p>
+<p><a href="#setting-up-google-authentication">Follow the steps from the above section to authenticate Google</a> – make sure that the account you have authenticated for has access to the Google Analytics properties you wish to collect.</p>
+<p>We’ll need to collect the Google Analytics property IDs for the websites you want to retrieve data from.</p>
 <ol style="list-style-type: decimal">
-<li>Go to <a href="https://analytics.google.com/"
-class="uri">https://analytics.google.com/</a> – You may have to login.
-These instructions are assuming you have already set up Google Analytics
-and have been collecting data.</li>
-<li>Then click on the website at the top of the navbar. It will bring
-you to a dropdown that shows all your websites.</li>
+<li>Go to <a href="https://analytics.google.com/" class="uri">https://analytics.google.com/</a> – You may have to login. These instructions are assuming you have already set up Google Analytics and have been collecting data.</li>
+<li>Then click on the website at the top of the navbar. It will bring you to a dropdown that shows all your websites.</li>
 </ol>
 <p><img src = "resources/images/google-analytics-dropdown.png" width = "50%"></p>
-<p>4 .Click on one of the websites where you’d like to retrieve data
-from. The URL will look something like this:</p>
+<p>4 .Click on one of the websites where you’d like to retrieve data from. The URL will look something like this:</p>
 <pre><code>https://analytics.google.com/analytics/web/?authuser=1#/p&lt;PROPERTY_ID_HERE&gt;/reports/home</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li>Copy the property id and put it in the <code>ga_property_ids:</code>
-part of the <code>_config_automation.yml</code>.</li>
+<li>Copy the property id and put it in the <code>ga_property_ids:</code> part of the <code>_config_automation.yml</code>.</li>
 </ol>
-<p>Repeat these same steps for all the properties you’d like to collect
-data for, separating the IDs by commas. Delete the example IDs we have
-put there as placeholders.</p>
+<p>Repeat these same steps for all the properties you’d like to collect data for, separating the IDs by commas. Delete the example IDs we have put there as placeholders.</p>
 <pre><code>###### Google Analytics ######
 refresh-ga: yes
 ga_property_ids: [ 422671031, 422558989 ]
 ga_googlesheet:</code></pre>
 <ul class="task-list">
-<li><input type="checkbox" />In the <code>config_automation.yml</code>
-file, make sure that <code>refresh-ga</code> is set to “yes”.</li>
-<li><input type="checkbox" />Optionally, if you are saving data to
-Google, specify a googlesheet ID in <code>ga_googlesheet</code> you’d
-like the GitHub data to be saved to. This will only be relevant if
-you’ve set <code>data_dest</code> to <code>google</code>.</li>
+<li><input type="checkbox" disabled="" />
+In the <code>config_automation.yml</code> file, make sure that <code>refresh-ga</code> is set to “yes”.</li>
+<li><input type="checkbox" disabled="" />
+Optionally, if you are saving data to Google, specify a googlesheet ID in <code>ga_googlesheet</code> you’d like the GitHub data to be saved to. This will only be relevant if you’ve set <code>data_dest</code> to <code>google</code>.</li>
 </ul>
 </div>
 <div id="customizing-the-data" class="section level2">
 <h2>Customizing the data</h2>
-<p>In order to customize the data you are downloading from Google
-Analytics you can modify the <code>refresh-scripts/refresh-ga.R</code>
-script in your repository.</p>
-<p>You can take a look at the <a
-href="https://hutchdatascience.org/metricminer/articles/getting-started.html"><code>metricminer</code>
-R package documentation</a> for more details about the functions and
-what is possible.</p>
-<p>If you have a metric need that is not currently fulfilled by
-<code>metricminer</code> or <code>metricminer-dashboard</code> we
-encourage you to <a
-href="https://github.com/fhdsl/metricminer/issues/new/choose">file a
-GitHub issue with us and let us know about your new feature idea (or bug
-report)</a>.</p>
+<p>In order to customize the data you are downloading from Google Analytics you can modify the <code>refresh-scripts/refresh-ga.R</code> script in your repository.</p>
+<p>You can take a look at the <a href="https://hutchdatascience.org/metricminer/articles/getting-started.html"><code>metricminer</code> R package documentation</a> for more details about the functions and what is possible.</p>
+<p>If you have a metric need that is not currently fulfilled by <code>metricminer</code> or <code>metricminer-dashboard</code> we encourage you to <a href="https://github.com/fhdsl/metricminer/issues/new/choose">file a GitHub issue with us and let us know about your new feature idea (or bug report)</a>.</p>
 </div>
 
 
