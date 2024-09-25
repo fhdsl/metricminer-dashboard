@@ -82,6 +82,7 @@ If you aren't a regular R user you can always use [posit.cloud](https://posit.cl
 
 ```
 install.packages("metricminer")
+library("metricminer")
 token <- authorize("google")
 ```
 Then you can use this object to extract two secrets by printing them out like this and you will need to store both to your metricminer dashboard GitHub secrets (which we will describe how to here).
