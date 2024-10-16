@@ -172,8 +172,3 @@ jobs:
 
             _Updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
           edit-mode: replace
-          body: |
-            The latest commit did not produce rendering changes.
-
-            _Updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
-          edit-mode: replace
