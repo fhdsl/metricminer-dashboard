@@ -1,5 +1,9 @@
-repo_name	num_forks	num_contributors	total_contributions	num_stars	health_percentage
-fhdsl/metricminer	NA	4	434	1	62
-fhdsl/metricminer-dashboard	NA	4	188	0	62
-jhudsl/OTTR_Template	12	18	954	15	75
-jhudsl/OTTR_Template_Website	1	7	247	0	37
+repo_name	num_forks	num_contributors	total_contributions	num_stars	health_percentage	num_repo_activities	total_contributors
+fhdsl/metricminer	NA	4	434	1	62	NA	NA
+fhdsl/metricminer-dashboard	NA	4	188	0	62	NA	NA
+jhudsl/OTTR_Template	12	18	954	15	75	NA	NA
+jhudsl/OTTR_Template_Website	1	7	247	0	37	NA	NA
+NA	NA	5	NA	2	100	566	475
+NA	NA	4	NA	1	62	477	206
+NA	14	19	NA	17	75	1559	1005
+NA	3	8	NA	2	50	412	302
