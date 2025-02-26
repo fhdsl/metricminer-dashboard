@@ -1,5 +1,5 @@
 # Candace Savonen Dec 2021
-# Updated Oct 2024
+# Updated Jan 2025
 name: Pull Request
 
 on:
@@ -13,29 +13,32 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.GH_PAT }}
 
         # Use the yaml-env-action action.
       - name: Load environment from YAML
         uses: doughepi/yaml-env-action@v1.0.0
         with:
-            files: _config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
+            files: config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
 
       # Delete the branch if this has been run before
       - name: Delete branch locally and remotely
-        run: git push origin --delete preview-${{ github.event.pull_request.number }} || echo "No branch to delete"
+        run: git push --force origin --delete preview-${{ github.event.pull_request.number }} || echo "No branch to delete"
 
       # Make the branch fresh
       - name: Make the branch fresh
         run: |
-          git config --local user.email "itcrtrainingnetwork@gmail.com"
-          git config --local user.name "jhudsl-robot"
+          git config --global --add safe.directory $GITHUB_WORKSPACE
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
           branch_name='preview-${{ github.event.pull_request.number }}'
           echo branch doesnt exist
           git checkout -b $branch_name || echo branch exists
-          git push --set-upstream origin $branch_name
+          git push --force --set-upstream origin $branch_name
         shell: bash
 
     outputs:
@@ -44,6 +47,7 @@ jobs:
       toggle_url_check: "${{ env.URL_CHECKER }}"
       toggle_render_preview: "${{ env.RENDER_PREVIEW }}"
       rendering_docker_image: "${{ env.RENDERING_DOCKER_IMAGE }}"
+      toggle_readability: "${{ env.READABILITY_REPORT }}"
 
 ########################## Make the error reports ##############################
   spell-check:
@@ -54,7 +58,8 @@ jobs:
     with:
       check_type: spelling
       error_min: 3
-      gh_pat: secrets.GH_PAT
+    secrets:
+      gh_pat: ${{ secrets.GH_PAT }}
 
   url-check:
     name: Check URLs
@@ -64,8 +69,30 @@ jobs:
     with:
       check_type: urls
       error_min: 0
-      gh_pat: secrets.GH_PAT
+    secrets:
+      gh_pat: ${{ secrets.GH_PAT }}
+      
+############################# Readability Report ###################################
 
+  readability-report:
+    name: Readability report
+    needs: yaml-check
+    runs-on: ubuntu-latest
+    if: ${{needs.yaml-check.outputs.toggle_readability == 'yes'}}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Readability report
+        uses: Rebilly/lexi@v2
+        with:
+          github-token: ${{ secrets.GH_PAT }}
+          glob: '**/*.md'
+          
+###################### Render preview of website ##################
   render-preview:
     name: Render preview
     needs: yaml-check
