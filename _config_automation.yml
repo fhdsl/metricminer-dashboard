@@ -14,7 +14,7 @@ data_dest: github
 folder_path:
 
 ###### Calendly ######
-refresh-calendly: yes
+refresh-calendly: no
 calendly_googlesheet:
 
 ###### Citations ######
