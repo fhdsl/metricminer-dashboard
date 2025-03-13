@@ -13,7 +13,7 @@
 
 <title>CRAN</title>
 
-<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -35,8 +35,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
 <link rel="shortcut icon" href="resources/images/favicon.ico" />
  <!--- go to https://favicon.io/favicon-converter/ to upload an image to make a new favicon.io. You will need to replace the current favicon.io image with the one in the downloaded directory from the website. The current image is in the resources/images/ directory --->
 
@@ -384,7 +384,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">CRAN</h1>
-<h4 class="date">29 March, 2024</h4>
+<h4 class="date">13 March, 2025</h4>
 
 </div>
 
@@ -396,7 +396,7 @@ div.tocify {
 <pre><code>## # A tibble: 1 × 1
 ##   download_total
 ##            &lt;dbl&gt;
-## 1           8910</code></pre>
+## 1          23824</code></pre>
 <p>CRAN package downloads over time, summarized by month.</p>
 <pre class="r"><code>cran_stats &lt;- cran %&gt;%
   separate(date, into=c(&quot;year&quot;, &quot;month name&quot;, &quot;day&quot;), sep = &quot;-&quot;) %&gt;%
@@ -424,17 +424,18 @@ refresh-cran: yes
 cran_packages: [ metricminer, ottrpal ]
 cran_googlesheet:</code></pre>
 <ul class="task-list">
-<li><input type="checkbox" />In the <code>config_automation.yml</code>
-file, make sure that <code>refresh-cran</code> is set to “yes”.</li>
-<li><input type="checkbox" />In the <code>cran_packages</code> of your
-<code>config_automation.yml</code>, type the names of the packages that
-you’d like to collect data from on CRAN. Type them exactly as they are
-spelled, case sensitive, separated by commas. Delete the example package
-names we’ve put there.</li>
-<li><input type="checkbox" />Optionally, if you are saving data to
-google, specify a googlesheet ID in <code>cran_googlesheet</code> you’d
-like the CRAN data to be saved to. This will only be relevant if you’ve
-set <code>data_dest</code> to <code>google</code>.</li>
+<li><label><input type="checkbox" />In the
+<code>_config_automation.yml</code> file, make sure that
+<code>refresh-cran</code> is set to “yes”.</label></li>
+<li><label><input type="checkbox" />In the <code>cran_packages</code> of
+your <code>_config_automation.yml</code>, type the names of the packages
+that you’d like to collect data from on CRAN. Type them exactly as they
+are spelled, case sensitive, separated by commas. Delete the example
+package names we’ve put there.</label></li>
+<li><label><input type="checkbox" />Optionally, if you are saving data
+to google, specify a googlesheet ID in <code>cran_googlesheet</code>
+you’d like the CRAN data to be saved to. This will only be relevant if
+you’ve set <code>data_dest</code> to <code>google</code>.</label></li>
 </ul>
 </div>
 <div id="customizing-cran-data" class="section level2">
