@@ -1,6 +1,6 @@
 ---
 title: "Google Forms"
-output: 
+output:
   html_document:
     toc: true
     toc_float: true
@@ -14,10 +14,10 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 yaml <- yaml::read_yaml(file.path(root_dir, "_config_automation.yml"))
 
-## For google forms 
+## For google forms
 googleform_1 <- readr::read_tsv(file.path("metricminer_data", "googleforms", "a_cool_survey.tsv"))
 googleform_2 <- readr::read_tsv(file.path("metricminer_data", "googleforms", "another_even_cooler_survey.tsv"))
-                                
+
 ```
 
 ```{r}
@@ -46,14 +46,14 @@ google_forms: [
 googleforms_googlesheet:
 ```
 
-- [ ] In the `config_automation.yml` file, make sure that `refresh-googleforms` is set to "yes".
+- [ ] In the `_config_automation.yml` file, make sure that `refresh-googleforms` is set to "yes".
 - [ ] Optionally, if you are saving data to Google, specify a googlesheet ID in `googleforms_googlesheet` you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
 
-## Customizing the Google Forms Data 
+## Customizing the Google Forms Data
 
-In order to customize the data you are downloading from your Google Forms you can modify the 
-`refresh-scripts/refresh-googleforms.R` script in your repository. 
+In order to customize the data you are downloading from your Google Forms you can modify the
+`refresh-scripts/refresh-googleforms.R` script in your repository.
 
-You can take a look at the [`metricminer` R package documentation](https://hutchdatascience.org/metricminer/articles/getting-started.html) for more details about the functions and what is possible. 
+You can take a look at the [`metricminer` R package documentation](https://hutchdatascience.org/metricminer/articles/getting-started.html) for more details about the functions and what is possible.
 
-If you have a metric need that is not currently fulfilled by `metricminer` or `metricminer-dashboard` we encourage you to [file a GitHub issue with us and let us know about your new feature idea (or bug report)](https://github.com/fhdsl/metricminer/issues/new/choose). 
+If you have a metric need that is not currently fulfilled by `metricminer` or `metricminer-dashboard` we encourage you to [file a GitHub issue with us and let us know about your new feature idea (or bug report)](https://github.com/fhdsl/metricminer/issues/new/choose).

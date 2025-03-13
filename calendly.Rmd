@@ -1,6 +1,6 @@
 ---
 title: "Calendly"
-output: 
+output:
   html_document:
     toc: true
     toc_float: true
@@ -17,7 +17,7 @@ yaml <- yaml::read_yaml(file.path(root_dir, "_config_automation.yml"))
 ## For github
 calendly <- readr::read_tsv(file.path("metricminer_data", "calendly", "calendly.tsv"))
 
-## For google 
+## For google
 # calendly <- googlesheets4::read_sheet(yaml$calendly_googlesheet)
 ```
 
@@ -37,7 +37,7 @@ knitr::kable(calendly)
 
 After you've set up authorization you'll need to check the following items in the `_config_automation.yml` file.
 
-- [ ] In the `config_automation.yml` file, make sure that `refresh-calendly` is set to "yes".
+- [ ] In the `_config_automation.yml` file, make sure that `refresh-calendly` is set to "yes".
 - [ ] Optionally, if you are saving data to google, specify a googlesheet ID you'd like the CRAN data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
 ```
 ###### Calendly ######
@@ -45,12 +45,11 @@ refresh-calendly: yes
 calendly_googlesheet:
 ```
 
-## Customizing the data 
+## Customizing the data
 
-In order to customize the data you are downloading from calendly you can modify the 
-`refresh-scripts/refresh-calendly.R` script in your repository. 
+In order to customize the data you are downloading from calendly you can modify the
+`refresh-scripts/refresh-calendly.R` script in your repository.
 
-You can take a look at the [`metricminer` R package documentation](https://hutchdatascience.org/metricminer/articles/getting-started.html) for more details about the functions and what is possible. 
+You can take a look at the [`metricminer` R package documentation](https://hutchdatascience.org/metricminer/articles/getting-started.html) for more details about the functions and what is possible.
 
-If you have a metric need that is not currently fulfilled by `metricminer` or `metricminer-dashboard` we encourage you to [file a GitHub issue with us and let us know about your new feature idea (or bug report)](https://github.com/fhdsl/metricminer/issues/new/choose). 
-
+If you have a metric need that is not currently fulfilled by `metricminer` or `metricminer-dashboard` we encourage you to [file a GitHub issue with us and let us know about your new feature idea (or bug report)](https://github.com/fhdsl/metricminer/issues/new/choose).

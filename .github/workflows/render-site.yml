@@ -30,7 +30,7 @@ jobs:
       - name: Load environment from YAML
         uses: doughepi/yaml-env-action@v1.0.0
         with:
-            files: config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
+            files: _config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
 
     outputs:
       rendering_docker_image: "${{ env.RENDERING_DOCKER_IMAGE }}"
@@ -41,8 +41,8 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ${{needs.yaml-check.outputs.rendering_docker_image}}
-      
-    steps:    
+
+    steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: checkout
         uses: actions/checkout@v4

@@ -17,8 +17,8 @@ group:
         dest: .github/workflows/render-site.yml
       - source: .github/workflows/pull_request.yml
         dest: .github/workflows/pull_request.yml
-      - source: config_automation.yml
-        dest: config_automation.yml
+      - source: _config_automation.yml
+        dest: _config_automation.yml
   # Repositories to receive changes
     repos: |
       jhudsl/ottr-website
@@ -35,8 +35,8 @@ group:
 
 ### These are custom groups for syncing -- not all files needs to be synced # will update later
   # - files:
-  #   - source: config_automation.yml
-  #     dest: config_automation.yml
+  #   - source: _config_automation.yml
+  #     dest: _config_automation.yml
   #   - source: .github/workflows/pull-request.yml
   #     dest: .github/workflows/pull-request.yml
   #   - source: scripts/spell-check.R

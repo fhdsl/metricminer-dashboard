@@ -22,7 +22,7 @@ jobs:
       - name: Load environment from YAML
         uses: doughepi/yaml-env-action@v1.0.0
         with:
-            files: config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
+            files: _config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
 
       # Delete the branch if this has been run before
       - name: Delete branch locally and remotely
@@ -71,7 +71,7 @@ jobs:
       error_min: 0
     secrets:
       gh_pat: ${{ secrets.GH_PAT }}
-      
+
 ############################# Readability Report ###################################
 
   readability-report:
@@ -91,7 +91,7 @@ jobs:
         with:
           github-token: ${{ secrets.GH_PAT }}
           glob: '**/*.md'
-          
+
 ###################### Render preview of website ##################
   render-preview:
     name: Render preview
