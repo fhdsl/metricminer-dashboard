@@ -1,6 +1,6 @@
 ---
 title: "YouTube"
-output: 
+output:
   html_document:
     toc: true
     toc_float: true
@@ -20,7 +20,7 @@ youtube <- readr::read_tsv(file.path("metricminer_data", "youtube", "youtube.tsv
 ## For youtube
 ```
 
-## Data information 
+## Data information
 
 - `viewCount` how many times has the video been viewed?
 - `likeCount` how many times has the video been liked?
@@ -50,14 +50,14 @@ video_ids: [ XN_QPRrJZAw, YkYnni-WuaQ ]
 youtube_googlesheet:
 ```
 
-- [ ] In the `config_automation.yml` file, make sure that `refresh-slido` is set to "yes".
+- [ ] In the `_config_automation.yml` file, make sure that `refresh-slido` is set to "yes".
 - [ ] Optionally, if you are saving data to Google, specify a googlesheet ID in `youtube_googlesheet` that you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
 
-## Customizing the YouTube Data 
+## Customizing the YouTube Data
 
-In order to customize the data you are downloading from your YouTube you can modify the 
-`refresh-scripts/refresh-youtube.R` script in your repository. 
+In order to customize the data you are downloading from your YouTube you can modify the
+`refresh-scripts/refresh-youtube.R` script in your repository.
 
-You can take a look at the [`metricminer` R package documentation](https://hutchdatascience.org/metricminer/articles/getting-started.html) for more details about the functions and what is possible. 
+You can take a look at the [`metricminer` R package documentation](https://hutchdatascience.org/metricminer/articles/getting-started.html) for more details about the functions and what is possible.
 
-If you have a metric need that is not currently fulfilled by `metricminer` or `metricminer-dashboard` we encourage you to [file a GitHub issue with us and let us know about your new feature idea (or bug report)](https://github.com/fhdsl/metricminer/issues/new/choose). 
+If you have a metric need that is not currently fulfilled by `metricminer` or `metricminer-dashboard` we encourage you to [file a GitHub issue with us and let us know about your new feature idea (or bug report)](https://github.com/fhdsl/metricminer/issues/new/choose).

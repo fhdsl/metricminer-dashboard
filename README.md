@@ -74,10 +74,10 @@ If in your config file you choose "google" as your data destination you will nee
 
 ### Setting up Google Authentication
 
-Your metricminer dashboard will need permissions to Google if you are saving data there, or wanting to use any data from a Google product including: Google Analytics, Google Forms, Googledrive, or Youtube. 
+Your metricminer dashboard will need permissions to Google if you are saving data there, or wanting to use any data from a Google product including: Google Analytics, Google Forms, Googledrive, or Youtube.
 
 To setup Google Authentication for your metricminer dashboard, you'll need to open up R on your local computer and run the following code:
-If you aren't a regular R user you can always use [posit.cloud](https://posit.cloud/) to avoid the installation process. 
+If you aren't a regular R user you can always use [posit.cloud](https://posit.cloud/) to avoid the installation process.
 
 ```
 install.packages("metricminer")
@@ -110,7 +110,7 @@ token$credentials$refresh_token
 
 After you've set up authorization you'll need to check the following items in the `_config_automation.yml` file.
 
-- [ ] In the `config_automation.yml` file, make sure that `refresh-calendly` is set to "yes".
+- [ ] In the `_config_automation.yml` file, make sure that `refresh-calendly` is set to "yes".
 - [ ] Optionally, if you are saving data to google, specify a googlesheet ID you'd like the CRAN data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
 ```
 ###### Calendly ######
@@ -123,8 +123,8 @@ calendly_googlesheet:
 1. Go to: https://scholar.google.com/scholar
 2. Search for the paper you are looking for the citation count.
 3. Then click the `Cited by ___` button below the title of the paper
-4. Copy and paste this in the `_config_automation.yml` file in the `citation_papers` section. 
-         
+4. Copy and paste this in the `_config_automation.yml` file in the `citation_papers` section.
+
 ```
 ###### Citations ######
 refresh-citations: yes
@@ -133,7 +133,7 @@ citation_papers: [
   "https://scholar.google.com/scholar?cites=15945159957067506879" ]
 citation_googlesheet:
 ```
-- [ ] In the `config_automation.yml` file, make sure that `refresh-citations` is set to "yes".
+- [ ] In the `_config_automation.yml` file, make sure that `refresh-citations` is set to "yes".
 - [ ] Optionally, if you are saving data to google, specify a googlesheet ID in `citation_googlesheet` if you'd like the citation data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
 
 ### Setting up CRAN
@@ -147,8 +147,8 @@ cran_packages: [ metricminer, ottrpal ]
 cran_googlesheet:
 ```
 
-- [ ] In the `config_automation.yml` file, make sure that `refresh-cran` is set to "yes".
-- [ ] In the `cran_packages` of your `config_automation.yml`, type the names of the packages that you'd like to collect data from on CRAN. Type them exactly as they are spelled, case sensitive, separated by commas. Delete the example package names we've put there.
+- [ ] In the `_config_automation.yml` file, make sure that `refresh-cran` is set to "yes".
+- [ ] In the `cran_packages` of your `_config_automation.yml`, type the names of the packages that you'd like to collect data from on CRAN. Type them exactly as they are spelled, case sensitive, separated by commas. Delete the example package names we've put there.
 - [ ] Optionally, if you are saving data to google, specify a googlesheet ID in `cran_googlesheet` you'd like the CRAN data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
 
 
@@ -195,7 +195,7 @@ ga_property_ids: [ 422671031, 422558989 ]
 ga_googlesheet:
 ```
 
-- [ ] In the `config_automation.yml` file, make sure that `refresh-ga` is set to "yes".
+- [ ] In the `_config_automation.yml` file, make sure that `refresh-ga` is set to "yes".
 - [ ] Optionally, if you are saving data to Google, specify a googlesheet ID in `ga_googlesheet` you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
 
 ### Setting up Google Forms
@@ -218,7 +218,7 @@ google_forms: [
 googleforms_googlesheet:
 ```
 
-- [ ] In the `config_automation.yml` file, make sure that `refresh-googleforms` is set to "yes".
+- [ ] In the `_config_automation.yml` file, make sure that `refresh-googleforms` is set to "yes".
 - [ ] Optionally, if you are saving data to Google, specify a googlesheet ID in `googleforms_googlesheet` you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
 
 ### Setting up Slido
@@ -237,7 +237,7 @@ drive_id: 1XWXHHyj32Uw_UyaUJrqp6S--hHnM0-7l
 slido_googlesheet:
 ```
 
-- [ ] In the `config_automation.yml` file, make sure that `refresh-slido` is set to "yes".
+- [ ] In the `_config_automation.yml` file, make sure that `refresh-slido` is set to "yes".
 - [ ] Optionally, if you are saving data to Google, specify a googlesheet ID in `slido_googlesheet` that you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
 
 ### Setting up YouTube
@@ -258,5 +258,5 @@ video_ids: [ XN_QPRrJZAw, YkYnni-WuaQ ]
 youtube_googlesheet:
 ```
 
-- [ ] In the `config_automation.yml` file, make sure that `refresh-slido` is set to "yes".
+- [ ] In the `_config_automation.yml` file, make sure that `refresh-slido` is set to "yes".
 - [ ] Optionally, if you are saving data to Google, specify a googlesheet ID in `youtube_googlesheet` that you'd like the GitHub data to be saved to. This will only be relevant if you've set `data_dest` to `google`.
