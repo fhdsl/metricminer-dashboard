@@ -3,7 +3,7 @@ fhdsl/metricminer	NA	4	434	1	62	NA	NA
 fhdsl/metricminer-dashboard	NA	4	188	0	62	NA	NA
 jhudsl/OTTR_Template	12	18	954	15	75	NA	NA
 jhudsl/OTTR_Template_Website	1	7	247	0	37	NA	NA
-NA	NA	5	NA	2	100	582	486
-NA	NA	4	NA	1	62	503	216
-NA	14	19	NA	17	75	1564	1006
-NA	3	8	NA	2	50	414	302
+fhdsl/metricminer	NA	5	NA	2	100	590	489
+fhdsl/metricminer-dashboard	NA	5	NA	1	62	521	229
+jhudsl/OTTR_Template	14	19	NA	17	75	1564	1006
+jhudsl/OTTR_Template_Website	3	8	NA	2	50	414	302
