@@ -16,6 +16,8 @@ This repository is a template dashboard website for you to display metrics mined
 6. Return to your metricminer dashboard repository and go to Settings > Secrets and variables > Actions.
 7. Click on `New repository secret`. Name your new secret *exactly* `METRICMINER_GITHUB_PAT`
 8. Copy and paste your Personal access token in the `Secret` box and then click the green "Add secret" button.
+9. Sign up for template syncs by adding your repository to [the sync list](https://github.com/fhdsl/metricminer-dashboard/blob/main/.github/sync.yml).
+10. Note: If metricminer adds new functionality that you want to incorporate, you will need to add it to your `_config_automation.yml` file manually since that file isn't included in template syncs.
 
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
